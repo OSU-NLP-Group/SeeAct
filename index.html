@@ -14,7 +14,7 @@
         content="GPT-4V(ision) is a Generalist Web Agent, if Grounded">
   <meta name="keywords" content="SeeAct, LMM, LMM Evaluation, Vision Language Model, Large Language Model, Large Multimodal Model, artificial intelligence, AI, AGI, artificial general intelligence">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> SeeAct: GPT-4V(ision) is a Generalist Web Agent, if Grounded</title>
+  <title> GPT-4V(ision) is a Generalist Web Agent, if Grounded</title>
 
   <link rel="icon" href="./static/images/seeact-icon.png">
 
@@ -117,14 +117,6 @@
           </div>
 
           <br>
-<!--          <div class="is-size-5 publication-authors">-->
-<!--            <span class="author-block">*Core Contributors</span><br>-->
-<!--            <span class="author-block">†Corresponding to:</span>-->
-<!--            <span class="author-block"><a href="mailto:xiangyue@in.ai">xiangyue@in.ai</a>,</span>-->
-<!--            <span class="author-block"><a href="mailto:su.809@osu.edu">su.809@osu.edu</a>,</span>-->
-<!--            <span class="author-block"><a href="mailto:wenhuchen@uwaterloo.ca">wenhuchen@uwaterloo.ca</a></span>-->
-<!--          </div>-->
-          
 
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -242,11 +234,12 @@
       </h2>
     </div> -->
       <!-- <div class="box m-5"> -->
-        <div class="content has-text-centered">
+        <div class="content has-text-justified">
 <!--          <img src="static/images/overview_mmlu.Jpeg" alt="geometric reasoning" width="100%"/>-->
           <p>
             SEEACT is a generalist web agent based on GPT-4V. Specifically, given a web-based task (e.g., “Rent a truck with the lowest rate” in the car rental website), we examine two essential capabilities of GPT-4V as a generalist web agent: (i) Action Generation to produce an action description at each step (e.g., “Move the cursor over the ‘Find Your Truck’ button and perform a click”) towards completing the task, and (ii) Element Grounding to identify an HTML element (e.g., “[button] Find Your Truck”) at the current step on the webpage.<br>
           </p>
+          <p></p>
         </div>
       <!-- </div> -->
     </div>
@@ -257,7 +250,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/seeact_demo.mp4"
+        <source src="./static/videos/demo_video.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
@@ -402,1129 +395,1129 @@
   </div>
 </section>
 
-<!-- RESULTS SECTION -->
-<section class="hero is-light is-small">
-  <div class="hero-body has-text-centered">
-    <h1 class="title is-1 mmmu">Experiment Results</h1>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
+<!--&lt;!&ndash; RESULTS SECTION &ndash;&gt;-->
+<!--<section class="hero is-light is-small">-->
+<!--  <div class="hero-body has-text-centered">-->
+<!--    <h1 class="title is-1 mmmu">Experiment Results</h1>-->
+<!--  </div>-->
+<!--</section>-->
+<!--<section class="section">-->
+<!--  <div class="container">-->
 
 
 
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; RESULTS SECTION &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--    <div class="columns is-centered m-6">-->
+<!--      <div class="column is-full has-text-centered content">-->
+<!--        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>-->
+<!--        <div class="content">-->
+<!--&lt;!&ndash;          <div class="content has-text-justified">&ndash;&gt;-->
+<!--&lt;!&ndash;            <p>&ndash;&gt;-->
+<!--&lt;!&ndash;              We evaluate various models including LLMs and LMMs.&ndash;&gt;-->
+<!--&lt;!&ndash;              In each type, we consider both closed- and open-source models.&ndash;&gt;-->
+<!--&lt;!&ndash;              Our evaluation is conducted under a zero-shot setting to assess the capability of models to generate accurate answers without fine-tuning or few-shot demonstrations on our benchmark.&ndash;&gt;-->
+<!--&lt;!&ndash;              For all models, we use the default prompt provided by each model for multi-choice or open QA, if available.&ndash;&gt;-->
+<!--&lt;!&ndash;              If models do not provide prompts for task types in MMMU, we conduct prompt engineering on the validation set and use the most effective prompt for the later zero-shot experiment.&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </p>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;          <button id="toggleButton" onclick="changeButtonText()"><b style='font-size: larger;'>Test Set Leaderboard</b> (Click to Switch)</button>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="model-labels-container">&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <span class="leaderboard-label" style="background-color: #f8fffe;">Open-Source</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            <span class="leaderboard-label" style="background-color: #f9f2f8;">Closed</span> &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <span class="leaderboard-label" style="background-color: rgba(249, 242, 248, 1);">Open-Source</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            <span class="leaderboard-label" style="background-color: rgba(117, 209, 215, 0.1);">Proprietary</span>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          <table id="table1" class="js-sort-table">&ndash;&gt;-->
+<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Reset</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Overall</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Art & Design</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Business</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Science</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Health & Medicine</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Human. & Social Sci.</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td class="js-sort-number"><strong>Tech & Eng.</strong></td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f8fffe;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(117, 209, 215, 0.1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://openai.com/contributions/gpt-4v">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>GPT-4V(ision) (Playground)</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>55.7</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>65.3</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>64.3</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>48.4</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>63.5</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>76.3</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>41.7</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(117, 209, 215, 0.1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://github.com/QwenLM/Qwen-VL?tab=readme-ov-file#qwen-vl-plus">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>Qwen-VL-PLUS*</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">40.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">59.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">34.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">32.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">43.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">65.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">32.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2301.12597">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>BLIP-2 FLAN-T5-XXL</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XXL</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>34.0</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">49.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>28.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">27.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">33.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">51.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>30.4</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2305.06500">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>InstructBLIP-T5-XXL</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>InstructBLIP-T5-XXL</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">33.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>48.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>30.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>27.6</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>33.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>49.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>29.4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://llava-vl.github.io/">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>LLaVA-1.5-13B</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>LLaVA-1.5-13B</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>33.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>49.8</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>28.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>34.9</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td><b>54.7</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>28.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249,242,248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2308.12966">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>Qwen-VL-7B</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>Qwen-VL-7B</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>32.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>47.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">29.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>33.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>45.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">30.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2311.04257">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>mPLUG-OWL2*</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>mPLUG-OWL2*</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>32.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>48.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>24.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>32.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>46.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>29.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2301.12597">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>BLIP-2 FLAN-T5-XL</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XL</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>31.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>43.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>31.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>48.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>27.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2305.06500">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>InstructBLIP-T5-XL</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>InstructBLIP-T5-XL</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>30.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>43.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>29.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>45.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>28.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2311.03079">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>CogVLM</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>CogVLM</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>30.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>38.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>31.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>41.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>28.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2305.03726">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>Otter</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>Otter</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>29.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>37.4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>24.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>24.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>29.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>35.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-decoration: underline;">30.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2304.15010">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>LLaMA-Adapter2-7B</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>LLaMA-Adapter2-7B</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>27.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>35.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>30.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>29.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://minigpt-4.github.io/">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>MiniGPT4-Vicuna-13B</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>MiniGPT4-Vicuna-13B</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>27.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>30.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>27.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>30.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>27.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://www.adept.ai/blog/fuyu-8b">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>Fuyu-8B</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>Fuyu-8B</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>27.4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>29.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>27.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>25.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>27.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>32.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>26.4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2306.14824">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>Kosmos2</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>Kosmos2</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>28.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>23.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>27.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <tr style="background-color: rgba(249, 242, 248, 1);">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="text-align: left;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="https://arxiv.org/abs/2308.01390">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <b>OpenFlamingo2-9B</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              </td>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash; <td style="text-align: left;"><b>OpenFlamingo2-9B</b></td> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>31.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>23.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>26.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>27.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td>25.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            <tr style="background-color: #f4f9fe;">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;text-align: left;">Frequent Choice</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">25.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">26.7</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">28.4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">24.0</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">24.4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">25.2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">26.5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            <tr style="background-color: #f4f9fe;">&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;text-align: left;">Random Choice</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">23.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">24.1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">24.9</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">21.6</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">25.3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">22.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;              <td style="color: #808080;">24.8</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>           &ndash;&gt;-->
+<!--            &lt;!&ndash; <tr>-->
+<!--              <td colspan="8" style="font-size: 18px;"><b>Large Language Models (LLMs): Only Text as Input</b></td>-->
+<!--            </tr>               &ndash;&gt;-->
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;">-->
+<!--              <td style="text-align: left;"><b>Llama2 7B</b></td>-->
+<!--              <td>28.7</td>-->
+<!--              <td>30.7</td>-->
+<!--              <td>27.2</td>-->
+<!--              <td>26.7</td>-->
+<!--              <td>27.7</td>-->
+<!--              <td>32.6</td>-->
+<!--              <td>29.8</td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #f4fdf5;">-->
+<!--              <td style="text-align: left;"><b>FLAN-T5-XXL</b></td>-->
+<!--              <td><b>31.2</b></td>-->
+<!--              <td>36.8</td>-->
+<!--              <td><b>28.9</b></td>-->
+<!--              <td>26.7</td>-->
+<!--              <td>32.8</td>-->
+<!--              <td><b>44.8</b></td>-->
+<!--              <td><b>28.3</b></td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #f4fdf5;">-->
+<!--              <td style="text-align: left;"><b>FLAN-T5-XXL + OCR</b></td>-->
+<!--              <td><b>31.9</b></td>-->
+<!--              <td>36.2</td>-->
+<!--              <td>28.8</td>-->
+<!--              <td>26.2</td>-->
+<!--              <td>32.6</td>-->
+<!--              <td><b>50.5</b></td>-->
+<!--              <td><b>29.7</b></td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #f4fdf5;">-->
+<!--              <td style="text-align: left;"><b>FLAN-T5-XXL + LLaVA Caption</b></td>-->
+<!--              <td><b>31.9</b></td>-->
+<!--              <td><b>38.4</b></td>-->
+<!--              <td>27.8</td>-->
+<!--              <td><b>27.0</b></td>-->
+<!--              <td><b>33.2</b></td>-->
+<!--              <td>49.9</td>-->
+<!--              <td>28.7</td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #e7fde9;">-->
+<!--              <td style="text-align: left;"><b>Vicuna-13B</b></td>-->
+<!--              <td>31.0</td>-->
+<!--              <td>35.1</td>-->
+<!--              <td><b>30.1</b></td>-->
+<!--              <td>24.7</td>-->
+<!--              <td>31.4</td>-->
+<!--              <td>44.8</td>-->
+<!--              <td>30.1</td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #e7fde9;">-->
+<!--              <td style="text-align: left;"><b>Vicuna-13B + OCR</b></td>-->
+<!--              <td>31.9</td>-->
+<!--              <td>37.1</td>-->
+<!--              <td>28.6</td>-->
+<!--              <td><b>26.5</b></td>-->
+<!--              <td>32.0</td>-->
+<!--              <td>49.3</td>-->
+<!--              <td>30.0</td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #e7fde9;">-->
+<!--              <td style="text-align: left;"><b>Vicuna-13B + LLaVA Caption</b></td>-->
+<!--              <td><b>32.7</b></td>-->
+<!--              <td><b>42.0</b></td>-->
+<!--              <td>26.8</td>-->
+<!--              <td>26.2</td>-->
+<!--              <td><b>33.4</b></td>-->
+<!--              <td><b>49.4</b></td>-->
+<!--              <td><b>31.4</b></td>-->
+<!--            </tr> &ndash;&gt;-->
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;">-->
+<!--              <td style="text-align: left;"><b>GPT-4 Text</b></td>-->
+<!--              <td>33.8</td>-->
+<!--              <td>32.9</td>-->
+<!--              <td>28.5</td>-->
+<!--              <td>30.6</td>-->
+<!--              <td>41.3</td>-->
+<!--              <td>53.0</td>-->
+<!--              <td>28.4</td>-->
+<!--            </tr> &ndash;&gt;-->
+<!--          </table>-->
+
+<!--          <table id="table2" class="js-sort-table hidden">-->
+<!--            <tr>-->
+<!--              <td class="js-sort-number"><strong>Reset</strong></td>-->
+<!--              <td class="js-sort-number"><strong>Overall</strong></td>-->
+<!--              <td class="js-sort-number"><strong>Art & Design</strong></td>-->
+<!--              <td class="js-sort-number"><strong>Business</strong></td>-->
+<!--              <td class="js-sort-number"><strong>Science</strong></td>-->
+<!--              <td class="js-sort-number"><strong>Health & Medicine</strong></td>-->
+<!--              <td class="js-sort-number"><strong>Human. & Social Sci.</strong></td>-->
+<!--              <td class="js-sort-number"><strong>Tech & Eng.</strong></td>-->
+<!--            </tr>-->
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;"> &ndash;&gt;-->
+<!--              <tr style="background-color: rgba(117, 209, 215, 0.1);">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://deepmind.google/technologies/gemini/#introduction">-->
+<!--                    <b>Gemini Ultra*</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Gemini Ultra*</b></td> &ndash;&gt;-->
+<!--              <td><b>59.4</b></td>-->
+<!--              <td><b>70.0</b></td>-->
+<!--              <td style="text-decoration: underline;">56.7</td>-->
+<!--              <td style="text-decoration: underline;">48.0</td>-->
+<!--              <td><b>67.3</b></td>-->
+<!--              <td><b>78.3</b></td>-->
+<!--              <td><b>47.1</b></td>-->
+<!--            </tr>-->
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;"> &ndash;&gt;-->
+<!--              <tr style="background-color: rgba(117, 209, 215, 0.1);">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://openai.com/contributions/gpt-4v">-->
+<!--                    <b>GPT-4V(ision) (Playground)</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>GPT-4V(ision) (Playground)</b></td> &ndash;&gt;-->
+<!--              <td style="text-decoration: underline;">56.8</td>-->
+<!--              <td style="text-decoration: underline;">65.8</td>-->
+<!--              <td><b>59.3</b></td>-->
+<!--              <td><b>54.7</b></td>-->
+<!--              <td style="text-decoration: underline;">64.7</td>-->
+<!--              <td style="text-decoration: underline;">72.5</td>-->
+<!--              <td style="text-decoration: underline;">36.7</td>-->
+<!--            </tr>-->
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;"> &ndash;&gt;-->
+<!--              <tr style="background-color: rgba(117, 209, 215, 0.1);">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://deepmind.google/technologies/gemini/#introduction">-->
+<!--                    <b>Gemini Pro*</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Gemini Pro*</b></td> &ndash;&gt;-->
+<!--              <td>47.9</td>-->
+<!--              <td><b>-</b></td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td><b>-</b></td>-->
+<!--              <td><b>-</b></td>-->
+<!--              <td><b>-</b></td>-->
+<!--            </tr>-->
+<!--            &lt;!&ndash; <tr style="background-color: #f9f2f8;"> &ndash;&gt;-->
+<!--              <tr style="background-color: rgba(117, 209, 215, 0.1);">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://github.com/QwenLM/Qwen-VL?tab=readme-ov-file#qwen-vl-plus">-->
+<!--                    <b>Qwen-VL-PLUS*</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Qwen-VL-PLUS*</b></td> &ndash;&gt;-->
+<!--              <td>45.2</td>-->
+<!--              <td>60.0</td>-->
+<!--              <td>35.3</td>-->
+<!--              <td>37.3</td>-->
+<!--              <td>46.7</td>-->
+<!--              <td>65.8</td>-->
+<!--              <td style="text-decoration: underline;">36.7</td>-->
+<!--            </tr>  -->
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;"> &ndash;&gt;-->
+<!--              <tr style="background-color: rgba(117, 209, 215, 0.1);">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://deepmind.google/technologies/gemini/#introduction">-->
+<!--                    <b>Gemini Nano2*</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Gemini Nano2*</b></td> &ndash;&gt;-->
+<!--              <td>32.6</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td></td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://llava-vl.github.io/">-->
+<!--                    <b>LLaVA-1.5-13B</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>LLaVA-1.5-13B</b></td> &ndash;&gt;-->
+<!--              <td><b>36.4</b></td>-->
+<!--              <td><b>51.7</b></td>-->
+<!--              <td>22.7</td>-->
+<!--              <td>29.3</td>-->
+<!--              <td><b>38.7</b></td>-->
+<!--              <td><b>53.3</b></td>-->
+<!--              <td>31.4</td>-->
+<!--            </tr> -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2308.12966">-->
+<!--                    <b>Qwen-VL-7B</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Qwen-VL-7B</b></td> &ndash;&gt;-->
+<!--              <td style="text-decoration: underline;">35.9</td>-->
+<!--              <td><b>51.7</b></td>-->
+<!--              <td>29.3</td>-->
+<!--              <td>29.3</td>-->
+<!--              <td>33.3</td>-->
+<!--              <td>45.0</td>-->
+<!--              <td style="text-decoration: underline;">32.9</td>-->
+<!--            </tr>  -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2305.06500">-->
+<!--                    <b>InstructBLIP-T5-XXL</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>InstructBLIP-T5-XXL</b></td> &ndash;&gt;-->
+<!--              <td>35.7</td>-->
+<!--              <td>44.2</td>-->
+<!--              <td>24.0</td>-->
+<!--              <td>30.7</td>-->
+<!--              <td style="text-decoration: underline;">35.3</td>-->
+<!--              <td>49.2</td>-->
+<!--              <td><b>35.2</b></td>-->
+<!--            </tr>            -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2301.12597">-->
+<!--                    <b>BLIP-2 FLAN-T5-XXL</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XXL</b></td> &ndash;&gt;-->
+<!--              <td>35.4</td>-->
+<!--              <td>41.7</td>-->
+<!--              <td style="text-decoration: underline;">30.0</td>-->
+<!--              <td><b>34.7</b></td>-->
+<!--              <td>32.0</td>-->
+<!--              <td style="text-decoration: underline;">50.8</td>-->
+<!--              <td>30.0</td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2301.12597">-->
+<!--                    <b>BLIP-2 FLAN-T5-XL</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XL</b></td> &ndash;&gt;-->
+<!--              <td>34.4</td>-->
+<!--              <td>44.2</td>-->
+<!--              <td>26.7</td>-->
+<!--              <td>30.7</td>-->
+<!--              <td style="text-decoration: underline;">35.3</td>-->
+<!--              <td>50.0</td>-->
+<!--              <td>27.6</td>-->
+<!--            </tr>   -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2305.06500">-->
+<!--                    <b>InstructBLIP-T5-XL</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>InstructBLIP-T5-XL</b></td> &ndash;&gt;-->
+<!--              <td>32.9</td>-->
+<!--              <td>40.0</td>-->
+<!--              <td>28.0</td>-->
+<!--              <td style="text-decoration: underline;">32.7</td>-->
+<!--              <td>28.7</td>-->
+<!--              <td>47.5</td>-->
+<!--              <td>27.1</td>-->
+<!--            </tr>    -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2311.04257">-->
+<!--                    <b>mPLUG-OWL2*</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>mPLUG-OWL2*</b></td> &ndash;&gt;-->
+<!--              <td>32.7</td>-->
+<!--              <td style="text-decoration: underline;">45.8</td>-->
+<!--              <td>24.7</td>-->
+<!--              <td>22.7</td>-->
+<!--              <td>32.0</td>-->
+<!--              <td>45.8</td>-->
+<!--              <td>31.0</td>-->
+<!--            </tr> -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2311.07575">-->
+<!--                    <b>SPHINX*</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>SPHINX*</b></td> &ndash;&gt;-->
+<!--              <td>32.9</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td></td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2305.03726">-->
+<!--                    <b>Otter</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Otter</b></td> &ndash;&gt;-->
+<!--              <td>32.2</td>-->
+<!--              <td>37.5</td>-->
+<!--              <td>24.0</td>-->
+<!--              <td><b>34.7</b></td>-->
+<!--              <td>30.7</td>-->
+<!--              <td>41.7</td>-->
+<!--              <td>29.0</td>-->
+<!--            </tr>          -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2311.03079">-->
+<!--                    <b>CogVLM</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>CogVLM</b></td> &ndash;&gt;-->
+<!--              <td>32.1</td>-->
+<!--              <td>40.8</td>-->
+<!--              <td>25.3</td>-->
+<!--              <td>28.0</td>-->
+<!--              <td>32.0</td>-->
+<!--              <td>45.0</td>-->
+<!--              <td>27.6</td>-->
+<!--            </tr>          -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2304.15010">-->
+<!--                    <b>LLaMA-Adapter2-7B</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>LLaMA-Adapter2-7B</b></td> &ndash;&gt;-->
+<!--              <td>29.8</td> -->
+<!--              <td>29.2</td>-->
+<!--              <td>25.3</td> -->
+<!--              <td>30.7</td> -->
+<!--              <td>30.7</td> -->
+<!--              <td>33.3</td> -->
+<!--              <td>30.0</td> -->
+<!--            </tr>   -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2308.01390">-->
+<!--                    <b>OpenFlamingo2-9B</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>OpenFlamingo2-9B</b></td> &ndash;&gt;-->
+<!--              <td>28.7</td>-->
+<!--              <td>40.0</td>-->
+<!--              <td>28.0</td>-->
+<!--              <td>23.3</td>-->
+<!--              <td>27.3</td>-->
+<!--              <td>30.8</td>-->
+<!--              <td>26.2</td>-->
+<!--            </tr>    -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://www.adept.ai/blog/fuyu-8b">-->
+<!--                    <b>Fuyu-8B</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Fuyu-8B</b></td> &ndash;&gt;-->
+<!--              <td>27.9</td>-->
+<!--              <td>36.7</td>-->
+<!--              <td><b>32.0</b></td>-->
+<!--              <td>22.0</td>-->
+<!--              <td>28.0</td>-->
+<!--              <td>32.5</td>-->
+<!--              <td>21.4</td>-->
+<!--           </tr>    -->
+<!--           <tr style="background-color: #f9f2f8;">-->
+<!--            <td style="text-align: left;">-->
+<!--              <a href="https://minigpt-4.github.io/">-->
+<!--                  <b>MiniGPT4-Vicuna-13B</b>-->
+<!--              </a>-->
+<!--            </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>MiniGPT4-Vicuna-13B</b></td> &ndash;&gt;-->
+<!--              <td>26.8</td>-->
+<!--              <td>29.2</td>-->
+<!--              <td>21.3</td>-->
+<!--              <td>28.7</td>-->
+<!--              <td>30.7</td>-->
+<!--              <td>29.2</td>-->
+<!--              <td>23.8</td>-->
+<!--            </tr>-->
+<!--            <tr style="background-color: #f4f9fe;">-->
+<!--              <td style="color: #808080;text-align: left;">Frequent Choice</td>-->
+<!--              <td style="color: #808080;">26.8</td>-->
+<!--              <td style="color: #808080;">23.3</td>-->
+<!--              <td style="color: #808080;">29.3</td>-->
+<!--              <td style="color: #808080;">27.3</td>-->
+<!--              <td style="color: #808080;">30.0</td>-->
+<!--              <td style="color: #808080;">25.8</td>-->
+<!--              <td style="color: #808080;">24.8</td>-->
+<!--            </tr>   -->
+<!--            <tr style="background-color: #f9f2f8;">-->
+<!--              <td style="text-align: left;">-->
+<!--                <a href="https://arxiv.org/abs/2306.14824">-->
+<!--                    <b>Kosmos2</b>-->
+<!--                </a>-->
+<!--              </td>-->
+<!--              &lt;!&ndash; <td style="text-align: left;"><b>Kosmos2</b></td> &ndash;&gt;-->
+<!--              <td>24.4</td>-->
+<!--              <td>25.0</td>-->
+<!--              <td>18.0</td>-->
+<!--              <td>19.3</td>-->
+<!--              <td>28.0</td>-->
+<!--              <td>30.0</td>-->
+<!--              <td>26.7</td>-->
+<!--            </tr>            -->
+<!--            <tr style="background-color: #f4f9fe;">-->
+<!--              <td style="color: #808080;text-align: left;">Random Choice</td>-->
+<!--              <td style="color: #808080;">22.1</td>-->
+<!--              <td style="color: #808080;">29.2</td>-->
+<!--              <td style="color: #808080;">24.7</td>-->
+<!--              <td style="color: #808080;">18.0</td>-->
+<!--              <td style="color: #808080;">20.7</td>-->
+<!--              <td style="color: #808080;">20.0</td>-->
+<!--              <td style="color: #808080;">21.4</td>-->
+<!--            </tr>          -->
+<!--                                 -->
+<!--            &lt;!&ndash; <tr>-->
+<!--              <td colspan="8" style="font-size: 18px;"><b>Large Language Models (LLMs): Only Text as Input</b></td>-->
+<!--            </tr>               &ndash;&gt;-->
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;">-->
+<!--              <td style="text-align: left;"><b>Llama2 7B</b></td>-->
+<!--              <td>30.1</td>-->
+<!--              <td>29.2</td>-->
+<!--              <td>22.7</td>-->
+<!--              <td>34.0</td>-->
+<!--              <td>26.7</td>-->
+<!--              <td>37.5</td>-->
+<!--              <td>31.4</td>-->
+<!--            </tr>-->
+<!--          -->
+<!--            <tr style="background-color: #f4fdf5;">-->
+<!--              <td style="text-align: left;"><b>FLAN-T5-XXL</b></td>-->
+<!--              <td>32.1</td>-->
+<!--              <td>38.3</td>-->
+<!--              <td>28.0</td>-->
+<!--              <td>28.0</td>-->
+<!--              <td>32.0</td>-->
+<!--              <td>42.5</td>-->
+<!--              <td>28.6</td>-->
+<!--            </tr>            -->
+<!--            <tr style="background-color: #f4fdf5;">-->
+<!--              <td style="text-align: left;"><b>FLAN-T5-XXL + OCR</b></td>-->
+<!--              <td>34.7</td>-->
+<!--              <td>37.5</td>-->
+<!--              <td>29.3</td>-->
+<!--              <td>30.0</td>-->
+<!--              <td><b>32.7</b></td>-->
+<!--              <td><b>55.0</b></td>-->
+<!--              <td><b>30.0</b></td>-->
+<!--            </tr>-->
+<!--          -->
+<!--            <tr style="background-color: #f4fdf5;">-->
+<!--              <td style="text-align: left;"><b>FLAN-T5-XXL + LLaVA Caption</b></td>-->
+<!--              <td><b>34.8</b></td>-->
+<!--              <td><b>43.3</b></td>-->
+<!--              <td><b>31.3</b></td>-->
+<!--              <td><b>32.7</b></td>-->
+<!--              <td>32.0</td>-->
+<!--              <td>49.2</td>-->
+<!--              <td>27.6</td>-->
+<!--            </tr>-->
+<!--          -->
+<!--            <tr style="background-color: #e7fde9;">-->
+<!--              <td style="text-align: left;"><b>Vicuna-13B</b></td>-->
+<!--              <td>33.3</td>-->
+<!--              <td><b>41.7</b></td>-->
+<!--              <td>26.7</td>-->
+<!--              <td>23.3</td>-->
+<!--              <td>31.3</td>-->
+<!--              <td>45.8</td>-->
+<!--              <td><b>34.8</b></td>-->
+<!--            </tr>-->
+<!--          -->
+<!--            <tr style="background-color: #e7fde9;">-->
+<!--              <td style="text-align: left;"><b>Vicuna-13B + OCR</b></td>-->
+<!--              <td><b>35.4</b></td>-->
+<!--              <td>39.2</td>-->
+<!--              <td><b>31.3</b></td>-->
+<!--              <td><b>30.0</b></td>-->
+<!--              <td>31.3</td>-->
+<!--              <td><b>50.0</b></td>-->
+<!--              <td><b>34.8</b></td>-->
+<!--            </tr>-->
+<!--          -->
+<!--            <tr style="background-color: #e7fde9;">-->
+<!--              <td style="text-align: left;"><b>Vicuna-13B + LLaVA Caption</b></td>-->
+<!--              <td>33.9</td>-->
+<!--              <td>38.3</td>-->
+<!--              <td>26.0</td>-->
+<!--              <td>28.7</td>-->
+<!--              <td><b>34.0</b></td>-->
+<!--              <td>48.3</td>-->
+<!--              <td>32.4</td>-->
+<!--            </tr> &ndash;&gt;-->
+<!--          -->
+
+<!--            &lt;!&ndash; <tr style="background-color: #f8fffe;">-->
+<!--              <td style="text-align: left;"><b>GPT-4 Text</b></td>-->
+<!--              <td>34.9</td>-->
+<!--              <td>35.0</td>-->
+<!--              <td>36.7</td>-->
+<!--              <td>34.7</td>-->
+<!--              <td>40.7</td>-->
+<!--              <td>51.7</td>-->
+<!--              <td>20.0</td>-->
+<!--            </tr>           &ndash;&gt;-->
+<!--          </table>-->
+
+<!--            <p> Overall results of different models on the MMMU test set. The best-performing model in each category is <b>in-bold</b>, and the second best is <u>underlined</u>. *: results provided by the authors.</p> -->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Image Type SECTION &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--<div class="columns is-centered m-6">-->
+<!--  <div class="column is-full has-text-centered content">-->
+<!--    <h2 class="title is-3">Different Image Types</h2>-->
+<!--    <div class="content has-text-justified">-->
+<!--      <p>-->
+<!--        We compare the performance of various models across top frequent image types. -->
+<!--        Across all types, GPT-4V consistently outperforms the other models by a huge margin. -->
+<!--        Open-source models demonstrate relatively strong performance in categories like Photos and Paintings, which are more frequently seen during training. -->
+<!--        However, for less common image categories like Geometric shapes, Music sheets and Chemical structures, all models obtain very low scores (some are close to random guesses). -->
+<!--        This indicates that the existing models are generalizing poorly towards these image types.-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="model-labels-container">-->
+<!--      <span class="model-label" style="background-color: rgba(196, 123, 160, 0.5);">Fuyu-8B</span>-->
+<!--      <span class="model-label" style="background-color: rgba(245, 123, 113, 0.5);">Qwen-VL-7B</span>-->
+<!--      <span class="model-label" style="background-color: rgba(255, 208, 80, 0.5);">LLaVA-1.5-13B</span>-->
+<!--      <span class="model-label" style="background-color: rgba(110, 194, 134, 0.5);">InstructBLIP-T5-XXL</span>-->
+<!--      <span class="model-label" style="background-color: rgba(255, 153, 78, 0.5);">BLIP-2 FLAN-T5-XXL</span>-->
+<!--      <span class="model-label" style="background-color: rgba(117, 209, 215, 0.5);">GPT-4V</span>-->
+<!--    </div>-->
+<!--    <div class="content has-text-centered">-->
+<!--      <div class="chart-grid">-->
+<!--        &lt;!&ndash; Chart 1: Diagrams &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--            <canvas id="chart_Diagrams"></canvas>-->
+<!--            <p class="chart-label">Diagrams (3184)</p>-->
+<!--        </div>-->
+<!--    -->
+<!--        &lt;!&ndash; Chart 2: Tables &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--            <canvas id="chart_Tables"></canvas>-->
+<!--            <p class="chart-label">Tables (2267)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 3: Plots and Charts &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_PlotsAndCharts"></canvas>-->
+<!--          <p class="chart-label">Plots and Charts (840)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 4: Chemical Structures &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_ChemicalStructures"></canvas>-->
+<!--          <p class="chart-label">Chemical Structures (573)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 5: Photographs &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Photographs"></canvas>-->
+<!--          <p class="chart-label">Photographs (770)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 6: Paintings &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Paintings"></canvas>-->
+<!--          <p class="chart-label">Paintings (453)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 7: Geometric Shapes &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_GeometricShapes"></canvas>-->
+<!--          <p class="chart-label">Geometric Shapes (336)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 8: Sheet Music &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_SheetMusic"></canvas>-->
+<!--          <p class="chart-label">Sheet Music (335)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 9: Medical Images &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_MedicalImages"></canvas>-->
+<!--          <p class="chart-label">Medical Images (272)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 10: Pathological Images &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_PathologicalImages"></canvas>-->
+<!--          <p class="chart-label">Pathological Images (253)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 11: Microscopic Images &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_MicroscopicImages"></canvas>-->
+<!--          <p class="chart-label">Microscopic Images (226)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 12: MRI, CT scans, and X-rays &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_MRIsCTScansXrays"></canvas>-->
+<!--          <p class="chart-label">MRI, CT scans, and X-rays (198)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 13: Sketches and Drafts &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_SketchesAndDrafts"></canvas>-->
+<!--          <p class="chart-label">Sketches and Drafts (184)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 14: Maps &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Maps"></canvas>-->
+<!--          <p class="chart-label">Maps (170)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 15: Technical Blueprints &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_TechnicalBlueprints"></canvas>-->
+<!--          <p class="chart-label">Technical Blueprints (162)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 16: Trees and Graphs &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_TreesAndGraphs"></canvas>-->
+<!--          <p class="chart-label">Trees and Graphs (146)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 17: Mathematical Notations &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_MathematicalNotations"></canvas>-->
+<!--          <p class="chart-label">Mathematical Notations (133)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 18: Comics and Cartoons &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_ComicsAndCartoons"></canvas>-->
+<!--          <p class="chart-label">Comics and Cartoons (131)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 19: Sculpture &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Sculpture"></canvas>-->
+<!--          <p class="chart-label">Sculpture (117)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 20: Portraits &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Portraits"></canvas>-->
+<!--          <p class="chart-label">Portraits (91)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 21: Screenshots &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Screenshots"></canvas>-->
+<!--          <p class="chart-label">Screenshots (70)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 22: Other &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Other"></canvas>-->
+<!--          <p class="chart-label">Other(60)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 23: Poster &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Poster"></canvas>-->
+<!--          <p class="chart-label">Poster(57)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 24: Icons and Symbols &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_IconsAndSymbols"></canvas>-->
+<!--          <p class="chart-label">Icons and Symbols (42)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 25: Historical Timelines &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_HistoricalTimelines"></canvas>-->
+<!--          <p class="chart-label">Historical Timelines (30)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 26: 3D Renderings &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_3DRenderings"></canvas>-->
+<!--          <p class="chart-label">3D Renderings (21)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 27: DNA Sequences &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_DNASequences"></canvas>-->
+<!--          <p class="chart-label">DNA Sequences (20)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 28: Landscapes &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Landscapes"></canvas>-->
+<!--          <p class="chart-label">Landscapes (16)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 29: Logos and Branding &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_LogosAndBranding"></canvas>-->
+<!--          <p class="chart-label">Logos and Branding(14)</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Chart 30: Advertisements &ndash;&gt;-->
+<!--        <div class="chart-item">-->
+<!--          <canvas id="chart_Advertisements"></canvas>-->
+<!--          <p class="chart-label">Advertisements (10)</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <p class="bottom-text"> Selected models' performance on 30 different image types. Note that a single image may have multiple image types.</p>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Difficulty Levels SECTION &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--<div class="columns is-centered m-6">-->
+<!--  <div class="column is-full has-text-centered content">-->
+<!--    <h2 class="title is-3">Different Difficulty Levels</h2>-->
+<!--    <div class="content has-text-justified">-->
+<!--      <p>-->
+<!--        we compares the performance of selected models across three difficulty levels.  -->
+<!--        GPT-4V demonstrates a significantly higher proficiency, with a success rate of 76.1%, compared to opensource models in the “Easy” category.  -->
+<!--        When it comes to the “Medium” category, while the gap narrows, GPT-4V still leads at 55.6%.  -->
+<!--        The further diminishing performance gap in the “Hard” category across models indicates that as the complexity of tasks increases, the advantage of more advanced models like GPT-4V almost disappears.  -->
+<!--        This might reflect a current limitation in handling expert-level challenging queries even for the most advanced models.-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="content has-text-centered">-->
+<!--      <canvas id="difficulty_level_chart"></canvas>-->
+<!--      <p>Result decomposition across question difficulty levels.</p>-->
+<!--  </div>      -->
+
+<!--  </div>-->
+<!--</div>-->
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Error Analysis SECTION &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--    <div class="columns is-centered m-6">-->
+<!--      <div class="column is-full has-text-centered content">-->
+<!--        <h2 class="title is-3">Error Analysis</h2>-->
+<!--        <div class="content has-text-justified">-->
+<!--          <p>-->
+<!--            We delve into the analysis of errors by GPT-4V, a pivotal aspect for understanding its operational capabilities and limitations. -->
+<!--            This analysis serves not only to identify the model's current shortcomings but also to guide future enhancements in its design and training. -->
+<!--            We meticulously examine 150 randomly sampled error instances from GPT-4V's predictions. -->
+<!--            These instances are analyzed by expert annotators who identify the root causes of mispredictions based on their knowledge and the golden explanations if available. -->
+<!--            The distribution of these errors is illustrated in Figure, and a selection of 100 notable cases, along with detailed analyses, is included in the Appendix.-->
+<!--          </p>-->
+<!--        </div>-->
+<!--        <div class="content has-text-centered">-->
+<!--          <img src="static/images/error_distribution_1.Jpeg" alt="error distribution" width="25%">-->
+<!--          <p> Error distribution over 150 annotated GPT-4V errors.</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; <div id="results-carousel" class="carousel results-carousel">-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/error_distribution_1.Jpeg" alt="algebraic reasoning" width="45%"/>-->
+<!--              <p> Error distribution over 150 annotated GPT-4V errors.</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/error_case_main_text_1_1.Jpeg" alt="arithmetic reasoning" width="45%"/>-->
+<!--              <p> A basic perceptual error, easy for humans but challenging for GPT-4V.</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div> &ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Error Example  &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--    <div class="columns is-centered m-6">-->
+<!--      <div class="column is-full has-text-centered content">-->
+<!--        <h2 class="title is-3" id="examples">Error Examples</h2>-->
+<!--        <div id="results-carousel" class="carousel results-carousel">-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/error/1.png" alt="grade-lv" width="60%"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/error/2.png" alt="grade-lv" width="60%"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/error/3.png" alt="grade-lv" width="60%"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Correct Example &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--    <div class="columns is-centered m-6">-->
+<!--      <div class="column is-full has-text-centered content">-->
+<!--        <h2 class="title is-3">Correct Examples</h2>-->
+<!--        <div id="results-carousel" class="carousel results-carousel">-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/correct/1.png" alt="grade-lv" width="60%"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/correct/2.png" alt="grade-lv" width="60%"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="box m-5">-->
+<!--            <div class="content has-text-centered">-->
+<!--              <img src="static/images/correct/3.png" alt="grade-lv" width="60%"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 <!-------------------------------------------------------------------- RESULTS SECTION -------------------------------------------------------------------->
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
-        <div class="content">
-          <div class="content has-text-justified">
-            <p>
-              We evaluate various models including LLMs and LMMs.
-              In each type, we consider both closed- and open-source models.
-              Our evaluation is conducted under a zero-shot setting to assess the capability of models to generate accurate answers without fine-tuning or few-shot demonstrations on our benchmark.
-              For all models, we use the default prompt provided by each model for multi-choice or open QA, if available.
-              If models do not provide prompts for task types in MMMU, we conduct prompt engineering on the validation set and use the most effective prompt for the later zero-shot experiment.
-
-            </p>
-          </div>
-
-          <button id="toggleButton" onclick="changeButtonText()"><b style='font-size: larger;'>Test Set Leaderboard</b> (Click to Switch)</button>
-          <div class="model-labels-container">
-            <!-- <span class="leaderboard-label" style="background-color: #f8fffe;">Open-Source</span>
-            <span class="leaderboard-label" style="background-color: #f9f2f8;">Closed</span> -->
-
-            <span class="leaderboard-label" style="background-color: rgba(249, 242, 248, 1);">Open-Source</span>
-            <span class="leaderboard-label" style="background-color: rgba(117, 209, 215, 0.1);">Proprietary</span>
-          </div>
-          <table id="table1" class="js-sort-table">
-            <tr>
-              <td class="js-sort-number"><strong>Reset</strong></td>
-              <td class="js-sort-number"><strong>Overall</strong></td>
-              <td class="js-sort-number"><strong>Art & Design</strong></td>
-              <td class="js-sort-number"><strong>Business</strong></td>
-              <td class="js-sort-number"><strong>Science</strong></td>
-              <td class="js-sort-number"><strong>Health & Medicine</strong></td>
-              <td class="js-sort-number"><strong>Human. & Social Sci.</strong></td>
-              <td class="js-sort-number"><strong>Tech & Eng.</strong></td>
-            </tr>
-            <!-- <tr style="background-color: #f8fffe;"> -->
-              <tr style="background-color: rgba(117, 209, 215, 0.1);">
-              <td style="text-align: left;">
-                <a href="https://openai.com/contributions/gpt-4v">
-                    <b>GPT-4V(ision) (Playground)</b>
-                </a>
-              </td>
-              <td><b>55.7</b></td>
-              <td><b>65.3</b></td>
-              <td><b>64.3</b></td>
-              <td><b>48.4</b></td>
-              <td><b>63.5</b></td>
-              <td><b>76.3</b></td>
-              <td><b>41.7</b></td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(117, 209, 215, 0.1);">
-              <td style="text-align: left;">
-                <a href="https://github.com/QwenLM/Qwen-VL?tab=readme-ov-file#qwen-vl-plus">
-                    <b>Qwen-VL-PLUS*</b>
-                </a>
-              </td>
-              <td style="text-decoration: underline;">40.8</td>
-              <td style="text-decoration: underline;">59.9</td>
-              <td style="text-decoration: underline;">34.5</td>
-              <td style="text-decoration: underline;">32.8</td>
-              <td style="text-decoration: underline;">43.7</td>
-              <td style="text-decoration: underline;">65.5</td>
-              <td style="text-decoration: underline;">32.9</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2301.12597">
-                    <b>BLIP-2 FLAN-T5-XXL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XXL</b></td> -->
-              <td><b>34.0</b></td>
-              <td style="text-decoration: underline;">49.2</td>
-              <td>28.6</td>
-              <td style="text-decoration: underline;">27.3</td>
-              <td style="text-decoration: underline;">33.7</td>
-              <td style="text-decoration: underline;">51.5</td>
-              <td><b>30.4</b></td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2305.06500">
-                    <b>InstructBLIP-T5-XXL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>InstructBLIP-T5-XXL</b></td> -->
-              <td style="text-decoration: underline;">33.8</td>
-              <td>48.5</td>
-              <td><b>30.6</td>
-              <td><b>27.6</b></td>
-              <td>33.6</td>
-              <td>49.8</td>
-              <td>29.4</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://llava-vl.github.io/">
-                    <b>LLaVA-1.5-13B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>LLaVA-1.5-13B</b></td> -->
-              <td>33.6</td>
-              <td><b>49.8</b></td>
-              <td>28.2</td>
-              <td>25.9</td>
-              <td><b>34.9</b></td>
-              <td><b>54.7</b></td>
-              <td>28.3</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249,242,248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2308.12966">
-                    <b>Qwen-VL-7B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Qwen-VL-7B</b></td> -->
-              <td>32.9</td>
-              <td>47.7</td>
-              <td style="text-decoration: underline;">29.8</td>
-              <td>25.6</td>
-              <td>33.6</td>
-              <td>45.3</td>
-              <td style="text-decoration: underline;">30.2</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2311.04257">
-                    <b>mPLUG-OWL2*</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>mPLUG-OWL2*</b></td> -->
-              <td>32.1</td>
-              <td>48.5</td>
-              <td>25.6</td>
-              <td>24.9</td>
-              <td>32.8</td>
-              <td>46.7</td>
-              <td>29.6</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2301.12597">
-                    <b>BLIP-2 FLAN-T5-XL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XL</b></td> -->
-              <td>31.0</td>
-              <td>43.0</td>
-              <td>25.6</td>
-              <td>25.1</td>
-              <td>31.8</td>
-              <td>48.0</td>
-              <td>27.8</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2305.06500">
-                    <b>InstructBLIP-T5-XL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>InstructBLIP-T5-XL</b></td> -->
-              <td>30.6</td>
-              <td>43.3</td>
-              <td>25.2</td>
-              <td>25.2</td>
-              <td>29.3</td>
-              <td>45.8</td>
-              <td>28.6</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2311.03079">
-                    <b>CogVLM</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>CogVLM</b></td> -->
-              <td>30.1</td>
-              <td>38.0</td>
-              <td>25.6</td>
-              <td>25.1</td>
-              <td>31.2</td>
-              <td>41.5</td>
-              <td>28.9</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2305.03726">
-                    <b>Otter</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Otter</b></td> -->
-              <td>29.1</td>
-              <td>37.4</td>
-              <td>24.0</td>
-              <td>24.1</td>
-              <td>29.6</td>
-              <td>35.9</td>
-              <td style="text-decoration: underline;">30.2</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2304.15010">
-                    <b>LLaMA-Adapter2-7B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>LLaMA-Adapter2-7B</b></td> -->
-              <td>27.7</td>
-              <td>35.2</td>
-              <td>25.4</td>
-              <td>25.6</td>
-              <td>30.0</td>
-              <td>29.1</td>
-              <td>25.7</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://minigpt-4.github.io/">
-                    <b>MiniGPT4-Vicuna-13B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>MiniGPT4-Vicuna-13B</b></td> -->
-              <td>27.6</td>
-              <td>30.2</td>
-              <td>27.0</td>
-              <td>26.2</td>
-              <td>26.9</td>
-              <td>30.9</td>
-              <td>27.2</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://www.adept.ai/blog/fuyu-8b">
-                    <b>Fuyu-8B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Fuyu-8B</b></td> -->
-                <td>27.4</td>
-                <td>29.9</td>
-                <td>27.0</td>
-                <td>25.6</td>
-                <td>27.0</td>
-                <td>32.5</td>
-                <td>26.4</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2306.14824">
-                    <b>Kosmos2</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Kosmos2</b></td> -->
-              <td>26.6</td>
-              <td>28.8</td>
-              <td>23.7</td>
-              <td>26.6</td>
-              <td>27.2</td>
-              <td>26.3</td>
-              <td>26.8</td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(249, 242, 248, 1);">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2308.01390">
-                    <b>OpenFlamingo2-9B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>OpenFlamingo2-9B</b></td> -->
-              <td>26.3</td>
-              <td>31.7</td>
-              <td>23.5</td>
-              <td>26.3</td>
-              <td>26.3</td>
-              <td>27.9</td>
-              <td>25.1</td>
-            </tr>
-            <tr style="background-color: #f4f9fe;">
-              <td style="color: #808080;text-align: left;">Frequent Choice</td>
-              <td style="color: #808080;">25.8</td>
-              <td style="color: #808080;">26.7</td>
-              <td style="color: #808080;">28.4</td>
-              <td style="color: #808080;">24.0</td>
-              <td style="color: #808080;">24.4</td>
-              <td style="color: #808080;">25.2</td>
-              <td style="color: #808080;">26.5</td>
-            </tr>
-            <tr style="background-color: #f4f9fe;">
-              <td style="color: #808080;text-align: left;">Random Choice</td>
-              <td style="color: #808080;">23.9</td>
-              <td style="color: #808080;">24.1</td>
-              <td style="color: #808080;">24.9</td>
-              <td style="color: #808080;">21.6</td>
-              <td style="color: #808080;">25.3</td>
-              <td style="color: #808080;">22.8</td>
-              <td style="color: #808080;">24.8</td>
-            </tr>           
-            <!-- <tr>
-              <td colspan="8" style="font-size: 18px;"><b>Large Language Models (LLMs): Only Text as Input</b></td>
-            </tr>               -->
-            <!-- <tr style="background-color: #f8fffe;">
-              <td style="text-align: left;"><b>Llama2 7B</b></td>
-              <td>28.7</td>
-              <td>30.7</td>
-              <td>27.2</td>
-              <td>26.7</td>
-              <td>27.7</td>
-              <td>32.6</td>
-              <td>29.8</td>
-            </tr>
-            <tr style="background-color: #f4fdf5;">
-              <td style="text-align: left;"><b>FLAN-T5-XXL</b></td>
-              <td><b>31.2</b></td>
-              <td>36.8</td>
-              <td><b>28.9</b></td>
-              <td>26.7</td>
-              <td>32.8</td>
-              <td><b>44.8</b></td>
-              <td><b>28.3</b></td>
-            </tr>
-            <tr style="background-color: #f4fdf5;">
-              <td style="text-align: left;"><b>FLAN-T5-XXL + OCR</b></td>
-              <td><b>31.9</b></td>
-              <td>36.2</td>
-              <td>28.8</td>
-              <td>26.2</td>
-              <td>32.6</td>
-              <td><b>50.5</b></td>
-              <td><b>29.7</b></td>
-            </tr>
-            <tr style="background-color: #f4fdf5;">
-              <td style="text-align: left;"><b>FLAN-T5-XXL + LLaVA Caption</b></td>
-              <td><b>31.9</b></td>
-              <td><b>38.4</b></td>
-              <td>27.8</td>
-              <td><b>27.0</b></td>
-              <td><b>33.2</b></td>
-              <td>49.9</td>
-              <td>28.7</td>
-            </tr>
-            <tr style="background-color: #e7fde9;">
-              <td style="text-align: left;"><b>Vicuna-13B</b></td>
-              <td>31.0</td>
-              <td>35.1</td>
-              <td><b>30.1</b></td>
-              <td>24.7</td>
-              <td>31.4</td>
-              <td>44.8</td>
-              <td>30.1</td>
-            </tr>
-            <tr style="background-color: #e7fde9;">
-              <td style="text-align: left;"><b>Vicuna-13B + OCR</b></td>
-              <td>31.9</td>
-              <td>37.1</td>
-              <td>28.6</td>
-              <td><b>26.5</b></td>
-              <td>32.0</td>
-              <td>49.3</td>
-              <td>30.0</td>
-            </tr>
-            <tr style="background-color: #e7fde9;">
-              <td style="text-align: left;"><b>Vicuna-13B + LLaVA Caption</b></td>
-              <td><b>32.7</b></td>
-              <td><b>42.0</b></td>
-              <td>26.8</td>
-              <td>26.2</td>
-              <td><b>33.4</b></td>
-              <td><b>49.4</b></td>
-              <td><b>31.4</b></td>
-            </tr> -->
-            <!-- <tr style="background-color: #f8fffe;">
-              <td style="text-align: left;"><b>GPT-4 Text</b></td>
-              <td>33.8</td>
-              <td>32.9</td>
-              <td>28.5</td>
-              <td>30.6</td>
-              <td>41.3</td>
-              <td>53.0</td>
-              <td>28.4</td>
-            </tr> -->
-          </table>
-
-          <table id="table2" class="js-sort-table hidden">
-            <tr>
-              <td class="js-sort-number"><strong>Reset</strong></td>
-              <td class="js-sort-number"><strong>Overall</strong></td>
-              <td class="js-sort-number"><strong>Art & Design</strong></td>
-              <td class="js-sort-number"><strong>Business</strong></td>
-              <td class="js-sort-number"><strong>Science</strong></td>
-              <td class="js-sort-number"><strong>Health & Medicine</strong></td>
-              <td class="js-sort-number"><strong>Human. & Social Sci.</strong></td>
-              <td class="js-sort-number"><strong>Tech & Eng.</strong></td>
-            </tr>
-            <!-- <tr style="background-color: #f8fffe;"> -->
-              <tr style="background-color: rgba(117, 209, 215, 0.1);">
-              <td style="text-align: left;">
-                <a href="https://deepmind.google/technologies/gemini/#introduction">
-                    <b>Gemini Ultra*</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Gemini Ultra*</b></td> -->
-              <td><b>59.4</b></td>
-              <td><b>70.0</b></td>
-              <td style="text-decoration: underline;">56.7</td>
-              <td style="text-decoration: underline;">48.0</td>
-              <td><b>67.3</b></td>
-              <td><b>78.3</b></td>
-              <td><b>47.1</b></td>
-            </tr>
-            <!-- <tr style="background-color: #f8fffe;"> -->
-              <tr style="background-color: rgba(117, 209, 215, 0.1);">
-              <td style="text-align: left;">
-                <a href="https://openai.com/contributions/gpt-4v">
-                    <b>GPT-4V(ision) (Playground)</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>GPT-4V(ision) (Playground)</b></td> -->
-              <td style="text-decoration: underline;">56.8</td>
-              <td style="text-decoration: underline;">65.8</td>
-              <td><b>59.3</b></td>
-              <td><b>54.7</b></td>
-              <td style="text-decoration: underline;">64.7</td>
-              <td style="text-decoration: underline;">72.5</td>
-              <td style="text-decoration: underline;">36.7</td>
-            </tr>
-            <!-- <tr style="background-color: #f8fffe;"> -->
-              <tr style="background-color: rgba(117, 209, 215, 0.1);">
-              <td style="text-align: left;">
-                <a href="https://deepmind.google/technologies/gemini/#introduction">
-                    <b>Gemini Pro*</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Gemini Pro*</b></td> -->
-              <td>47.9</td>
-              <td><b>-</b></td>
-              <td>-</td>
-              <td>-</td>
-              <td><b>-</b></td>
-              <td><b>-</b></td>
-              <td><b>-</b></td>
-            </tr>
-            <!-- <tr style="background-color: #f9f2f8;"> -->
-              <tr style="background-color: rgba(117, 209, 215, 0.1);">
-              <td style="text-align: left;">
-                <a href="https://github.com/QwenLM/Qwen-VL?tab=readme-ov-file#qwen-vl-plus">
-                    <b>Qwen-VL-PLUS*</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Qwen-VL-PLUS*</b></td> -->
-              <td>45.2</td>
-              <td>60.0</td>
-              <td>35.3</td>
-              <td>37.3</td>
-              <td>46.7</td>
-              <td>65.8</td>
-              <td style="text-decoration: underline;">36.7</td>
-            </tr>  
-            <!-- <tr style="background-color: #f8fffe;"> -->
-              <tr style="background-color: rgba(117, 209, 215, 0.1);">
-              <td style="text-align: left;">
-                <a href="https://deepmind.google/technologies/gemini/#introduction">
-                    <b>Gemini Nano2*</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Gemini Nano2*</b></td> -->
-              <td>32.6</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td></td>
-            </tr>
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://llava-vl.github.io/">
-                    <b>LLaVA-1.5-13B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>LLaVA-1.5-13B</b></td> -->
-              <td><b>36.4</b></td>
-              <td><b>51.7</b></td>
-              <td>22.7</td>
-              <td>29.3</td>
-              <td><b>38.7</b></td>
-              <td><b>53.3</b></td>
-              <td>31.4</td>
-            </tr> 
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2308.12966">
-                    <b>Qwen-VL-7B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Qwen-VL-7B</b></td> -->
-              <td style="text-decoration: underline;">35.9</td>
-              <td><b>51.7</b></td>
-              <td>29.3</td>
-              <td>29.3</td>
-              <td>33.3</td>
-              <td>45.0</td>
-              <td style="text-decoration: underline;">32.9</td>
-            </tr>  
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2305.06500">
-                    <b>InstructBLIP-T5-XXL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>InstructBLIP-T5-XXL</b></td> -->
-              <td>35.7</td>
-              <td>44.2</td>
-              <td>24.0</td>
-              <td>30.7</td>
-              <td style="text-decoration: underline;">35.3</td>
-              <td>49.2</td>
-              <td><b>35.2</b></td>
-            </tr>            
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2301.12597">
-                    <b>BLIP-2 FLAN-T5-XXL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XXL</b></td> -->
-              <td>35.4</td>
-              <td>41.7</td>
-              <td style="text-decoration: underline;">30.0</td>
-              <td><b>34.7</b></td>
-              <td>32.0</td>
-              <td style="text-decoration: underline;">50.8</td>
-              <td>30.0</td>
-            </tr>
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2301.12597">
-                    <b>BLIP-2 FLAN-T5-XL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>BLIP-2 FLAN-T5-XL</b></td> -->
-              <td>34.4</td>
-              <td>44.2</td>
-              <td>26.7</td>
-              <td>30.7</td>
-              <td style="text-decoration: underline;">35.3</td>
-              <td>50.0</td>
-              <td>27.6</td>
-            </tr>   
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2305.06500">
-                    <b>InstructBLIP-T5-XL</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>InstructBLIP-T5-XL</b></td> -->
-              <td>32.9</td>
-              <td>40.0</td>
-              <td>28.0</td>
-              <td style="text-decoration: underline;">32.7</td>
-              <td>28.7</td>
-              <td>47.5</td>
-              <td>27.1</td>
-            </tr>    
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2311.04257">
-                    <b>mPLUG-OWL2*</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>mPLUG-OWL2*</b></td> -->
-              <td>32.7</td>
-              <td style="text-decoration: underline;">45.8</td>
-              <td>24.7</td>
-              <td>22.7</td>
-              <td>32.0</td>
-              <td>45.8</td>
-              <td>31.0</td>
-            </tr> 
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2311.07575">
-                    <b>SPHINX*</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>SPHINX*</b></td> -->
-              <td>32.9</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td></td>
-            </tr>
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2305.03726">
-                    <b>Otter</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Otter</b></td> -->
-              <td>32.2</td>
-              <td>37.5</td>
-              <td>24.0</td>
-              <td><b>34.7</b></td>
-              <td>30.7</td>
-              <td>41.7</td>
-              <td>29.0</td>
-            </tr>          
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2311.03079">
-                    <b>CogVLM</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>CogVLM</b></td> -->
-              <td>32.1</td>
-              <td>40.8</td>
-              <td>25.3</td>
-              <td>28.0</td>
-              <td>32.0</td>
-              <td>45.0</td>
-              <td>27.6</td>
-            </tr>          
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2304.15010">
-                    <b>LLaMA-Adapter2-7B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>LLaMA-Adapter2-7B</b></td> -->
-              <td>29.8</td> 
-              <td>29.2</td>
-              <td>25.3</td> 
-              <td>30.7</td> 
-              <td>30.7</td> 
-              <td>33.3</td> 
-              <td>30.0</td> 
-            </tr>   
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2308.01390">
-                    <b>OpenFlamingo2-9B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>OpenFlamingo2-9B</b></td> -->
-              <td>28.7</td>
-              <td>40.0</td>
-              <td>28.0</td>
-              <td>23.3</td>
-              <td>27.3</td>
-              <td>30.8</td>
-              <td>26.2</td>
-            </tr>    
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://www.adept.ai/blog/fuyu-8b">
-                    <b>Fuyu-8B</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Fuyu-8B</b></td> -->
-              <td>27.9</td>
-              <td>36.7</td>
-              <td><b>32.0</b></td>
-              <td>22.0</td>
-              <td>28.0</td>
-              <td>32.5</td>
-              <td>21.4</td>
-           </tr>    
-           <tr style="background-color: #f9f2f8;">
-            <td style="text-align: left;">
-              <a href="https://minigpt-4.github.io/">
-                  <b>MiniGPT4-Vicuna-13B</b>
-              </a>
-            </td>
-              <!-- <td style="text-align: left;"><b>MiniGPT4-Vicuna-13B</b></td> -->
-              <td>26.8</td>
-              <td>29.2</td>
-              <td>21.3</td>
-              <td>28.7</td>
-              <td>30.7</td>
-              <td>29.2</td>
-              <td>23.8</td>
-            </tr>
-            <tr style="background-color: #f4f9fe;">
-              <td style="color: #808080;text-align: left;">Frequent Choice</td>
-              <td style="color: #808080;">26.8</td>
-              <td style="color: #808080;">23.3</td>
-              <td style="color: #808080;">29.3</td>
-              <td style="color: #808080;">27.3</td>
-              <td style="color: #808080;">30.0</td>
-              <td style="color: #808080;">25.8</td>
-              <td style="color: #808080;">24.8</td>
-            </tr>   
-            <tr style="background-color: #f9f2f8;">
-              <td style="text-align: left;">
-                <a href="https://arxiv.org/abs/2306.14824">
-                    <b>Kosmos2</b>
-                </a>
-              </td>
-              <!-- <td style="text-align: left;"><b>Kosmos2</b></td> -->
-              <td>24.4</td>
-              <td>25.0</td>
-              <td>18.0</td>
-              <td>19.3</td>
-              <td>28.0</td>
-              <td>30.0</td>
-              <td>26.7</td>
-            </tr>            
-            <tr style="background-color: #f4f9fe;">
-              <td style="color: #808080;text-align: left;">Random Choice</td>
-              <td style="color: #808080;">22.1</td>
-              <td style="color: #808080;">29.2</td>
-              <td style="color: #808080;">24.7</td>
-              <td style="color: #808080;">18.0</td>
-              <td style="color: #808080;">20.7</td>
-              <td style="color: #808080;">20.0</td>
-              <td style="color: #808080;">21.4</td>
-            </tr>          
-                                 
-            <!-- <tr>
-              <td colspan="8" style="font-size: 18px;"><b>Large Language Models (LLMs): Only Text as Input</b></td>
-            </tr>               -->
-            <!-- <tr style="background-color: #f8fffe;">
-              <td style="text-align: left;"><b>Llama2 7B</b></td>
-              <td>30.1</td>
-              <td>29.2</td>
-              <td>22.7</td>
-              <td>34.0</td>
-              <td>26.7</td>
-              <td>37.5</td>
-              <td>31.4</td>
-            </tr>
-          
-            <tr style="background-color: #f4fdf5;">
-              <td style="text-align: left;"><b>FLAN-T5-XXL</b></td>
-              <td>32.1</td>
-              <td>38.3</td>
-              <td>28.0</td>
-              <td>28.0</td>
-              <td>32.0</td>
-              <td>42.5</td>
-              <td>28.6</td>
-            </tr>            
-            <tr style="background-color: #f4fdf5;">
-              <td style="text-align: left;"><b>FLAN-T5-XXL + OCR</b></td>
-              <td>34.7</td>
-              <td>37.5</td>
-              <td>29.3</td>
-              <td>30.0</td>
-              <td><b>32.7</b></td>
-              <td><b>55.0</b></td>
-              <td><b>30.0</b></td>
-            </tr>
-          
-            <tr style="background-color: #f4fdf5;">
-              <td style="text-align: left;"><b>FLAN-T5-XXL + LLaVA Caption</b></td>
-              <td><b>34.8</b></td>
-              <td><b>43.3</b></td>
-              <td><b>31.3</b></td>
-              <td><b>32.7</b></td>
-              <td>32.0</td>
-              <td>49.2</td>
-              <td>27.6</td>
-            </tr>
-          
-            <tr style="background-color: #e7fde9;">
-              <td style="text-align: left;"><b>Vicuna-13B</b></td>
-              <td>33.3</td>
-              <td><b>41.7</b></td>
-              <td>26.7</td>
-              <td>23.3</td>
-              <td>31.3</td>
-              <td>45.8</td>
-              <td><b>34.8</b></td>
-            </tr>
-          
-            <tr style="background-color: #e7fde9;">
-              <td style="text-align: left;"><b>Vicuna-13B + OCR</b></td>
-              <td><b>35.4</b></td>
-              <td>39.2</td>
-              <td><b>31.3</b></td>
-              <td><b>30.0</b></td>
-              <td>31.3</td>
-              <td><b>50.0</b></td>
-              <td><b>34.8</b></td>
-            </tr>
-          
-            <tr style="background-color: #e7fde9;">
-              <td style="text-align: left;"><b>Vicuna-13B + LLaVA Caption</b></td>
-              <td>33.9</td>
-              <td>38.3</td>
-              <td>26.0</td>
-              <td>28.7</td>
-              <td><b>34.0</b></td>
-              <td>48.3</td>
-              <td>32.4</td>
-            </tr> -->
-          
-
-            <!-- <tr style="background-color: #f8fffe;">
-              <td style="text-align: left;"><b>GPT-4 Text</b></td>
-              <td>34.9</td>
-              <td>35.0</td>
-              <td>36.7</td>
-              <td>34.7</td>
-              <td>40.7</td>
-              <td>51.7</td>
-              <td>20.0</td>
-            </tr>           -->
-          </table>
-
-            <p> Overall results of different models on the MMMU test set. The best-performing model in each category is <b>in-bold</b>, and the second best is <u>underlined</u>. *: results provided by the authors.</p> 
-        </div>
-      </div>
-    </div>
-<!-------------------------------------------------------------------- Image Type SECTION -------------------------------------------------------------------->
-<div class="columns is-centered m-6">
-  <div class="column is-full has-text-centered content">
-    <h2 class="title is-3">Different Image Types</h2>
-    <div class="content has-text-justified">
-      <p>
-        We compare the performance of various models across top frequent image types. 
-        Across all types, GPT-4V consistently outperforms the other models by a huge margin. 
-        Open-source models demonstrate relatively strong performance in categories like Photos and Paintings, which are more frequently seen during training. 
-        However, for less common image categories like Geometric shapes, Music sheets and Chemical structures, all models obtain very low scores (some are close to random guesses). 
-        This indicates that the existing models are generalizing poorly towards these image types.
-      </p>
-    </div>
-    <div class="model-labels-container">
-      <span class="model-label" style="background-color: rgba(196, 123, 160, 0.5);">Fuyu-8B</span>
-      <span class="model-label" style="background-color: rgba(245, 123, 113, 0.5);">Qwen-VL-7B</span>
-      <span class="model-label" style="background-color: rgba(255, 208, 80, 0.5);">LLaVA-1.5-13B</span>
-      <span class="model-label" style="background-color: rgba(110, 194, 134, 0.5);">InstructBLIP-T5-XXL</span>
-      <span class="model-label" style="background-color: rgba(255, 153, 78, 0.5);">BLIP-2 FLAN-T5-XXL</span>
-      <span class="model-label" style="background-color: rgba(117, 209, 215, 0.5);">GPT-4V</span>
-    </div>
-    <div class="content has-text-centered">
-      <div class="chart-grid">
-        <!-- Chart 1: Diagrams -->
-        <div class="chart-item">
-            <canvas id="chart_Diagrams"></canvas>
-            <p class="chart-label">Diagrams (3184)</p>
-        </div>
-    
-        <!-- Chart 2: Tables -->
-        <div class="chart-item">
-            <canvas id="chart_Tables"></canvas>
-            <p class="chart-label">Tables (2267)</p>
-        </div>
-        <!-- Chart 3: Plots and Charts -->
-        <div class="chart-item">
-          <canvas id="chart_PlotsAndCharts"></canvas>
-          <p class="chart-label">Plots and Charts (840)</p>
-        </div>
-        <!-- Chart 4: Chemical Structures -->
-        <div class="chart-item">
-          <canvas id="chart_ChemicalStructures"></canvas>
-          <p class="chart-label">Chemical Structures (573)</p>
-        </div>
-        <!-- Chart 5: Photographs -->
-        <div class="chart-item">
-          <canvas id="chart_Photographs"></canvas>
-          <p class="chart-label">Photographs (770)</p>
-        </div>
-        <!-- Chart 6: Paintings -->
-        <div class="chart-item">
-          <canvas id="chart_Paintings"></canvas>
-          <p class="chart-label">Paintings (453)</p>
-        </div>
-        <!-- Chart 7: Geometric Shapes -->
-        <div class="chart-item">
-          <canvas id="chart_GeometricShapes"></canvas>
-          <p class="chart-label">Geometric Shapes (336)</p>
-        </div>
-        <!-- Chart 8: Sheet Music -->
-        <div class="chart-item">
-          <canvas id="chart_SheetMusic"></canvas>
-          <p class="chart-label">Sheet Music (335)</p>
-        </div>
-        <!-- Chart 9: Medical Images -->
-        <div class="chart-item">
-          <canvas id="chart_MedicalImages"></canvas>
-          <p class="chart-label">Medical Images (272)</p>
-        </div>
-        <!-- Chart 10: Pathological Images -->
-        <div class="chart-item">
-          <canvas id="chart_PathologicalImages"></canvas>
-          <p class="chart-label">Pathological Images (253)</p>
-        </div>
-        <!-- Chart 11: Microscopic Images -->
-        <div class="chart-item">
-          <canvas id="chart_MicroscopicImages"></canvas>
-          <p class="chart-label">Microscopic Images (226)</p>
-        </div>
-        <!-- Chart 12: MRI, CT scans, and X-rays -->
-        <div class="chart-item">
-          <canvas id="chart_MRIsCTScansXrays"></canvas>
-          <p class="chart-label">MRI, CT scans, and X-rays (198)</p>
-        </div>
-        <!-- Chart 13: Sketches and Drafts -->
-        <div class="chart-item">
-          <canvas id="chart_SketchesAndDrafts"></canvas>
-          <p class="chart-label">Sketches and Drafts (184)</p>
-        </div>
-        <!-- Chart 14: Maps -->
-        <div class="chart-item">
-          <canvas id="chart_Maps"></canvas>
-          <p class="chart-label">Maps (170)</p>
-        </div>
-        <!-- Chart 15: Technical Blueprints -->
-        <div class="chart-item">
-          <canvas id="chart_TechnicalBlueprints"></canvas>
-          <p class="chart-label">Technical Blueprints (162)</p>
-        </div>
-        <!-- Chart 16: Trees and Graphs -->
-        <div class="chart-item">
-          <canvas id="chart_TreesAndGraphs"></canvas>
-          <p class="chart-label">Trees and Graphs (146)</p>
-        </div>
-        <!-- Chart 17: Mathematical Notations -->
-        <div class="chart-item">
-          <canvas id="chart_MathematicalNotations"></canvas>
-          <p class="chart-label">Mathematical Notations (133)</p>
-        </div>
-        <!-- Chart 18: Comics and Cartoons -->
-        <div class="chart-item">
-          <canvas id="chart_ComicsAndCartoons"></canvas>
-          <p class="chart-label">Comics and Cartoons (131)</p>
-        </div>
-        <!-- Chart 19: Sculpture -->
-        <div class="chart-item">
-          <canvas id="chart_Sculpture"></canvas>
-          <p class="chart-label">Sculpture (117)</p>
-        </div>
-        <!-- Chart 20: Portraits -->
-        <div class="chart-item">
-          <canvas id="chart_Portraits"></canvas>
-          <p class="chart-label">Portraits (91)</p>
-        </div>
-        <!-- Chart 21: Screenshots -->
-        <div class="chart-item">
-          <canvas id="chart_Screenshots"></canvas>
-          <p class="chart-label">Screenshots (70)</p>
-        </div>
-        <!-- Chart 22: Other -->
-        <div class="chart-item">
-          <canvas id="chart_Other"></canvas>
-          <p class="chart-label">Other(60)</p>
-        </div>
-        <!-- Chart 23: Poster -->
-        <div class="chart-item">
-          <canvas id="chart_Poster"></canvas>
-          <p class="chart-label">Poster(57)</p>
-        </div>
-        <!-- Chart 24: Icons and Symbols -->
-        <div class="chart-item">
-          <canvas id="chart_IconsAndSymbols"></canvas>
-          <p class="chart-label">Icons and Symbols (42)</p>
-        </div>
-        <!-- Chart 25: Historical Timelines -->
-        <div class="chart-item">
-          <canvas id="chart_HistoricalTimelines"></canvas>
-          <p class="chart-label">Historical Timelines (30)</p>
-        </div>
-        <!-- Chart 26: 3D Renderings -->
-        <div class="chart-item">
-          <canvas id="chart_3DRenderings"></canvas>
-          <p class="chart-label">3D Renderings (21)</p>
-        </div>
-        <!-- Chart 27: DNA Sequences -->
-        <div class="chart-item">
-          <canvas id="chart_DNASequences"></canvas>
-          <p class="chart-label">DNA Sequences (20)</p>
-        </div>
-        <!-- Chart 28: Landscapes -->
-        <div class="chart-item">
-          <canvas id="chart_Landscapes"></canvas>
-          <p class="chart-label">Landscapes (16)</p>
-        </div>
-        <!-- Chart 29: Logos and Branding -->
-        <div class="chart-item">
-          <canvas id="chart_LogosAndBranding"></canvas>
-          <p class="chart-label">Logos and Branding(14)</p>
-        </div>
-        <!-- Chart 30: Advertisements -->
-        <div class="chart-item">
-          <canvas id="chart_Advertisements"></canvas>
-          <p class="chart-label">Advertisements (10)</p>
-        </div>
-      </div>
-      <p class="bottom-text"> Selected models' performance on 30 different image types. Note that a single image may have multiple image types.</p>
-    </div>
-
-  </div>
-</div>
-<!-------------------------------------------------------------------- Difficulty Levels SECTION -------------------------------------------------------------------->
-<div class="columns is-centered m-6">
-  <div class="column is-full has-text-centered content">
-    <h2 class="title is-3">Different Difficulty Levels</h2>
-    <div class="content has-text-justified">
-      <p>
-        we compares the performance of selected models across three difficulty levels.  
-        GPT-4V demonstrates a significantly higher proficiency, with a success rate of 76.1%, compared to opensource models in the “Easy” category.  
-        When it comes to the “Medium” category, while the gap narrows, GPT-4V still leads at 55.6%.  
-        The further diminishing performance gap in the “Hard” category across models indicates that as the complexity of tasks increases, the advantage of more advanced models like GPT-4V almost disappears.  
-        This might reflect a current limitation in handling expert-level challenging queries even for the most advanced models.
-      </p>
-    </div>
-    <div class="content has-text-centered">
-      <canvas id="difficulty_level_chart"></canvas>
-      <p>Result decomposition across question difficulty levels.</p>
-  </div>      
-
-  </div>
-</div>
-<!-------------------------------------------------------------------- Error Analysis SECTION -------------------------------------------------------------------->
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Error Analysis</h2>
-        <div class="content has-text-justified">
-          <p>
-            We delve into the analysis of errors by GPT-4V, a pivotal aspect for understanding its operational capabilities and limitations. 
-            This analysis serves not only to identify the model's current shortcomings but also to guide future enhancements in its design and training. 
-            We meticulously examine 150 randomly sampled error instances from GPT-4V's predictions. 
-            These instances are analyzed by expert annotators who identify the root causes of mispredictions based on their knowledge and the golden explanations if available. 
-            The distribution of these errors is illustrated in Figure, and a selection of 100 notable cases, along with detailed analyses, is included in the Appendix.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <img src="static/images/error_distribution_1.Jpeg" alt="error distribution" width="25%">
-          <p> Error distribution over 150 annotated GPT-4V errors.</p>
-        </div>
-        <!-- <div id="results-carousel" class="carousel results-carousel">
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/error_distribution_1.Jpeg" alt="algebraic reasoning" width="45%"/>
-              <p> Error distribution over 150 annotated GPT-4V errors.</p>
-            </div>
-          </div>
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/error_case_main_text_1_1.Jpeg" alt="arithmetic reasoning" width="45%"/>
-              <p> A basic perceptual error, easy for humans but challenging for GPT-4V.</p>
-            </div>
-          </div>
-        </div> -->
-      </div>
-    </div>
-
-<!-------------------------------------------------------------------- Error Example  -------------------------------------------------------------------->
-
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3" id="examples">Error Examples</h2>
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/error/1.png" alt="grade-lv" width="60%"/>
-            </div>
-          </div>
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/error/2.png" alt="grade-lv" width="60%"/>
-            </div>
-          </div>
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/error/3.png" alt="grade-lv" width="60%"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-<!-------------------------------------------------------------------- Correct Example -------------------------------------------------------------------->
-
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Correct Examples</h2>
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/correct/1.png" alt="grade-lv" width="60%"/>
-            </div>
-          </div>
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/correct/2.png" alt="grade-lv" width="60%"/>
-            </div>
-          </div>
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/correct/3.png" alt="grade-lv" width="60%"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-<!-------------------------------------------------------------------- RESULTS SECTION -------------------------------------------------------------------->
-
-
   </div>
 </section>
 
@@ -1534,10 +1527,10 @@
   <div class="container is-max-desktop content">
     <h2 class="title is-3 has-text-centered">BibTeX</h2>
     <pre><code>
-      @article{yue2023mmmu,
-        title={MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI},
-        author={Xiang Yue and Yuansheng Ni and Kai Zhang and Tianyu Zheng and Ruoqi Liu and Ge Zhang and Samuel Stevens and Dongfu Jiang and Weiming Ren and Yuxuan Sun and Cong Wei and Botao Yu and Ruibin Yuan and Renliang Sun and Ming Yin and Boyuan Zheng and Zhenzhu Yang and Yibo Liu and Wenhao Huang and Huan Sun and Yu Su and Wenhu Chen},
-        journal={arXiv preprint arXiv:2311.16502},
+      @article{zheng2023seeact,
+        title={GPT-4V(ision) is a Generalist Web Agent, if Grounded},
+        author={Boyuan Zheng and Boyu Gou and Jihyung Kil and Huan Sun and Yu Su},
+        journal={arXiv preprint arXiv:xxxx.xxxx},
         year={2023},
       }
 </code></pre>
