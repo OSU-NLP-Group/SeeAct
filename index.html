@@ -59,17 +59,16 @@
           More Research
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://tiger-ai-lab.github.io/MAmmoTH/">
-            <b>MAmmoTH</b> <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
-          </a>
-          <a class="navbar-item" href="https://osu-nlp-group.github.io/TableLlama/">
-            TableLlama 
-            <a class="navbar-item" href="https://osu-nlp-group.github.io/MagicBrush/">
-              MagicBrush
-            </a>
-            <a class="navbar-item" href="https://osu-nlp-group.github.io/Mind2Web/">
+          <a class="navbar-item" href="https://osu-nlp-group.github.io/Mind2Web/">
               Mind2Web
-            </a>
+          </a>
+          <a class="navbar-item" href="https://mmmu-benchmark.github.io/">
+            MMMU
+          </a>
+          <a class="navbar-item" href="https://dki-lab.github.io/LLM-Planner/">
+              LLM-Planner
+          </a>
+
           </a>
           
           </a>
@@ -709,6 +708,52 @@
       <!-- <div class="column is-full-width has-text-centered"> -->
       <div class="column is-four-fifths">
 
+
+        <h2 class="title is-3">Promising Capabilities</h2>
+        <div class="content has-text-justified">
+          <p>
+            GPT-4V exhibits promising capabilities, ranging from long-range action planning, webpage content reasoning, and error correction to surpassing the limitations of superficial textual similarity matching inherent in fine-tuned, text-only models
+          </p>
+
+          <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_knowledge_1.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the task necessitates knowledge about which district Dublin is located in. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_knowledge_2.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the task requires knowledge of the IATA code for Los Cabos International Airport. GPT-4V accurately provides the correct code.
+              </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_awareness_error.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the webpage displays an error message indicating an invalid phone number, a consequence of prior actions. The model identifies this error and prioritizes its immediate rectification, foregoing the subsequent planned steps. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_planning.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the model generates a comprehensive plan for the task, including subsequent actions on following pages that are not currently visible. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/examplel_understanding.pdf.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this case, two critical pieces of information are inadequately captured by the textual history. Firstly, the website automatically set the drop-off date to the same day. Secondly, secondly, the ’No’ button was selected (However it was missed in previous actions due to the button’s lack of text). Nevertheless, the model discerns these details through a meticulous analysis of the screenshot, enabling it to make the correct decision for the next step. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <h2 class="title is-3">Error Cases in Grounding via Image Annotation</h2>
         <div class="content has-text-justified">
           <p>
@@ -753,54 +798,6 @@
         </div>
         </div>
 
-        <h2 class="title is-3">Promising Capabilities</h2>
-        <div class="content has-text-justified">
-          <p>
-            GPT-4V exhibits promising capabilities, ranging from long-range action planning, webpage content reasoning, and error correction to surpassing the limitations of superficial textual similarity matching inherent in fine-tuned, text-only models
-          </p>
-
-          <div id="results-carousel" class="carousel results-carousel">
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/case_study/example_knowledge_1.png" alt="algebraic reasoning" width="95%"/>
-              <p> In this example, the task necessitates knowledge about which district Dublin is located in. </p>
-            </div>
-          </div>
-
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/case_study/example_knowledge_2.png" alt="algebraic reasoning" width="95%"/>
-              <p> In this example, the task requires knowledge of the IATA code for Los Cabos International Airport. GPT-4V accurately provides the correct code.
-              </p>
-            </div>
-          </div>
-
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/case_study/example_awareness_error.png" alt="algebraic reasoning" width="95%"/>
-              <p> In this example, the webpage displays an error message indicating an invalid phone number, a consequence of prior actions. The model identifies this error and prioritizes its immediate rectification, foregoing the subsequent planned steps. </p>
-            </div>
-          </div>
-
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/case_study/example_planning.png" alt="algebraic reasoning" width="95%"/>
-              <p> In this example, the model generates a comprehensive plan for the task, including subsequent actions on following pages that are not currently visible. </p>
-            </div>
-          </div>
-
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/case_study/examplel_understanding.pdf.png" alt="algebraic reasoning" width="95%"/>
-              <p> In this case, two critical pieces of information are inadequately captured by the textual history. Firstly, the website automatically set the drop-off date to the same day. Secondly, secondly, the ’No’ button was selected (However it was missed in previous actions due to the button’s lack of text). Nevertheless, the model discerns these details through a meticulous analysis of the screenshot, enabling it to make the correct decision for the next step. </p>
-            </div>
-          </div>
-
-
-        </div>
-
-
-      </div>
     </div>
   </div>
 </section>
