@@ -590,38 +590,40 @@
     <div class="columns is-centered has-text-centered">
       <!-- <div class="column is-full-width has-text-centered"> -->
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
+<!--        <h2 class="title is-3">Overview</h2>-->
         <div class="content has-text-justified">
           <p>
-            We introduce the Massive Multi-discipline Multimodal Understanding and Reasoning (MMMU) benchmark, a novel benchmark meticulously curated to assess the expert-level multimodal understanding capability of foundation models across a broad scope of tasks. Covering subjects across disciplines, including Art, Business, Health & Medicine, Science, Humanities & Social Science, and Tech & Engineering, and over subfields. The detailed subject coverage and statistics are detailed in the figure. The questions in our benchmark were manually collected by a team of college students (including coauthors) from various disciplines and subjects, drawing from online sources, textbooks, and lecture materials.
-          </p>
-          <img src="static/images/mmlu_example.Jpeg" alt="algebraic reasoning" class="center">
-          <br>
-          <p>
-             MMMU is designed to measure three essential skills in LMMs: perception, knowledge, and reasoning. Our aim is to evaluate how well these models can not only perceive and understand information across different modalities but also apply reasoning with subject-specific knowledge to derive the solution.
-          </p>
-          <p>
-            Our MMMU benchmark introduces key challenges to multimodal foundation models, as detailed in a figure. Among these, we particularly highlight the challenge stemming from the requirement for both expert-level visual perceptual abilities and deliberate reasoning with subject-specific knowledge. This challenge is vividly illustrated through our tasks, which not only demand the processing of various heterogeneous image types but also necessitate a model's adeptness in using domain-specific knowledge to deeply understand both the text and images and to reason. This goes significantly beyond basic visual perception, calling for an advanced approach that integrates advanced multimodal analysis with domain-specific knowledge.
+            We develop a new online evaluation tool using Playwright to evaluate web agents on live websites.
+            Our tool can convert the predicted action into a browser event and exectute on the website.
+            To adhere to ethical standards, our experiments are restricted to non-login tasks in compliance with user agreements, and we closely monitor agent activities during online evaluation to prevent any actions that have potentially harmful impact, like placing an order or modifying the user profile.
           </p>
         </div>
+
+        <div class="hero-body">
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-steve">
+                <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/demo_video.mp4"
+                          type="video/mp4">
+                </video>
+                <p> Video Recording for web agents running on live-time website 1.</p>
+              </div>
+
+              <div class="item item-chair-tp">
+                <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/online2.webm"
+                          type="video/webm">
+                </video>
+                <p> Video Recording for web agents running on live-time website 2.</p>
+              </div>
+          </div>
+        </div>
+  </div>
       </div>
     </div>
   </div>
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/demo_video.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- @PAN TODO: bibtex -->
 <section class="section" id="BibTeX">
