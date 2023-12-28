@@ -226,6 +226,10 @@
           <video
                   id="teaser" autoplay controls muted loop playsinline height="100%"> <source src="./static/videos/demo_video.mp4" type="video/mp4">
           </video>
+          <p>
+            Caption.
+          </p>
+
         </div>
        </div>
     </div>
@@ -637,10 +641,121 @@
 
         </div>
 
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mmmu">
+    <img src="static/images/seeact-icon.png" style="width:1em;vertical-align: middle" alt="Logo"/>
+    <span class="mmmu" style="vertical-align: middle">Case Study</span>
+  </h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-full-width has-text-centered"> -->
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3">Error Cases in Grounding via Image Annotation</h2>
+        <div class="content has-text-justified">
+          <p>
+            To analyze the reasons behind the failures, we randomly sample 100 predicted actions and observe the major types of errors as: (1) Wrong action generation; (2) Making up bounding box & label; (3) Failure to link bounding boxes with the correct labels.
+          </p>
+
+          <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/hallucination_cases/link_1.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this case, while the model predicts the appropriate element, it incorrectly associates the element with the nearby label 'C' instead of the correct label 'E'.</p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/hallucination_cases/link_2.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this case, while the model predicts the appropriate element, it incorrectly associates the element with the nearby label 'O' instead of the correct label 'N'.</p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/hallucination_cases/link_3.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this case, while the model predicts the appropriate element, it incorrectly associates the element with the label 'O' instead of the correct label 'E'.</p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/hallucination_cases/makeup_1.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the model describes a correct element in action generation. However, the the identified element is absent from the set of candidate elements. Despite this, the model erroneously claims the target element is included within a bounding box and assign it the index label "B".</p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/hallucination_cases/makeup_2.png" alt="algebraic reasoning" width="95%"/>
+              <p>  In this example, the model predicts the appropriate element. Nevertheless, the identified element is not present in the provided image options. Despite this, the model erroneously claims that it is highlighted by red bounding boxes and assigns it with the label 'H'.</p>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <h2 class="title is-3">Promising Capabilities</h2>
+        <div class="content has-text-justified">
+          <p>
+            GPT-4V exhibits promising capabilities, ranging from long-range action planning, webpage content reasoning, and error correction to surpassing the limitations of superficial textual similarity matching inherent in fine-tuned, text-only models
+          </p>
+
+          <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_knowledge_1.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the task necessitates knowledge about which district Dublin is located in. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_knowledge_2.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the task requires knowledge of the IATA code for Los Cabos International Airport. GPT-4V accurately provides the correct code.
+              </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_awareness_error.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the webpage displays an error message indicating an invalid phone number, a consequence of prior actions. The model identifies this error and prioritizes its immediate rectification, foregoing the subsequent planned steps. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/example_planning.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the model generates a comprehensive plan for the task, including subsequent actions on following pages that are not currently visible. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/examplel_understanding.pdf.png" alt="algebraic reasoning" width="95%"/>
+              <p> In this case, two critical pieces of information are inadequately captured by the textual history. Firstly, the website automatically set the drop-off date to the same day. Secondly, secondly, the ’No’ button was selected (However it was missed in previous actions due to the button’s lack of text). Nevertheless, the model discerns these details through a meticulous analysis of the screenshot, enabling it to make the correct decision for the next step. </p>
+            </div>
+          </div>
+
+
+        </div>
+
 
       </div>
     </div>
   </div>
+</section>
 
 
 <!-- @PAN TODO: bibtex -->
