@@ -224,9 +224,8 @@
             (Put some important take-away messages here)
           </p>
           <video
-                  id="teaser" autoplay muted loop playsinline height="100%"> <source src="./static/videos/demo_video.mp4" type="video/mp4">
+                  id="teaser" autoplay controls muted loop playsinline height="100%"> <source src="./static/videos/demo_video.mp4" type="video/mp4">
           </video>
-<!--          <h2 class="subtitle has-text-centered"><span class="dnerf">SeeAct:</span> Real-time Demo on Live Website</h2>-->
         </div>
        </div>
     </div>
@@ -285,8 +284,8 @@
       <!-- <div class="column is-full-width has-text-centered"> -->
       <div class="column is-four-fifths">
 
-        <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--        <div class="column is-four-fifths">-->
 
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
@@ -362,7 +361,11 @@
             During inference, elements are clustered into groups of 5 elements, with iterative refinement, until a single choice is made or all options are discarded.
             We evaluate supervised fine-tuning (SFT) methods using FLAN-T5 and BLIP2-T5 and in-context learning (ICL) methods using GPT-3.5, GPT-4. The experiment results are shown in the following table.
           </p>
+          <div class="content has-text-centered">
+            <img src="static/images/main_table.png" alt="algebraic reasoning" class="center" style="width: 90%; height: auto;">
+          </div>
         </div>
+
 
 <!--          <div class="model-labels-container">-->
 <!--            <span class="leaderboard-label" style="background-color: rgba(249, 242, 248, 1);">Supervised Fine-Tuning</span>-->
@@ -566,17 +569,59 @@
 
 <!--  </tbody>-->
 <!--</table>-->
+<!--    </div>-->
+<!--    </div>-->
     </div>
     </div>
-    </div>
-    </div>
-
   </div>
 </section>
 
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mmmu">
+    <img src="static/images/seeact-icon.png" style="width:1em;vertical-align: middle" alt="Logo"/>
+    <span class="mmmu" style="vertical-align: middle">Online Evaluation on Live Websites</span>
+  </h1>
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-full-width has-text-centered"> -->
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce the Massive Multi-discipline Multimodal Understanding and Reasoning (MMMU) benchmark, a novel benchmark meticulously curated to assess the expert-level multimodal understanding capability of foundation models across a broad scope of tasks. Covering subjects across disciplines, including Art, Business, Health & Medicine, Science, Humanities & Social Science, and Tech & Engineering, and over subfields. The detailed subject coverage and statistics are detailed in the figure. The questions in our benchmark were manually collected by a team of college students (including coauthors) from various disciplines and subjects, drawing from online sources, textbooks, and lecture materials.
+          </p>
+          <img src="static/images/mmlu_example.Jpeg" alt="algebraic reasoning" class="center">
+          <br>
+          <p>
+             MMMU is designed to measure three essential skills in LMMs: perception, knowledge, and reasoning. Our aim is to evaluate how well these models can not only perceive and understand information across different modalities but also apply reasoning with subject-specific knowledge to derive the solution.
+          </p>
+          <p>
+            Our MMMU benchmark introduces key challenges to multimodal foundation models, as detailed in a figure. Among these, we particularly highlight the challenge stemming from the requirement for both expert-level visual perceptual abilities and deliberate reasoning with subject-specific knowledge. This challenge is vividly illustrated through our tasks, which not only demand the processing of various heterogeneous image types but also necessitate a model's adeptness in using domain-specific knowledge to deeply understand both the text and images and to reason. This goes significantly beyond basic visual perception, calling for an advanced approach that integrates advanced multimodal analysis with domain-specific knowledge.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/demo_video.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- @PAN TODO: bibtex -->
 <section class="section" id="BibTeX">
@@ -1920,6 +1965,24 @@ function sortTable(table, column, type, asc) {
   #toggleButton:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); /* 鼠标悬停时的阴影效果 */
   }
+
+  /*.results-carousel {*/
+  /*overflow: hidden;*/
+  /*}*/
+
+  /*.results-carousel .item {*/
+  /*margin: 5px;*/
+  /*overflow: hidden;*/
+  /*border: 1px solid #bbb;*/
+  /*border-radius: 10px;*/
+  /*padding: 0;*/
+  /*font-size: 0;*/
+  /*}*/
+
+  /*.results-carousel video {*/
+  /*margin: 0;*/
+  /*}*/
+
 
   table {
     border-collapse: collapse;
