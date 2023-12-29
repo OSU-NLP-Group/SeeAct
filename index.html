@@ -716,17 +716,18 @@
           </p>
 
           <div id="results-carousel" class="carousel results-carousel">
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/case_study/examplel_understanding.pdf.svg" alt="algebraic reasoning" width="95%"/>
-              <p> In this case, two critical pieces of information are inadequately captured by the textual history. Firstly, the website automatically set the drop-off date to the same day. Secondly, secondly, the ’No’ button was selected (However it was missed in previous actions due to the button’s lack of text). Nevertheless, the model discerns these details through a meticulous analysis of the screenshot, enabling it to make the correct decision for the next step. </p>
-            </div>
-          </div>
 
             <div class="box m-5">
             <div class="content has-text-centered">
               <img src="static/images/case_study/example_planning.svg" alt="algebraic reasoning" width="95%"/>
               <p> In this example, the model generates a comprehensive plan for the task, including subsequent actions on following pages that are not currently visible. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/case_study/examplel_understanding.pdf.svg" alt="algebraic reasoning" width="95%"/>
+              <p> In this case, two critical pieces of information are inadequately captured by the textual history. Firstly, the website automatically set the drop-off date to the same day. Secondly, secondly, the ’No’ button was selected (However it was missed in previous actions due to the button’s lack of text). Nevertheless, the model discerns these details through a meticulous analysis of the screenshot, enabling it to make the correct decision for the next step. </p>
             </div>
           </div>
 
@@ -761,6 +762,21 @@
           </p>
 
           <div id="results-carousel" class="carousel results-carousel">
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/hallucination_cases/makeup_1.svg" alt="algebraic reasoning" width="95%"/>
+              <p> In this example, the model describes a correct element in action generation. However, the the identified element is absent from the set of candidate elements. Despite this, the model erroneously claims the target element is included within a bounding box and assign it the index label "B".</p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/hallucination_cases/makeup_2.svg" alt="algebraic reasoning" width="80%"/>
+              <p>  In this example, the model predicts the appropriate element. Nevertheless, the identified element is not present in the provided image options. Despite this, the model erroneously claims that it is highlighted by red bounding boxes and assigns it with the label 'H'.</p>
+            </div>
+          </div>
+
           <div class="box m-5">
             <div class="content has-text-centered">
               <img src="static/images/hallucination_cases/link_1.svg" alt="algebraic reasoning" width="95%"/>
@@ -770,7 +786,7 @@
 
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/hallucination_cases/link_2.svg" alt="algebraic reasoning" width="95%"/>
+              <img src="static/images/hallucination_cases/link_2.svg" alt="algebraic reasoning" width="85%"/>
               <p> In this case, while the model predicts the appropriate element, it incorrectly associates the element with the nearby label 'O' instead of the correct label 'N'.</p>
             </div>
           </div>
@@ -782,19 +798,6 @@
             </div>
           </div>
 
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/hallucination_cases/makeup_1.svg" alt="algebraic reasoning" width="95%"/>
-              <p> In this example, the model describes a correct element in action generation. However, the the identified element is absent from the set of candidate elements. Despite this, the model erroneously claims the target element is included within a bounding box and assign it the index label "B".</p>
-            </div>
-          </div>
-
-          <div class="box m-5">
-            <div class="content has-text-centered">
-              <img src="static/images/hallucination_cases/makeup_2.svg" alt="algebraic reasoning" width="95%"/>
-              <p>  In this example, the model predicts the appropriate element. Nevertheless, the identified element is not present in the provided image options. Despite this, the model erroneously claims that it is highlighted by red bounding boxes and assigns it with the label 'H'.</p>
-            </div>
-          </div>
         </div>
         </div>
 
