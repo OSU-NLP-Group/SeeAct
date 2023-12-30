@@ -220,10 +220,10 @@
             SEEACT is a generalist web agent based on GPT-4V.
             Specifically, given a web-based task (e.g., “Compare iPhone 15 Pro Max with iPhone 13 Pro Max” in Apple homepage),
             the agent first perform <strong>Action Generation</strong> to produce an action description at each step towards completing the task (e.g., “Navigate to the iPhone category”),
-            and then <strong>Element Grounding</strong> to identify an HTML element (e.g., “[button] iPhone”) at the current step on the webpage.
+            and then <strong>Action Grounding</strong> to identify an HTML element (e.g., “[button] iPhone”) at the current step on the webpage.
           </p>
           <p>
-            SEEACT can successfully compete <strong>50%</strong> of the tasks on live websites given an oracle element grounding method.
+            SEEACT can successfully compete <strong>50%</strong> of the tasks on live websites given an oracle action grounding method.
             It also exhibits remarkable capabilities, ranging from long-range action planning, webpage content reasoning, and error correction.
           </p>
 
@@ -298,7 +298,8 @@
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-          SEEACT leverages an LMM like GPT-4V to visually perceive websites and generate plans in textual forms (Action Generation). The textual plans are then grounded onto the HTML elements and operations to act on the website (Action Grounding).
+            SEEACT firstly perform <strong>Action Generation</strong> by leveraging an LMM like GPT-4V to visually perceive websites and generate plans in textual forms,
+            and then <strong>Action Grounding</strong> to grounded textual plans onto the HTML elements and operations to act on the website
           </p>
         <div class="content has-text-centered">
           <img src="static/images/teaser_figure.png" alt="algebraic reasoning" class="center" style="width: 70%; height: auto;">
