@@ -217,12 +217,15 @@
        <div class="box m-5">
         <div class="content has-text-justified">
           <p>
-            SEEACT is a generalist web agent based on GPT-4V. Specifically, given a web-based task (e.g., “Rent a truck with the lowest rate” in the car rental website), we examine two essential capabilities of GPT-4V as a generalist web agent: (i) Action Generation to produce an action description at each step (e.g., “Move the cursor over the ‘Find Your Truck’ button and perform a click”) towards completing the task, and (ii) Element Grounding to identify an HTML element (e.g., “[button] Find Your Truck”) at the current step on the webpage.<br>
+            SEEACT is a generalist web agent based on GPT-4V.
+            Specifically, given a web-based task (e.g., “Compare iPhone 15 Pro Max with iPhone 13 Pro Max” in Apple homepage),
+            the agent first perform <strong>Action Generation</strong> to produce an action description at each step towards completing the task (e.g., “Navigate to the iPhone category”),
+            and then <strong>Element Grounding</strong> to identify an HTML element (e.g., “[button] iPhone”) at the current step on the webpage.
           </p>
-<!--          <p>-->
-<!--            SEEACT is a generalist web agent based on GPT-4V.-->
-<!--            It can successfully compete 50% of the tasks on live websites given an oracle grounding method to convert textual plans into actions on websites.-->
-<!--          </p>-->
+          <p>
+            SEEACT can successfully compete <strong>50%</strong> of the tasks on live websites given an oracle element grounding method.
+            It also exhibits remarkable capabilities, ranging from long-range action planning, webpage content reasoning, and error correction.
+          </p>
 
           <video
                   id="teaser" autoplay controls muted loop playsinline height="100%"> <source src="./static/videos/seeact_teaser_v4_small.mp4" type="video/mp4">
