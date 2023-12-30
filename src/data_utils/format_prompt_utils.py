@@ -1,11 +1,10 @@
 import string
 import lxml
-from src.data_utils.dom_utils import get_tree_repr, data_prune_tree
-from lxml import etree
+from data_utils.dom_utils import get_tree_repr, data_prune_tree
 
 
 def data_format_input_multichoice(
-    sample, candidate_ids, gt=-1, previous_k=5, keep_html_brackets=False
+        sample, candidate_ids, gt=-1, previous_k=5, keep_html_brackets=False
 ):
     # Parse html into a dom tree
     dom_tree = lxml.etree.fromstring(sample["cleaned_html"])
@@ -17,10 +16,10 @@ def data_format_input_multichoice(
     choices = []
     for idx, node in enumerate(candidate_nodes):
         temp = get_tree_repr(
-                        node,
-                        id_mapping=id_mapping,
-                        keep_html_brackets=keep_html_brackets,
-                    )
+            node,
+            id_mapping=id_mapping,
+            keep_html_brackets=keep_html_brackets,
+        )
         choices.append(
             [
                 node.attrib["backend_node_id"],
@@ -94,6 +93,36 @@ def generate_query_prompt(system_prompt="", task="", previous_actions=None, ques
     return query_text
 
 
+def generate_new_query_prompt(system_prompt="", task="", previous_actions=None, question_description=""):
+    """
+    Generate the first phase prompt to ask model to generate general descriptions about {environment, high-level plans, next step action}
+    Each experiment will have a similar prompt in this phase
+    This prompt is used to generate models' thoughts without disrupt of formatting/referring prompts
+    """
+    sys_role=""+system_prompt
+    query_text = ""
+
+    # System Prompt
+    query_text += "You are asked to complete the following task: "
+
+    # Task Description
+    query_text += task
+    query_text += "\n\n"
+
+    # Previous Actions
+    previous_action_text = "Previous Actions:\n"
+    if previous_actions is None:
+        previous_actions = []
+    for action_text in previous_actions:
+        previous_action_text += action_text
+        previous_action_text += "\n"
+    query_text += previous_action_text
+    query_text += "\n"
+
+    # Question Description
+    query_text += question_description
+    return [sys_role,query_text]
+
 def generate_referring_prompt(referring_description="", element_format="", action_format="", value_format="",
                               choices=None):
     referring_prompt = ""
@@ -123,10 +152,50 @@ def generate_referring_prompt(referring_description="", element_format="", actio
     # Format Value Prediction
     if value_format != "":
         referring_prompt += value_format
-        referring_prompt += "\n\n"
+        referring_prompt += ""
 
     return referring_prompt
 
+
+def generate_new_referring_prompt(referring_description="", element_format="", action_format="", value_format="",
+                              choices=None,split="4"):
+    referring_prompt = ""
+
+    # Add description about how to format output
+    if referring_description != "":
+        referring_prompt += referring_description
+        referring_prompt += "\n\n"
+
+    # Add element prediction format and choices
+
+
+    # Prepare Option texts
+    # For exp {1, 2, 4}, generate option
+    # For exp3, set options field at None
+    if choices:
+        choice_text = format_options(choices)
+        referring_prompt += choice_text
+
+
+#     referring_prompt+='''
+# '''
+
+
+    if element_format != "":
+        referring_prompt += element_format
+        referring_prompt += "\n\n"
+
+    # Format Action Prediction
+    if action_format != "":
+        referring_prompt += action_format
+        referring_prompt += "\n\n"
+
+    # Format Value Prediction
+    if value_format != "":
+        referring_prompt += value_format
+        referring_prompt += ""
+
+    return referring_prompt
 
 def format_options(choices):
     option_text = ""
@@ -141,8 +210,8 @@ def format_options(choices):
         non_abcd = generate_option_name(multichoice_idx + 1)
 
     multi_choice += f"{non_abcd}. None of the other options match the correct element"
-    option_text += abcd
-    option_text += f"based on your analysis. If none of these elements match your target element, please select {non_abcd}. None of the other options match the correct element.\n"
+    # option_text += abcd
+    option_text += f"If none of these elements match your target element, please select {non_abcd}. None of the other options match the correct element.\n"
 
     option_text += (multi_choice + '\n\n')
     return option_text
