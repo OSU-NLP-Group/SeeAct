@@ -217,13 +217,13 @@
        <div class="box m-5">
         <div class="content has-text-justified">
           <p>
-            SEEACT is a generalist web agent based on GPT-4V.
+            SeeAct is a generalist web agent based on GPT-4V.
             Specifically, given a web-based task (e.g., “Compare iPhone 15 Pro Max with iPhone 13 Pro Max” in Apple homepage),
             the agent first perform <strong>Action Generation</strong> to produce an action description at each step towards completing the task (e.g., “Navigate to the iPhone category”),
             and then <strong>Action Grounding</strong> to identify an HTML element (e.g., “[button] iPhone”) at the current step on the webpage.
           </p>
           <p>
-            SEEACT can successfully compete <strong>50%</strong> of the tasks on live websites given an oracle action grounding method.
+            SeeAct can successfully compete <strong>50%</strong> of the tasks on live websites given an oracle action grounding method.
             It also exhibits remarkable capabilities, ranging from long-range action planning, webpage content reasoning, and error correction.
           </p>
 
@@ -298,7 +298,7 @@
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-            SEEACT firstly perform <strong>Action Generation</strong> by leveraging an LMM like GPT-4V to visually perceive websites and generate plans in textual forms,
+            SeeAct firstly perform <strong>Action Generation</strong> by leveraging an LMM like GPT-4V to visually perceive websites and generate plans in textual forms,
             and then <strong>Action Grounding</strong> to grounded textual plans onto the HTML elements and operations to act on the website
           </p>
         <div class="content has-text-centered">
@@ -371,7 +371,7 @@
 <!--            We evaluate supervised fine-tuning (SFT) methods using FLAN-T5 and BLIP2-T5 and in-context learning (ICL) methods using GPT-3.5, GPT-4. The experiment results are shown in the following table.-->
 <!--          </p>-->
           <p>
-            We compare SEEACT with other models following the two-stage strategy of MindAct.
+            We compare SeeAct with other models following the two-stage strategy of MindAct.
             We evaluate supervised fine-tuning (SFT) methods using FLAN-T5 and BLIP2-T5 and in-context learning (ICL) methods using GPT-3.5, GPT-4. The experiment results are shown in the following table.
           </p>
 
@@ -381,7 +381,7 @@
           <ul>
             We observes the following results in the experiments:
             <li>
-              (1) SEEACT with GPT-4V is a strong generalist web agent, if oracle grounding is provided, which substantially outperforming existing methods like GPT-4 (20%) or FLAN-T5 (18%)
+              (1) SeeAct with GPT-4V is a strong generalist web agent, if oracle grounding is provided, which substantially outperforming existing methods like GPT-4 (20%) or FLAN-T5 (18%)
             </li>
             <li>
               (2) Grounding is still a major challenge. The best grounding strategy still has a 20-25% gap with oracle grounding
