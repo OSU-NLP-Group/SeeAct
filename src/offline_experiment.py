@@ -1,17 +1,12 @@
-from data_utils.prompts import generate_prompt
+﻿from data_utils.prompts import generate_prompt
 import json,jsonlines
 import os
 from utils.gpt4v_api import OpenaiEngine
 
 
-# generation_model = OpenaiEngine(
-#         rate_limit=-1,
-#         api_key="Your API Key",
-#     )
-
 generation_model = OpenaiEngine(
-        rate_limit=666,
-        api_key="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",
+        rate_limit=-1,
+        api_key="Your API Key",
     )
 
 exp_split="4api"
@@ -38,7 +33,6 @@ for action_file in os.listdir(source_data_path):
     for query_id, query in enumerate(query_meta_data):
         print("-"*10)
         print(os.path.splitext(os.path.basename(action_file))[0] + "-" + str(query_id))
-        # custom_print(f"Start testing: {str(idx)}")
         image_path = query['image_path'] + "/" + str(query_id) + ".jpg"
         image_path = image_path.replace('../', '')
         image_path = image_path.replace('./', '')
