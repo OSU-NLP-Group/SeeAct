@@ -759,14 +759,18 @@
             <div class="box m-5">
             <div class="content has-text-centered">
               <img src="static/images/case_study/example_planning.svg" alt="algebraic reasoning" width="60%"/>
-              <p> In this example, the model generates a comprehensive plan for the task, including subsequent actions on following pages that are not currently visible. </p>
+              <p> In this example, the model generates a comprehensive plan for the task, including subsequent actions on the following pages that are not currently visible. </p>
             </div>
           </div>
 
           <div class="box m-5">
             <div class="content has-text-centered">
               <img src="static/images/case_study/examplel_understanding.pdf.svg" alt="algebraic reasoning" width="60%"/>
-              <p> In this case, two critical pieces of information are inadequately captured by the textual history. Firstly, the website automatically set the drop-off date to the same day. Secondly, secondly, the ’No’ button was selected (However it was missed in previous actions due to the button’s lack of text). Nevertheless, the model discerns these details through a meticulous analysis of the screenshot, enabling it to make the correct decision for the next step. </p>
+            <p> In this case, the textual history does not adequately capture two critical pieces of information.
+              Firstly, the website automatically sets the drop-off date to the same day.
+              Secondly, the ’No’ button was selected (However, it was missed in previous actions due to the button’s lack of text).
+              Nevertheless, the model discerns these details through a meticulous screenshot analysis, enabling it to make the correct decision for the next step.
+            </p>
             </div>
           </div>
 
@@ -785,12 +789,6 @@
               <p> In this example, the webpage displays an error message indicating an invalid phone number, a consequence of prior actions. The model identifies this error and prioritizes its immediate rectification, foregoing the subsequent planned steps. </p>
             </div>
           </div>
-
-          
-
-          
-
-            
         </div>
       </div>
 
@@ -805,14 +803,18 @@
           <div class="box m-5">
             <div class="content has-text-centered">
               <img src="static/images/hallucination_cases/makeup_1.png" alt="algebraic reasoning" width="60%"/>
-              <p> In this example, the model describes a correct element in action generation. However, the the identified element is absent from the set of candidate elements. Despite this, the model erroneously claims the target element is included within a bounding box and assign it the index label "B".</p>
+              <p>
+                In this example, the model describes a correct element in action generation. However, the identified element is absent from the set of candidate elements. Despite this, the model erroneously claims the target element is included within a bounding box and assign it the index label "B".
+              </p>
             </div>
           </div>
 
           <div class="box m-5">
             <div class="content has-text-centered">
               <img src="static/images/hallucination_cases/makeup_2.svg" alt="algebraic reasoning" width="50%"/>
-              <p>  In this example, the model predicts the appropriate element. Nevertheless, the identified element is not present in the provided image options. Despite this, the model erroneously claims that it is highlighted by red bounding boxes and assigns it with the label 'H'.</p>
+              <p>
+                In this example, the model predicts the appropriate element. Nevertheless, the identified element is not present in the provided image options. Despite this, the model erroneously claims that it is highlighted by red bounding boxes and assigns it with the label 'H'.
+              </p>
             </div>
           </div>
 
