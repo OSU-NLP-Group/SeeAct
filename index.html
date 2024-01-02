@@ -303,8 +303,11 @@
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-            SeeAct firstly performs <strong>Action Generation</strong> by leveraging an LMM like GPT-4V to visually perceive websites and generate plans in textual forms,
-            and then <strong>Action Grounding</strong> to ground textual plans to the HTML elements and operations to act on the website
+            SeeAct firstly performs <strong>Action Generation</strong> by leveraging an LMM, like GPT-4V to visually perceive websites and generate plans in textual forms.
+            We explicitly instruct GPT-4V to imitate humans browsing a webpage and analyze the task, webpage, and previous actions. It is asked to generate an action description based on its analysis and reasoning.
+          </p>
+          <p>
+             SeeAct then needs to perform <strong>Action Grounding</strong> to ground textual plans to the HTML elements and operations to act on the website.
           </p>
         <div class="content has-text-centered">
           <img src="static/images/teaser_figure.png" alt="algebraic reasoning" class="center" style="width: 40%; height: auto;">
