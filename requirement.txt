@@ -1,0 +1,12 @@
+backoff==2.2.1
+InquirerPy==0.3.4
+lxml==4.9.3
+openai==0.27.8
+playwright
+jsonlines
+numpy
+sentence_transformers
+pyperclip
+torch
+protobuf
+BeautifulSoup4
