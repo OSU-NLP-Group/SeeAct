@@ -222,21 +222,21 @@
        <div class="box m-5">
         <div class="content has-text-justified">
           <p>
-            SeeAct is a generalist web agent based on GPT-4V.
-            Specifically, given a web-based task (e.g., “Compare iPhone 15 Pro Max with iPhone 13 Pro Max” in Apple homepage),
-            the agent first perform <strong>Action Generation</strong> to produce an action description at each step towards completing the task (e.g., “Navigate to the iPhone category”),
-            and then <strong>Action Grounding</strong> to identify an HTML element (e.g., “[button] iPhone”) at the current step on the webpage.
+            SeeAct is a generalist web agent based on large multimodal models (LMMs) like GPT-4V.
+            Specifically, given a task on any given website (e.g., “Compare iPhone 15 Pro Max with iPhone 13 Pro Max” on the Apple homepage),
+            the agent first performs <strong>Action Generation</strong> to produce a textual description of the action at each step towards completing the task (e.g., “Navigate to the iPhone category”),
+            and then performs <strong>Action Grounding</strong> to identify the corresponding HTML element (e.g., “[button] iPhone”) and operation (e.g., CLICK, TYPE, or SELECT) on the webpage.
           </p>
           <p>
-            SeeAct can successfully compete <strong>50%</strong> of the tasks on live websites given an oracle action grounding method.
-            It also exhibits remarkable capabilities, ranging from long-range action planning, webpage content reasoning, and error correction.
+            With online evaluation on the <a href="https://osu-nlp-group.github.io/Mind2Web/">Mind2Web</a> dataset, SeeAct can successfully complete up to <strong>50%</strong> of tasks on live websites given an oracle action grounding method.
+            It also exhibits remarkable capabilities, ranging from long-range action planning, webpage content reasoning, to self-correction of planning errors.
           </p>
 
           <video
                   id="teaser" autoplay controls muted loop playsinline height="100%"> <source src="./static/videos/seeact_teaser_v4_small.mp4" type="video/mp4">
           </video>
           <p>
-              Authentic video with SeeAct agent working on live websites.
+              Authentic video with SeeAct agent working on live websites (sped-up version).
           </p>
 
         </div>
