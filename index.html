@@ -317,14 +317,15 @@
           <h2 class="title is-3">Action Grounding</h2>
         <div class="content has-text-justified">
           <p>
-            An example of the element grounding process for a single action during completing the given task with three different methods.
-            In this action step, the model needs to click the "Find Your Truck" button to perform a search.
+            Despite the capability of LMMs in identifying and describing the next action to complete the given task in natural language, it is still challenging to convert the action description into an executable action within the environment.
+            To address the challenge of action grounding, we explore three approaches using different types of information: Grounding via Element Attributes, Grounding via Textual Choices, and Grounding via Image Annotation.
           </p>
         <div class="content has-text-centered">
           <img src="static/images/action_grounding.png" alt="algebraic reasoning" class="center" style="width: 80%; height: auto;">
         </div>
           <ul>
-            To address the challenge of action grounding, we explore three approaches using different types of information.
+            This example of the element grounding process for a single action during completing the given task with three different methods.
+            In this action step, the model needs to click the "Find Your Truck" button to perform a search.
             <li>For grounding via <strong>textual choices</strong>, some element candidates represented with HTML text are given, the model is required to generate the choice index of the target element.</li>
             <li>For grounding via <strong>image annotation</strong>, bounding boxes and index labels are added to the image. The model is required to generate the label on the bottom-left of the target element.</li>
             <li>For grounding via <strong>element attributes</strong>, the model needs to predict the text and type of the target element. Check at some example cases for each grounding method.</li>
