@@ -305,8 +305,6 @@
           <p>
             SeeAct firstly performs <strong>Action Generation</strong> by leveraging an LMM, like GPT-4V to visually perceive websites and generate plans in textual forms.
             We explicitly instruct GPT-4V to imitate humans browsing a webpage and analyze the task, webpage, and previous actions. It is asked to generate an action description based on its analysis and reasoning.
-          </p>
-          <p>
              <strong>Action Grounding</strong> is the next step to ground textual plans to the HTML elements and operations to act on the website.
           </p>
         <div class="content has-text-centered">
@@ -751,7 +749,7 @@
         <h2 class="title is-3">Promising Capabilities</h2>
         <div class="content has-text-justified">
           <p>
-            GPT-4V exhibits promising capabilities, ranging from long-range action planning, webpage content reasoning, and error correction to surpassing the limitations of superficial textual similarity matching inherent in fine-tuned, text-only models
+            GPT-4V exhibits promising capabilities, ranging from long-range action planning, webpage content reasoning, and error correction to surpassing the limitations of superficial textual similarity matching inherent in fine-tuned, text-only models.
           </p>
 
           <div id="results-carousel" class="carousel results-carousel">
@@ -794,9 +792,12 @@
 
         <h2 class="title is-3">Error Cases in Grounding via Image Annotation</h2>
         <div class="content has-text-justified">
-          <p>
-            To analyze the reasons behind the failures, we randomly sample 100 predicted actions and observe the major types of errors as: (1) Wrong action generation; (2) Making up bounding box & label; (3) Failure to link bounding boxes with the correct labels.
-          </p>
+          <ul>
+            To analyze the reasons behind the failures, we randomly sample 100 predicted actions and observe the major types of errors as:
+            <li>(1) Wrong action generation</li>
+            <li>(2) Making up bounding box & label</li>
+            <li>(3) Failure to link bounding boxes with the correct labels</li>
+          </ul>
 
           <div id="results-carousel" class="carousel results-carousel">
 
