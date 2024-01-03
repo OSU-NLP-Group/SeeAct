@@ -28,6 +28,9 @@ These scripts can collect screenshot images from the Mind2Web raw dump and overl
 
 
 ## Online Evaluation Tool
+We develop a new online evaluation tool using Playwright to evaluate web agents on live websites. Our tool can convert the predicted action into a browser event and execute it on the website. 
+
+
 We acknowledge Xiang Deng for his initial contribution to this tool. 
 
 
