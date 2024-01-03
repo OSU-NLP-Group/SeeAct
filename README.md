@@ -18,9 +18,13 @@ Release process:
   - [ ] Fine-tuned BLIP-2 Model
 
 
+## Dataset
+The dataset is derived from Mind2Web by pairing each HTML text with the rendered webpage screenshots. 
+The screenshot image data comes from the [Raw Dump with Full Traces and Snapshots](https://github.com/OSU-NLP-Group/Mind2Web?tab=readme-ov-file#raw-dump-with-full-traces-and-snapshots) captured with PlayWright during data annotation.
 
 
 ## Screenshot Generation
+These scripts can collect screenshot images from the Mind2Web raw dump and overlay image annotation for action grounding.
 
 
 ## Online Evaluation Tool
