@@ -10,6 +10,7 @@ Release process:
   - [x] Offline Experiments
     - [x] Screenshot generation
     - [x] Code to overlay image annotation
+    - [ ] BLIP2 fine-tuning
   - [ ] Online Evaluation Tool
 - [ ] Dataset
   - [x] Example data for the three element grounding methods
