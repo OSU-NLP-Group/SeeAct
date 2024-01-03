@@ -12,10 +12,10 @@ Release process:
   - [x] Offline Experiments
     - [x] Screenshot generation
     - [x] Code to overlay image annotation
-    - [ ] BLIP2 fine-tuning
+    - [ ] BLIP-2 fine-tuning
   - [ ] Online Evaluation Tool
 - [ ] Models
-  - [ ] Fine-tuned BLIP2 Model
+  - [ ] Fine-tuned BLIP-2 Model
 
 
 
