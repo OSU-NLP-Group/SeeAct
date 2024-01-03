@@ -8,7 +8,8 @@ Release process:
 
 - [x] Code
   - [x] Offline Experiments
-    - [x] screenshot_generation
+    - [x] Screenshot generation
+    - [x] Code to overlay image annotation
   - [ ] Online Evaluation Tool
 - [ ] Dataset
   - [x] Example data for the three element grounding methods
