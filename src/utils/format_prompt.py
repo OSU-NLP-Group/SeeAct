@@ -297,128 +297,12 @@ def postprocess_action_llm(text):
 
 
 def process_string(input_string):
-    # 判断开头和结尾是否都是"
     if input_string.startswith('"') and input_string.endswith('"'):
-        # 去掉开头和结尾的"
         input_string = input_string[1:-1]
 
-    # 判断结尾是否是.
     if input_string.endswith('.'):
-        # 去掉结尾的.
         input_string = input_string[:-1]
     return input_string
-
-
-
-def postprocess_action_gpt4v(text):
-    text = text.strip()
-    text = text.replace("The uppercase letter of your choice based on your analysis is:\n", "")
-    text = text.replace("The uppercase letter of your choice based on your analysis is:", "")
-    text = text.replace("The uppercase letter of my choice is \"", "")
-    text = text.replace("The uppercase letter of your choice is ", "")
-    text = text.replace("The correct choice based on the analysis would be ", "")
-    text = text.replace(
-        "The uppercase letter of your choice. Choose one of the following elements if it matches the target element based on your analysis:",
-        "")
-    text = text.replace("The uppercase letter of your choice.\n", "")
-    text = text.replace("The uppercase letter of your choice based on the analysis is ", "")
-    text = text.replace("The uppercase letter of my choice is ", "")
-    text = text.replace("The uppercase letter of my choice based on the analysis is ", "")
-
-    # print(text)
-    fist_sected = re.findall(
-        r"Conclusion:ELEMENT: (NA|AQ|AW|AE|AR|AT|AY|AU|AI|AO|AP|AA|AS|AD|AF|AG|AH|AJ|AK|AL|AZ|AX|AC|AV|AB|AN|AM|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z)",
-        text)
-    selected_option = re.findall(
-        r"ELEMENT: (NA|AQ|AW|AE|AR|AT|AY|AU|AI|AO|AP|AA|AS|AD|AF|AG|AH|AJ|AK|AL|AZ|AX|AC|AV|AB|AN|AM|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z)",
-        text)
-
-    try:
-        if fist_sected[0] != selected_option[-1]:
-            pass
-            # print("not the same")
-    except:
-        pass
-
-    if fist_sected:
-        selected_option = fist_sected[0]
-        # print("first geted")
-    elif selected_option:
-        selected_option = (
-            selected_option[-1]
-        )
-    else:
-        selected_option = "OSUUUUU"
-    certainty_value = ""
-
-    action = re.search(r"ACTION: (CLICK|SELECT|TYPE)", text)
-    action = action.group(1) if action is not None else ""
-    # print(action)
-
-    value = re.search(r"VALUE: (.*)$", text, re.MULTILINE)
-    value = value.group(1) if value is not None else ""
-    if value == "None" or value == "None.":
-        pass
-        # print(value)
-
-    # print(selected_option, action, value)
-    return selected_option, action.strip(), certainty_value, process_string(process_string(value.strip())).lower()
-
-
-
-
-
-
-
-def format_t5_input(elements, candidate_ids, objective, taken_actions, previous_k=5):
-    prompt_template = llm_prompt
-
-    converted_elements = [
-                    f'<{element[2]} id="{i}">'
-                    + (
-                        element[1]
-                        if len(element[1].split()) < 10
-                        else " ".join(element[1].split()[:10]) + "..."
-                    )
-                    + f"</{element[2]}>"
-                    for i, element in enumerate(elements)
-                ]
-
-    # Generate context of the website
-    html_context = ""
-    html_context += ("\n".join(converted_elements)+ "\n*/\n")
-
-    # Task description
-    seq_input = (
-        "Based on the HTML webpage above, try to complete the following task:\n"
-        f"Task: {objective}\n"
-        f"Previous actions:\n"
-    )
-    # Add previous actions
-    if len(taken_actions) > 0:
-        for action in taken_actions[-previous_k:]:
-            seq_input += f"{action}\n"
-    else:
-        seq_input += "None\n"
-
-    # Actions to generate
-    seq_input += (
-        "What should be the next action? Please select from the following choices "
-        "(If the correct action is not in the page above, please select A. 'None of the above'):\n\n"
-        "A. None of the above\n"
-    )
-    choices = [[str(i), converted_elements[i]] for i in candidate_ids]
-    for idx, choice in enumerate(choices):
-        # convert to ascii A, B, C, D, ...
-        seq_input += f"{chr(66 + idx)}. {choice[1]}\n"
-
-    # Fit into prompt template
-    prompt_template[-1][
-        "content"
-    ] = f"'''\n{html_context}\n'''\n\n{seq_input}"
-
-    return html_context, seq_input, choices
-
 
 
 

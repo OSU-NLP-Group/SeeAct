@@ -100,6 +100,7 @@ ignore_args = [
     "--no_sandbox",
 ]
 
+
 async def normal_launch_async(playwright: Playwright):
     browser = await playwright.chromium.launch(
         headless=False,
@@ -107,101 +108,79 @@ async def normal_launch_async(playwright: Playwright):
             "--disable-blink-features=AutomationControlled",
         ],
         ignore_default_args=ignore_args,
-        chromium_sandbox=True,
+        chromium_sandbox=False,
     )
     return browser
-# async def normal_launch_async(playwright: Playwright):
-#     browser = await playwright.chromium.launch(
-#         headless=False,
-#         args=[
-#             "--disable-blink-features=AutomationControlled",
-#         ],
-#         ignore_default_args=ignore_args,
-#         chromium_sandbox=True,
-#     )
-#     return browser
 
 
 def normal_launch(playwright: Playwright):
     browser = playwright.chromium.launch(
         headless=False,
-        args=[
-            "--disable-blink-features=AutomationControlled",
-        ],
+        args=['--incognito',
+              "--disable-blink-features=AutomationControlled",
+              ],
         ignore_default_args=ignore_args,
-        chromium_sandbox=True,
     )
     return browser
 
 
-async def normal_new_context_async(
-    browser,
-    storage_state=None,
-    har_path=None,
-    video_path=None,
-    tracing=False,
-record_video_size=None,
-    user_agent: str = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
-    viewport: dict = {"width": 2048, "height": 1180},
-):
+async def normal_new_context_async(playwright: Playwright,
+                                   browser,
+                                   storage_state=None,
+                                   har_path=None,
+                                   video_path=None,
+                                   tracing=False,
+                                   user_agent: str = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+                                   viewport: dict = {"width": 1280, "height": 720},
+                                   ):
     city = random.choice(list_us_cities)
     context = await browser.new_context(
         storage_state=storage_state,
         user_agent=user_agent,
         viewport=viewport,
         record_har_path=har_path,
-        locale="en-US",
         record_video_dir=video_path,
-        record_video_size=record_video_size,
         geolocation={"longitude": city[2], "latitude": city[1]},
     )
+
     if tracing:
-        await context.tracing.start(screenshots=True, snapshots=True, sources=True)
+        await context.tracing.start(screenshots=False, snapshots=True, sources=False)
     return context
 
 
-def normal_new_context(browser,
-    storage_state=None,
-    har_path=None,
-    video_path=None,
-    tracing=False,
-record_video_size={"width":2048,"height":1180},
-    user_agent: str = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
-    viewport: dict = {"width": 2048, "height": 1180},
+def normal_new_context(
+        browser,
+        storage_state=None,
+        user_agent: str = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+        viewport: dict = {"width": 1280, "height": 720},
 ):
-    city = random.choice(list_us_cities)
-    context= browser.new_context(
+    return browser.new_context(
         storage_state=storage_state,
         user_agent=user_agent,
         viewport=viewport,
-        record_har_path=har_path,
-        locale="en-US",
-        record_video_dir=video_path,
-        record_video_size=record_video_size,
-        geolocation={"longitude": city[2], "latitude": city[1]},
     )
-    if tracing:
-        context.tracing.start(screenshots=True, snapshots=True, sources=True)
-    return context
-
-
 
 
 def persistent_launch(playwright: Playwright, user_data_dir: str = ""):
     context = playwright.chromium.launch_persistent_context(
         user_data_dir=user_data_dir,
         headless=False,
-        args=[
-            "--disable-blink-features=AutomationControlled",
-        ],
+        args=["--no-default-browser-check",
+              "--no_sandbox",
+              "--disable-blink-features=AutomationControlled",
+              ],
         ignore_default_args=ignore_args,
         user_agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
         viewport={"width": 1280, "height": 720},
+        bypass_csp=True,
+        slow_mo=1000,
+        chromium_sandbox=True,
+        channel="chrome-dev"
     )
     return context
 
 
-async def persistent_launch_async(playwright: Playwright, user_data_dir: str = ""):
+async def persistent_launch_async(playwright: Playwright, user_data_dir: str = "", record_video_dir="video"):
     context = await playwright.chromium.launch_persistent_context(
         user_data_dir=user_data_dir,
         headless=False,
@@ -210,7 +189,10 @@ async def persistent_launch_async(playwright: Playwright, user_data_dir: str = "
         ],
         ignore_default_args=ignore_args,
         user_agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
-        viewport={"width": 1280, "height": 720},
+        # viewport={"width": 1280, "height": 720},
+        record_video_dir=record_video_dir,
+        channel="chrome-dev"
+        # slow_mo=1000,
     )
     return context
 
