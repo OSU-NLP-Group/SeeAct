@@ -303,12 +303,14 @@
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-            SeeAct firstly performs <strong>Action Generation</strong> by leveraging an LMM, like GPT-4V to visually perceive websites and generate plans in textual forms.
+            SeeAct first performs <strong>Action Generation</strong> by leveraging an LMM, like GPT-4V,  to visually perceive websites and generate plans in textual forms.
             We explicitly instruct GPT-4V to imitate humans browsing a webpage and analyze the task, webpage, and previous actions. It is asked to generate an action description based on its analysis and reasoning.
              <strong>Action Grounding</strong> is the next step to ground textual plans to the HTML elements and operations to act on the website.
           </p>
         <div class="content has-text-centered">
           <img src="static/images/teaser_figure.png" alt="algebraic reasoning" class="center" style="width: 40%; height: auto;">
+          <p>
+          </p>
         </div>
         </div>
 
@@ -320,12 +322,15 @@
           </p>
         <div class="content has-text-centered">
           <img src="static/images/action_grounding.png" alt="algebraic reasoning" class="center" style="width: 80%; height: auto;">
+          <p>
+            An example to demonstrates the three approaches of element grounding for a single action during completing the given task with three different methods.
+            In this action step, the model needs to convert the textual description into the action of clicking the "Find Your Truck" button to perform a search.
+          </p>
         </div>
           <ul>
-            This figure demonstrates the three approaches of element grounding for a single action during completing the given task with three different methods. In this action step, the model needs to convert the textual description into the action of clicking the "Find Your Truck" button to perform a search.
-            <li>For grounding via <strong>textual choices</strong>, some element candidates represented with HTML text are given, the model is required to generate the choice index of the target element.</li>
-            <li>For grounding via <strong>image annotation</strong>, bounding boxes and index labels are added to the image. The model is required to generate the label on the bottom-left of the target element.</li>
-            <li>For grounding via <strong>element attributes</strong>, the model needs to predict the text and type of the target element. Check at some example cases for each grounding method.</li>
+            <li><strong>Textual Choices</strong>: Some element candidates represented with HTML text are given, the model is required to generate the choice index of the target element.</li>
+            <li><strong>Image Annotation</strong>: Bounding boxes and index labels are added to the image, the model is required to generate the label on the bottom-left of the target element.</li>
+            <li><strong>Element Attributes</strong>: The model needs to predict the text and type of the target element.</li>
           </ul>
         </div>
 
