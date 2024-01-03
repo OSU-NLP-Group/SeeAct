@@ -5,18 +5,27 @@ Code, Dataset, and Demo for the paper "[GPT-4V(ision) is a Generalist Web Agent,
 Check [project website](https://osu-nlp-group.github.io/SeeAct/) for an overview and demo videos.
 
 Release process:
-
+- [ ] Dataset
+  - [x] Example data for the three element grounding methods
+  - [ ] Data used in the paper with screenshot images
 - [x] Code
   - [x] Offline Experiments
     - [x] Screenshot generation
     - [x] Code to overlay image annotation
     - [ ] BLIP2 fine-tuning
   - [ ] Online Evaluation Tool
-- [ ] Dataset
-  - [x] Example data for the three element grounding methods
-  - [ ] Data used in the paper with screenshot images
 - [ ] Models
   - [ ] Fine-tuned BLIP2 Model
+
+
+
+
+## Offline Experiments
+
+
+## Online Evaluation Tool
+We acknowledge Xiang Deng for his initial contribution to this tool. 
+
 
 
 ## Contact
