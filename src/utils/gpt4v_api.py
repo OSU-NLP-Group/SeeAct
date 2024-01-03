@@ -8,7 +8,7 @@ from openai.error import (
     APIError,
     RateLimitError,
     ServiceUnavailableError,
-InvalidRequestError
+    InvalidRequestError
 )
 
 import base64
@@ -72,9 +72,10 @@ class OpenaiEngine(Engine):
 
     @backoff.on_exception(
         backoff.expo,
-        (APIError, RateLimitError, APIConnectionError, ServiceUnavailableError,InvalidRequestError),
+        (APIError, RateLimitError, APIConnectionError, ServiceUnavailableError, InvalidRequestError),
     )
-    def generate(self, prompt: list = None, max_new_tokens=50, temperature=0, model=None, image_path=None,ouput__0=None,turn_number=0, **kwargs):
+    def generate(self, prompt: list = None, max_new_tokens=50, temperature=0, model=None, image_path=None,
+                 ouput__0=None, turn_number=0, **kwargs):
         self.current_key_idx = (self.current_key_idx + 1) % len(self.api_keys)
         start_time = time.time()
         if (
@@ -83,21 +84,21 @@ class OpenaiEngine(Engine):
         ):
             time.sleep(self.next_avil_time[self.current_key_idx] - start_time)
         openai.api_key = self.api_keys[self.current_key_idx]
-        prompt0=prompt[0]
+        prompt0 = prompt[0]
         prompt1 = prompt[1]
         prompt2 = prompt[2]
 
-        if turn_number==0:
+        if turn_number == 0:
             base64_image = encode_image(image_path)
             # Assume one turn dialogue
             prompt1_input = [
                 {"role": "system", "content": [{"type": "text", "text": prompt0}]},
-                {"role": "user", "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
-                                                                                                                        f"data:image/jpeg;nase64,{base64_image}","detail": "high"},
-                                                                                 }]},
+                {"role": "user",
+                 "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
+                                                                                                        f"data:image/jpeg;nase64,{base64_image}",
+                                                                                                    "detail": "high"},
+                                                                 }]},
             ]
-            # print(prompt1_input)
-            # print("Start quering 1st turn")
             response1 = openai.ChatCompletion.create(
                 model="gpt-4-vision-preview",
                 messages=prompt1_input,
@@ -105,34 +106,19 @@ class OpenaiEngine(Engine):
                 temperature=0,
                 **kwargs,
             )
-            # print("Got 1st turn ans")
-            # print("GPT's responde_1")
-
-            # print([choice["message"]["content"] for choice in response1["choices"]])
-
-
             answer1 = [choice["message"]["content"] for choice in response1["choices"]][0]
-            # print(answer1)
 
             return answer1
-        elif turn_number==1:
-
-
-            # print(type(prompt1))
-            # print(type(prompt2))
-            # exit()
+        elif turn_number == 1:
             base64_image = encode_image(image_path)
-
-
             prompt2_input = [
                 {"role": "system", "content": [{"type": "text", "text": prompt0}]},
-                {"role": "user", "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
-                                                                                                                        f"data:image/jpeg;nase64,{base64_image}","detail": "high"}, }]},
-                {"role": "assistant", "content":[{ "type": "text", "text": f"\n\n{ouput__0}"}]},
-                {"role": "user", "content": [{"type": "text", "text": prompt2}]},]
-
-            # print(prompt2_input)
-            # print("Start quering 2nd turn")
+                {"role": "user",
+                 "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
+                                                                                                        f"data:image/jpeg;nase64,{base64_image}",
+                                                                                                    "detail": "high"}, }]},
+                {"role": "assistant", "content": [{"type": "text", "text": f"\n\n{ouput__0}"}]},
+                {"role": "user", "content": [{"type": "text", "text": prompt2}]}, ]
             response2 = openai.ChatCompletion.create(
                 model="gpt-4-vision-preview",
                 messages=prompt2_input,
@@ -140,13 +126,4 @@ class OpenaiEngine(Engine):
                 temperature=0,
                 **kwargs,
             )
-
-            # print("Got 2nd turn ans")
-
-
-            # print("GPT's responde_2")
-            # print([choice["message"]["content"] for choice in response2["choices"]])
-            # answer2 = [choice["message"]["content"] for choice in response2["choices"]][0]
-            # print(answer2)
-
             return [choice["message"]["content"] for choice in response2["choices"]][0]
