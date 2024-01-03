@@ -20,7 +20,7 @@ Release process:
 
 
 
-## Offline Experiments
+## Screenshot Generation
 
 
 ## Online Evaluation Tool
