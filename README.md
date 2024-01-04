@@ -47,3 +47,16 @@ The code under this repo is licensed under an MIT License.
 
 The code was released solely for research purposes, with the goal of making the web more accessible via language technologies. The authors are strongly against any potentially harmful use of the data or technology by any party. 
 
+## Citation Information
+
+If you find this dataset useful, please consider citing our paper:
+
+```
+@article{zheng2023seeact,
+  title={GPT-4V(ision) is a Generalist Web Agent, if Grounded},
+  author={Boyuan Zheng and Boyu Gou and Jihyung Kil and Huan Sun and Yu Su},
+  journal={arXiv preprint arXiv:2401.01614},
+  year={2024},
+}
+```
+
