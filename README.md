@@ -49,7 +49,7 @@ The code was released solely for research purposes, with the goal of making the 
 
 ## Citation Information
 
-If you find this dataset useful, please consider citing our paper:
+If you find this work useful, please consider citing our paper:
 
 ```
 @article{zheng2023seeact,
