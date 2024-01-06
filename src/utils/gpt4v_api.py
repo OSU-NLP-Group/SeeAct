@@ -65,7 +65,7 @@ class OpenaiEngine(Engine):
         self.stop = stop
         self.temperature = temperature
         self.model = model
-        # convert rate limit to minmum request interval
+        # convert rate limit to minimum request interval
         self.request_interval = 0 if rate_limit == -1 else 60.0 / rate_limit
         self.next_avil_time = [0] * len(self.api_keys)
         self.current_key_idx = 0
@@ -168,7 +168,7 @@ class OpenaiEngine_MindAct(Engine):
         self.stop = stop
         self.temperature = temperature
         self.model = model
-        # convert rate limit to minmum request interval
+        # convert rate limit to minimum request interval
         self.request_interval = 0 if rate_limit == -1 else 60.0 / rate_limit
         self.next_avil_time = [0] * len(self.api_keys)
         self.current_key_idx = 0
