@@ -1,6 +1,6 @@
 # GPT-4V(ision) is a Generalist Web Agent, if Grounded
 
-Code, Dataset, and Demo for the paper "[GPT-4V(ision) is a Generalist Web Agent, if Grounded](https://github.com/OSU-NLP-Group/SeeAct/blob/gh-pages/static/paper/SeeAct_Paper.pdf)".
+Code, Dataset, and Demo for the paper "[GPT-4V(ision) is a Generalist Web Agent, if Grounded](https://arxiv.org/abs/2401.01614)".
 
 Check [project website](https://osu-nlp-group.github.io/SeeAct/) for an overview and demo videos.
 
