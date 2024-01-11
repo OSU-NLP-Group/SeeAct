@@ -49,7 +49,18 @@ The code was released solely for research purposes, with the goal of making the 
 
 ## Citation Information
 
-If you find this work useful, please consider starring our repo and citing our paper:
+If you find this work useful, please consider starring our repo and citing our papers:
+
+```
+@misc{deng2023mind2web,
+  title={Mind2Web: Towards a Generalist Agent for the Web},
+  author={Xiang Deng and Yu Gu and Boyuan Zheng and Shijie Chen and Samuel Stevens and Boshi Wang and Huan Sun and Yu Su},
+  year={2023},
+  eprint={2306.06070},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL}
+}
+```
 
 ```
 @article{zheng2023seeact,
