@@ -1,21 +1,111 @@
-MIT License
+AI PUBS OPEN RAIL-S LICENSE
+Version 0.1, March 2, 2023
+
+http://licenses.ai/
 
 Copyright (c) 2024 OSU Natural Language Processing Group
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Section  I:  PREAMBLE
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This OpenRAIL-S License is generally applicable to any Source Code to be licensed with responsible use restrictions. 
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+The “Open” nomenclature indicates that the licensed Source Code is freely accessible to downstream and other users. The “RAIL” nomenclature indicates that there are use restrictions prohibiting the use of the Source Code. These restrictions are intended to avoid potential misuse of such Source Code. Even though derivative versions of the Source Code could be released under different licensing terms, the License specifies that the use restrictions in the original License must apply to such derivatives.
+
+NOW THEREFORE, You and Licensor agree as follows:
+
+1. Definitions 
+
+(a) "Contribution" means any software code, including modifications or additions to the Source Code, that is intentionally submitted to Licensor for inclusion in the Source Code base by the rights owner or by an individual or legal entity authorized to submit on behalf of the rights owner. For the purposes of this definition, “submitted” means any form of electronic, verbal, or written communication sent to the Licensor or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Licensor for the purpose of discussing and improving the Source Code, but excluding communication that is conspicuously marked or otherwise designated in writing by the rights owner as "Not a Contribution." 
+
+(b) "Contributor" means Licensor and any individual or legal entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Source Code.
+
+(c) “Data” means a collection of information and/or content extracted from the dataset used with the Model, including to train, pretrain, or otherwise evaluate the Model. The Data is not licensed under this License. 
+
+(d) “Derivatives” means all works containing additions and/or modifications to the Source Code.   
+
+(e) “Harm” includes but is not limited to physical, mental, psychological, financial and reputational damage, pain, or loss.
+
+(f) "License" means the terms and conditions for use, reproduction, and distribution as defined in this document.
+
+(g) “Licensor” means the rights owner or entity authorized by the rights owner that is granting the License, including the persons or entities that may have rights in the Source Code.
+
+(h) “Model” means any machine-learning based assemblies (including checkpoints), consisting of learnt weights and parameters (including optimizer states), corresponding to all or part of the model architecture as embodied in the Source Code, that have been trained or tuned, in whole or in part on the Data, using the Source Code and other materials. 
+
+(i) “Source Code” means any collection of text written using human-readable programming language, including the code and scripts used to define, run, load, benchmark or evaluate a Model or any component thereof, and/or used to prepare data for training or evaluation. For clarity, the term “Source Code” as used in this License includes any and all Derivatives of such Source Code. 
+
+(j) “Third Parties” means individuals or legal entities that are not under common control with Licensor or You.
+
+(k) "You" (or "Your")  means an individual or legal entity exercising permissions granted by this License.
+
+Section II:   INTELLECTUAL PROPERTY RIGHTS
+
+Both copyright and patent grants may apply to the Source Code. The Source Code is subject to additional terms as described in Section III, which shall govern the use of the Source Code even in the event Section II is held unenforceable.
+
+2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare, publicly display, publicly performƒ, sublicense, and distribute the Source Code.
+
+3. Grant of Patent License. Subject to the terms and conditions of this License and where and as applicable, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this paragraph) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Source Code where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Source Code to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Source Code and/or a Contribution incorporated within the Source Code constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for the Source Code shall terminate as of the date such litigation is asserted or filed.
+
+Section III: CONDITIONS OF USAGE, DISTRIBUTION AND REDISTRIBUTION
+
+4. Distribution and Redistribution. You may host for Third Party remote access purposes (e.g. software-as-a-service), reproduce and distribute copies of the Source Code thereof in any medium, with or without modifications, provided that You meet the following conditions:
+
+(a) Use-based restrictions in paragraph 5 MUST be included as an enforceable provision by You in any type of legal agreement (e.g. a license) governing the use and/or distribution of the Source Code, and You shall give notice to subsequent users You Distribute to, that the Source Code is subject to paragraph 5. 
+
+(b) You must give any Third Party recipients of the Source Code a copy of this License; 
+
+(c) You must cause any modified files to carry prominent notices stating that You changed the files; 
+
+(d) You must retain all copyright, patent, trademark, and attribution notices excluding those notices that do not pertain to any part of the Source Code.
+
+You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions - respecting paragraph 4.a. - for use, reproduction, or distribution of Your modifications, or for any Derivatives, provided Your use, reproduction, and distribution of the Source Code otherwise complies with the conditions stated in this License.
+
+5. Use-based restrictions. The restrictions set forth in Attachment A are considered use-based restrictions. Therefore You cannot use the Source Code in violation of such restrictions. You may use the Source Code subject to this License, including only for lawful purposes and in accordance with the License. You shall require all of Your users and licensees who use the Source Code to comply with the terms of this paragraph 5. 
+
+Section IV: OTHER PROVISIONS
+
+7. Updates and Runtime Restrictions. To the maximum extent permitted by law, Licensor reserves the right to restrict (remotely or otherwise) usage of the Source Code in violation of this License, or update the Source Code through electronic means.. 
+
+8. Trademarks and related. Nothing in this License permits You to make use of Licensors’ trademarks, trade names, logos or to otherwise suggest endorsement or misrepresent the relationship between the parties; and any rights not expressly granted herein are reserved by the Licensors.
+
+9. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Source Code (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either EXPRESS or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Source Code, and assume any risks associated with Your exercise of permissions under this License.
+
+10. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Source Code (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.
+
+11. Accepting Warranty or Additional Liability. While redistributing the Source Code, You may choose to charge a fee in exchange for support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.
+
+12. If any provision of this License is held to be invalid, illegal or unenforceable, the remaining provisions shall be unaffected thereby and remain valid as if such provision had not been set forth herein.
+
+END OF TERMS AND CONDITIONS
+
+Attachment A
+
+USE RESTRICTIONS
+You agree not to use the Source Code or its Derivatives in any of the following ways:
+
+    1. Legal: 
+
+(a) In any way that violates any applicable national, federal, state, local or international law or regulation.
+
+   2. Harm and Discrimination
+
+(a) For the purpose of exploiting, Harming or attempting to exploit or Harm minors in any way;
+
+(b) To generate or disseminate false information with the purpose of Harming others;
+
+(c) To generate or disseminate personal identifiable information that can be used to Harm an individual;
+
+(d) To defame, disparage or otherwise harass others;
+
+(e) For any use intended to or which has the effect of Harming individuals or groups based on online or offline social behavior or known or predicted personal or personality characteristics
+
+(f) To exploit any of the vulnerabilities of a specific group of persons based on their age, social, physical or mental characteristics, in order to materially distort the behavior of a person belonging to that group in a manner that causes or is likely to cause that person or another person Harm
+
+(g) For any use intended to or which has the effect of discriminating against individuals or groups based on legally protected characteristics or categories.
+
+3. Transparency
+
+(a) To generate or disseminate machine-generated information or content in any medium  without expressly and intelligibly disclaiming that it is machine-generated;
+
+(b) To impersonate or attempt to impersonate human beings for purposes of deception;
+
+(c) For fully automated decision making that adversely impacts an individual’s legal rights or otherwise creates or modifies a binding, enforceable obligation.
