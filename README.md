@@ -41,7 +41,9 @@ Questions or issues? File an issue or contact [Boyuan Zheng](https://boyuanzheng
 
 
 ## Licensing Information
-The code under this repo is licensed under an MIT License.
+The code under this repo is licensed under an [OPEN RAIL-S License](https://www.licenses.ai/ai-pubs-open-rails-vz1).
+
+The model weight and parameters under this repo are licensed under an [OPEN RAIL-M License](https://www.licenses.ai/ai-pubs-open-railm-vz1).
 
 ## Disclaimer
 
