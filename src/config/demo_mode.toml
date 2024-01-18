@@ -1,0 +1,43 @@
+[basic]
+is_demo = true # Set to true for demo mode, prompting user input for tasks and URLs. False reads tasks from a JSON file.
+save_file_dir = "../online_results" # Directory to save the results of the program's operations.
+default_task ="Find pdf of paper \"GPT-4V(ision) is a Generalist Web Agent, if Grounded\" from arXiv" # Default task to perform.
+default_website = "https://www.google.com/" # Default website to start the task.
+
+[experiment]
+task_file_path = "../data/online_tasks/sample_tasks.json" # Path to the JSON file with tasks (ignored if is_demo is true).
+overwrite = false # Enable to overwrite existing results. Disable to skip tasks already saved in save_file_dir.
+top_k = 50  # Number of top element candidates to consider if a ranker is used.
+fixed_choice_batch_size = 17 # Fixed number of options for each multiple-choice question.
+# Ensure a manageable number to prevent Playwright crashes during screenshot capture due to large image sizes.
+dynamic_choice_batch_size=1600 # Dynamic batch size based on webpage height. Overrides fixed_choice_batch_size if positive.
+max_continuous_no_op = 2 # Maximum number of consecutive ineffective operations allowed.
+max_op = 20 # Maximum number of operations to attempt.
+highlight = false # If true, highlights elements during processing. Included in screenshots.
+monitor = true # Monitors each step. Pausing after each operation for safety, recommended to be always true. You should always monitor agents' behavior even if is set as false.
+dev_mode=false # Developer mode toggle.
+# storage_state="" # Path to a saved cookie file, if any.
+# ranker_path = "../model/deberta-v3-base" # Path to the ranking model. Comment out to disable ranking and treat all elements as candidates.
+# Pretrained model: https://huggingface.co/osunlp/MindAct_CandidateGeneration_deberta-v3-base
+
+[openai]
+api_key = "Your API Key Here" # OpenAI API key for GPT-4 access.
+# You can find your API key at https://platform.openai.com/account/api-keys.
+rate_limit = -1 # Rate limit for API calls (-1 for no limit).
+model = "gpt-4-vision-preview" # Model name, indicating the use of GPT-4 with vision capabilities.
+temperature = 0 # Temperature setting for GPT's responses, controlling randomness.
+
+[oss_model]
+# Reserved for future updates on open-source models.
+
+[playwright]
+save_video = false # Toggle to save Playwright recordings. Can be slow during saving, mainly for experimental use.
+tracing = false # Toggle to save Playwright trace files. This will significantly slow down the script. Not recommended for general users.
+locale="en-US" # Locale setting, can affect webpage language.
+geolocation.longitude=39.99542778404405 # Longitude for geolocation.
+geolocation.latitude=-83.0068669912263 # Latitude for geolocation.
+viewport.width = 1280 # Browser window width.
+viewport.height = 720 # Browser window height.
+trace.screenshots = true # Whether to capture screenshots during tracing. Screenshots are used to build a timeline preview.
+trace.snapshots = true # Capture DOM snapshot on every action and record network activity.
+trace.sources = true # Whether to include source files for trace actions.
