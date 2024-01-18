@@ -773,6 +773,7 @@ async def main(config, base_dir) -> None:
                         elif monitor_signal == "reject":
                             raise Exception("the human supervisor rejected this operation.")
                         elif target_element == "PRESS ENTER":
+                            logger.info("Try performing a PRESS ENTER")
                             await session_control.active_page.keyboard.press('Enter')
                         no_op_count = 0
                         try:
