@@ -757,6 +757,7 @@ async def main(config, base_dir) -> None:
                                                 no_op_count += 1
                             elif target_action == "PRESS ENTER":
                                 try:
+                                    logger.info("Try performing a PRESS ENTER")
                                     await selector.press('Enter')
                                 except Exception as e:
                                     await selector.click(timeout=10000)
