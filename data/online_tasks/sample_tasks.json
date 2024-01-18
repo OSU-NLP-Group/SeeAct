@@ -1,0 +1,92 @@
+[
+  {
+    "confirmed_task": "Compare iPhone 15 Pro Max with iPhone 13 Pro Max",
+    "website": "https://www.apple.com/iphone/",
+    "task_id": "compare_iphone15ro"
+  },
+  {
+    "confirmed_task": "Show me jobs for MBA & Graduate Internships.",
+    "website": "careers.walmart",
+    "task_id": "3cbbbbaa-6fc9-4341-a7ab-c85027a26b87"
+  },
+  {
+    "confirmed_task": "Search for the flight status for the flight AA 3942 leaving on Jan 8",
+    "website": "https://www.aa.com/homePage.do",
+    "task_id": "aaflight"
+  },
+  {
+    "confirmed_task": "Find Dota 2 game and add all DLC to cart.",
+    "website": "https://store.steampowered.com/",
+    "task_id": "steam"
+  },
+  {
+    "confirmed_task": "Find the drug interaction between gabapentin and ibuprofen",
+    "website": "https://drugs.com",
+    "task_id": "drugsinteraction"
+  },
+  {
+    "confirmed_task": "find the Monthly forecast for Manchester, GB for January",
+    "website": "accuweather",
+    "task_id": "0c131eb5-7d3e-41cb-8e2a-e91a994404f4"
+  },
+  {
+    "confirmed_task": "What are the similar names to the name carl",
+    "website": "babycenter",
+    "task_id": "68ce1cf5-6292-42cd-82fc-eb03fddf5d88"
+  },
+  {
+    "confirmed_task": "Find the Driver License Eligibility Requirements",
+    "website": "dmv.virginia.gov",
+    "task_id": "70f488de-8476-45df-a1da-a432e55f228b"
+  },
+  {
+    "confirmed_task": "Show side effects of Tamiflu.",
+    "website": "drugs",
+    "task_id": "6e046178-2984-4107-b3f4-d13329acc3a0"
+  },
+  {
+    "confirmed_task": "Browse the natural products database.",
+    "website": "drugs",
+    "task_id": "65c2867e-3c0b-4e7d-a5fa-37355c8462a4"
+  },
+  {
+    "confirmed_task": "Find symptoms of sleep apnea",
+    "website": "webmd",
+    "task_id": "4835a052-e116-4639-a60f-8ebf6c8629ed"
+  },
+  {
+    "confirmed_task": "Browse list of Civil Division forms.",
+    "website": "justice.gov",
+    "task_id": "028b03fb-9819-4396-bcf1-deba93a6d3bd"
+  },
+  {
+    "confirmed_task": "Check drug interaction for melatonin and Folate Forte.",
+    "website": "drugs",
+    "task_id": "a62bf569-8c55-4179-9227-52470d051c8d"
+  },
+  {
+    "confirmed_task": "Show me the scores for the 2019 super bowl",
+    "website": "nfl",
+    "task_id": "9c14e1b7-2015-434a-a8a1-b1e782d0a2e2"
+  },
+  {
+    "confirmed_task": "Browse spider-man toys for kids and sort by lowest price.",
+    "website": "kohls",
+    "task_id": "a5dd5729-415a-4fe2-a840-4935bf9428d4"
+  },
+  {
+    "confirmed_task": "View the speakers that are bluetooth and wireless and filter the results to only show models that are on sale and cost less than $200.",
+    "website": "bestbuy",
+    "task_id": "3ff2ddd8-60a4-44a7-b710-9a8a515a9869"
+  },
+  {
+    "confirmed_task": "Find the app for ios.",
+    "website": "recreation.gov",
+    "task_id": "cde403e5-ac10-414a-9d5d-5ca7a3695b53"
+  },
+  {
+    "confirmed_task": "Look for a White PlayStation 5 Console and save it",
+    "website": "shopping.google",
+    "task_id": "85d6d6f1-6a30-4c61-9d8c-59c25f4043f4"
+  }
+]
