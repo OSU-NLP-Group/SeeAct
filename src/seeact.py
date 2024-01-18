@@ -442,9 +442,7 @@ async def main(config, base_dir) -> None:
                         await session_control.active_page.screenshot(path=input_image_path, clip=clip, full_page=True,
                                                                      type='jpeg', quality=100, timeout=30000)
                     except Exception as e_clip:
-                        if dev_mode:
-                            logger.info(f"Failed to get cropped screenshot because {e_clip}")
-                        pass
+                        logger.info(f"Failed to get cropped screenshot because {e_clip}")
 
                     if dev_mode:
                         logger.info(multichoice_i)
