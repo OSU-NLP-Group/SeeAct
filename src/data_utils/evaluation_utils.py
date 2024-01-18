@@ -1,14 +1,27 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2024 OSU Natural Language Processing Group
+#
+# Licensed under the OpenRAIL-S License;
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.licenses.ai/ai-pubs-open-rails-vz1
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import collections
 import json
 import logging
 import random
-
 import numpy as np
 from tqdm import tqdm
 import lxml
 from src.data_utils.dom_utils import get_tree_repr, data_prune_tree
 logger = logging.getLogger(__name__)
-
 
 def format_input_multichoice(
     sample, candidate_ids, gt=-1, previous_k=5, keep_html_brackets=False

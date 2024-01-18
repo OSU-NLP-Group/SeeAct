@@ -1,8 +1,21 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2024 OSU Natural Language Processing Group
+#
+# Licensed under the OpenRAIL-S License;
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.licenses.ai/ai-pubs-open-rails-vz1
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import string
 import lxml
-from data_utils.dom_utils import get_tree_repr, data_prune_tree
-
-
+from .dom_utils import get_tree_repr, data_prune_tree
 def data_format_input_multichoice(
         sample, candidate_ids, gt=-1, previous_k=5, keep_html_brackets=False
 ):
@@ -139,7 +152,7 @@ def generate_referring_prompt(referring_description="", element_format="", actio
 
     # Prepare Option texts
     # For exp {1, 2, 4}, generate option
-    # For exp3, set options field at None
+    # For element_atttribute, set options field at None
     if choices:
         choice_text = format_options(choices)
         referring_prompt += choice_text
@@ -171,15 +184,10 @@ def generate_new_referring_prompt(referring_description="", element_format="", a
 
     # Prepare Option texts
     # For exp {1, 2, 4}, generate option
-    # For exp3, set options field at None
+    # For element_atttribute, set options field at None
     if choices:
         choice_text = format_options(choices)
         referring_prompt += choice_text
-
-
-#     referring_prompt+='''
-# '''
-
 
     if element_format != "":
         referring_prompt += element_format
@@ -218,13 +226,23 @@ def format_options(choices):
 
 
 def generate_option_name(index):
-    if index < 25:
+    if index < 26:
         return string.ascii_uppercase[index]
-    elif index == 25:
-        return "Z"
     else:
-        first_letter_index = (index - 26) // 25
-        second_letter_index = (index - 26) % 25
+        first_letter_index = (index - 26) // 26
+        second_letter_index = (index - 26) % 26
         first_letter = string.ascii_uppercase[first_letter_index]
         second_letter = string.ascii_uppercase[second_letter_index]
         return f"{first_letter}{second_letter}"
+
+def get_index_from_option_name(name):
+    if len(name) == 1:
+        return string.ascii_uppercase.index(name)
+    elif len(name) == 2:
+        first_letter_index = string.ascii_uppercase.index(name[0])
+        second_letter_index = string.ascii_uppercase.index(name[1])
+        return 26 + first_letter_index * 26 + second_letter_index
+    else:
+        raise Exception("The string should be either 1 or 2 characters long")
+
+
