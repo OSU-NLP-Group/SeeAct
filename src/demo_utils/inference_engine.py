@@ -108,7 +108,7 @@ class OpenaiEngine(Engine):
                 {"role": "system", "content": [{"type": "text", "text": prompt0}]},
                 {"role": "user",
                  "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
-                                                                                                        f"data:image/jpeg;nase64,{base64_image}",
+                                                                                                        f"data:image/jpeg;base64,{base64_image}",
                                                                                                     "detail": "high"},
                                                                  }]},
             ]
