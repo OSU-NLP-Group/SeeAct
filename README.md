@@ -144,6 +144,8 @@ python element_attributes.py
 # Image Annotation
 python image_annotation.py
 ```
+Please download the Mind2Web raw dump from [this link](https://github.com/OSU-NLP-Group/Mind2Web?tab=readme-ov-file#raw-dump-with-full-traces-and-snapshots) and the query source data from [here](https://buckeyemailosu-my.sharepoint.com/:f:/g/personal/zheng_2372_buckeyemail_osu_edu/Ei95kzWnWlVAn4DR5I3zDDEBUZtC-9vIf0VBuFMOzZNn2w?e=OcH9Om). After downloading, please place both files in the `../data/` directory.
+
 
 ## Online Evaluation of Mind2Web Tasks
 To reproduce the online evaluation experiments in the paper, run the following command to run SeeAct in auto mode:
