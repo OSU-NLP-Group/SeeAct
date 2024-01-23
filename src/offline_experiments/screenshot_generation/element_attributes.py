@@ -152,10 +152,10 @@ if __name__ == '__main__':
     parser.add_argument('--num_choice', type=int, default=-1)
     parser.add_argument('--split', type=str, default="test_website")
     parser.add_argument('--selected_set_task_id_path', type=str,
-                        default="../data/formal_manual_selection/task_id_dicts/30_selected.pkl")
+                        default="../data/seeact_source_data/30_selected.pkl")
     parser.add_argument('--screenshot_dump_path', type=str, default="../data/screenshot_source/")
     parser.add_argument('--output_dir', type=str, default="../data/30_selected_tasks/exp4_whole")
     parser.add_argument('--query_source_path', type=str,
-                        default="../data/source_data/20_chocies/test_website_outputs_top50.json")
+                        default="../data/seeact_source_data/test_website_outputs_top50.json")
     my_args = parser.parse_args()
     run(my_args)
