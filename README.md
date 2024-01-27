@@ -154,7 +154,7 @@ python src/seeact.py -c config/online_exp.toml
 ```
 Note: Some tasks may require manual updates to the task descriptions due to time sensitivity.
 
-We followed the 2-stage strategy of [MindAct](https://github.com/OSU-NLP-Group/Mind2Web) for fair comparison. You can find the trained ranker model [DeBERTa-v3-base](https://huggingface.co/osunlp/MindAct_CandidateGeneration_deberta-v3-base) in the Huggingface Model Hub.
+We followed the 2-stage strategy of [MindAct](https://github.com/OSU-NLP-Group/Mind2Web) for a fair comparison. You can find the trained ranker model [DeBERTa-v3-base](https://huggingface.co/osunlp/MindAct_CandidateGeneration_deberta-v3-base) in the Huggingface Model Hub.
 
 
 ## Licensing Information
