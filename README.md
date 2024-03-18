@@ -31,6 +31,8 @@ It consists of two main components:
 <a href="https://twitter.com/ysu_nlp/status/1742398541660639637">Twitter</a>
 </p>
 
+<h3>Updates</h3>
+- 2024/3/18: [Multimodal-Mind2Web](https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web) dataset released. We have pair each HTML document with the corresponding webpage screenshot image and save the trouble of downloading [Mind2Web Raw Dump](https://github.com/OSU-NLP-Group/Mind2Web?tab=readme-ov-file#raw-dump-with-full-traces-and-snapshots).
 
 # SeeAct Tool
 
