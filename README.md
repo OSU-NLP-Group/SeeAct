@@ -5,13 +5,15 @@
 <p align="center">
 <a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Mind2Web-Homeage-red.svg" alt="Mind2Web Benchmark"></a>
 <a href="https://www.licenses.ai/ai-licenses"><img src="https://img.shields.io/badge/OPEN RAIL-License-green.svg" alt="Open RAIL License"></a>
+<a href="https://huggingface.co/datasets/osunlp/Mind2Web"><img src="https://img.shields.io/badge/Mind2Web-Dataset-yellow.svg" alt="Mind2Web Benchmark"></a>
+<a href="https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web"><img src="https://img.shields.io/badge/Multimodal Mind2Web-Dataset-blue.svg" alt="Mind2Web Benchmark"></a>
+</p>
+
+<p align="center">
 <a href="https://www.python.org/downloads/release/python-3109/"><img src="https://img.shields.io/badge/python-3.10-blue.svg" alt="Python 3.10"></a>
 <a href="https://github.com/OSU-NLP-Group/SeeAct"><img src="https://img.shields.io/github/stars/OSU-NLP-Group/SeeAct?style=social" alt="GitHub Stars"></a>
 <a href="https://github.com/OSU-NLP-Group/SeeAct/issues"><img src="https://img.shields.io/github/issues-raw/OSU-NLP-Group/SeeAct" alt="Open Issues"></a>
 <a href="https://twitter.com/osunlp"><img src="https://img.shields.io/twitter/follow/OSU_NLP_Group" alt="Twitter Follow"></a>
-<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Mind2Web-Dataset-green.svg" alt="Mind2Web Benchmark"></a>
-<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Multimodal Mind2Web-Dataset-blue.svg" alt="Mind2Web Benchmark"></a>
-
 </p>
 
 SeeAct is a system for <a href="https://osu-nlp-group.github.io/Mind2Web/">generalist web agents</a> that autonomously carry out tasks on any given website, 
@@ -25,6 +27,7 @@ It consists of two main components:
 <p align="center">
 <a href="https://osu-nlp-group.github.io/SeeAct/">Website</a> •
 <a href="https://arxiv.org/abs/2401.01614">Paper</a> •
+<a href="https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web">Dataset</a> •
 <a href="https://twitter.com/ysu_nlp/status/1742398541660639637">Twitter</a>
 </p>
 
