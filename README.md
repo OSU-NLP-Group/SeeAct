@@ -3,12 +3,15 @@
 <h1 align="center">SeeAct <br> GPT-4V(ision) is a Generalist Web Agent, if Grounded</h1>
 
 <p align="center">
-<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Mind2Web-red.svg" alt="Mind2Web Benchmark"></a>
+<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Mind2Web-Homeage-red.svg" alt="Mind2Web Benchmark"></a>
 <a href="https://www.licenses.ai/ai-licenses"><img src="https://img.shields.io/badge/OPEN RAIL-License-green.svg" alt="Open RAIL License"></a>
 <a href="https://www.python.org/downloads/release/python-3109/"><img src="https://img.shields.io/badge/python-3.10-blue.svg" alt="Python 3.10"></a>
 <a href="https://github.com/OSU-NLP-Group/SeeAct"><img src="https://img.shields.io/github/stars/OSU-NLP-Group/SeeAct?style=social" alt="GitHub Stars"></a>
 <a href="https://github.com/OSU-NLP-Group/SeeAct/issues"><img src="https://img.shields.io/github/issues-raw/OSU-NLP-Group/SeeAct" alt="Open Issues"></a>
 <a href="https://twitter.com/osunlp"><img src="https://img.shields.io/twitter/follow/OSU_NLP_Group" alt="Twitter Follow"></a>
+<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Mind2Web-Dataset-green.svg" alt="Mind2Web Benchmark"></a>
+<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Multimodal Mind2Web-Dataset-blue.svg" alt="Mind2Web Benchmark"></a>
+
 </p>
 
 SeeAct is a system for <a href="https://osu-nlp-group.github.io/Mind2Web/">generalist web agents</a> that autonomously carry out tasks on any given website, 
@@ -123,9 +126,10 @@ and prevent exposure to potential safety and legal risks.
 
 # Experiments
 
-## Dataset
-The dataset is derived from Mind2Web by pairing each HTML text with the rendered webpage screenshots. 
-The screenshot image data comes from the [Raw Dump with Full Traces and Snapshots](https://github.com/OSU-NLP-Group/Mind2Web?tab=readme-ov-file#raw-dump-with-full-traces-and-snapshots) captured with PlayWright during data annotation.
+## Multimodal-Mind2Web Dataset
+[Multimodal-Mind2Web](https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web) is the multimodal version of Mind2Web dataset hosted on Huggingface under OpenRAIL License. 
+
+In this dataset, we align each HTML document in the dataset with its corresponding webpage screenshot image from the [Mind2Web Raw Dump](https://github.com/OSU-NLP-Group/Mind2Web?tab=readme-ov-file#raw-dump-with-full-traces-and-snapshots), which undergoes human verification to confirm element visibility and correct rendering for action prediction.
 
 
 ### Screenshot Generation
