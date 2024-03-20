@@ -130,13 +130,46 @@ and prevent exposure to potential safety and legal risks.
 **To prevent unintended consequential errors, we advise against using SeeAct for tasks that require account login.**
 
 
-# Experiments
-
-## Multimodal-Mind2Web Dataset
+# Multimodal-Mind2Web Dataset
 [Multimodal-Mind2Web](https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web) is the multimodal version of Mind2Web dataset hosted on Huggingface under OpenRAIL License. 
+In this dataset, we align each HTML document in the dataset with its corresponding webpage screenshot image from the [Mind2Web Raw Dump](https://github.com/OSU-NLP-Group/Mind2Web?tab=readme-ov-file#raw-dump-with-full-traces-and-snapshots).
+This multimodal version addresses the inconvenience of loading images from the ~300GB Mind2Web Raw Dump. 
 
-In this dataset, we align each HTML document in the dataset with its corresponding webpage screenshot image from the [Mind2Web Raw Dump](https://github.com/OSU-NLP-Group/Mind2Web?tab=readme-ov-file#raw-dump-with-full-traces-and-snapshots), which undergoes human verification to confirm element visibility and correct rendering for action prediction.
+### Data Splits
+- train: 7775 actions from 1009 tasks.
+- test_task: 1339 actions from 177 tasks. Tasks from the same website are seen during training.
+- test_website: 1019 actions from 142 tasks. Websites are not seen during training.
+- test_domain: 4060 actions from 694 tasks. Entire domains are not seen during training.
 
+The **_train_** set may include some screenshot images not properly rendered caused by rendering issues during Mind2Web annotation. The three **_test splits (test_task, test_website, test_domain)_** have undergone human verification to confirm element visibility and correct rendering for action prediction.
+
+
+### Data Fields
+Each line in the dataset is an action consisting of screenshot image, HTML text and other fields required for action prediction, for the convenience of inference.
+- "annotation_id" (str): unique id for each task
+- "website" (str): website name
+- "domain" (str): website domain
+- "subdomain" (str): website subdomain
+- "confirmed_task" (str): task description
+- "action_reprs" (list[str]): human readable string representation of the action sequence
+- **"screenshot" (str): path to the webpage screenshot image corresponding to the HTML.**
+- "action_uid" (str): unique id for each action (step)
+- "raw_html" (str): raw html of the page before the action is performed
+- "cleaned_html" (str): cleaned html of the page before the action is performed
+- "operation" (dict): operation to perform
+  - "op" (str): operation type, one of CLICK, TYPE, SELECT
+  - "original_op" (str): original operation type, contain additional HOVER and ENTER that are mapped to CLICK, not used
+  - "value" (str): optional value for the operation, e.g., text to type, option to select
+- "pos_candidates" (list[dict]): ground truth elements. Here we only include positive elements that exist in "cleaned_html" after our preprocessing, so "pos_candidates" might be empty. The original labeled element can always be found in the "raw_html".
+  - "tag" (str): tag of the element
+  - "is_original_target" (bool): whether the element is the original target labeled by the annotator
+  - "is_top_level_target" (bool): whether the element is a top level target find by our algorithm. please see the paper for more details.
+  - "backend_node_id" (str): unique id for the element
+  - "attributes" (str): serialized attributes of the element, use `json.loads` to convert back to dict
+- "neg_candidates" (list[dict]): other candidate elements in the page after preprocessing, has similar structure as "pos_candidates"
+
+
+# Experiments
 
 ### Screenshot Generation
 You can also generate screenshot image and query text data from the Mind2Web raw dump. 
