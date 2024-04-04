@@ -102,45 +102,54 @@ class OpenaiEngine(Engine):
         prompt2 = prompt[2]
 
         if turn_number == 0:
-            base64_image = encode_image(image_path)
-            # Assume one turn dialogue
-            prompt1_input = [
-                {"role": "system", "content": [{"type": "text", "text": prompt0}]},
-                {"role": "user",
-                 "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
-                                                                                                        f"data:image/jpeg;base64,{base64_image}",
-                                                                                                    "detail": "high"},
-                                                                 }]},
-            ]
-            response1 = openai.ChatCompletion.create(
-                model=model if model else self.model,
-                messages=prompt1_input,
-                max_tokens=max_new_tokens if max_new_tokens else 4096,
-                temperature=temperature if temperature else self.temperature,
-                **kwargs,
-            )
-            answer1 = [choice["message"]["content"] for choice in response1["choices"]][0]
+            try:
+                base64_image = encode_image(image_path)
+                # Assume one turn dialogue
+                prompt1_input = [
+                    {"role": "system", "content": [{"type": "text", "text": prompt0}]},
+                    {"role": "user",
+                    "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
+                                                                                                            f"data:image/jpeg;base64,{base64_image}",
+                                                                                                        "detail": "high"},
+                                                                    }]},
+                ]
+                response1 = openai.ChatCompletion.create(
+                    model=model if model else self.model,
+                    messages=prompt1_input,
+                    max_tokens=max_new_tokens if max_new_tokens else 4096,
+                    temperature=temperature if temperature else self.temperature,
+                    **kwargs,
+                )
+                answer1 = [choice["message"]["content"] for choice in response1["choices"]][0]
 
-            return answer1
+                return answer1
+            except Exception as ex:
+                print(f"Error: {ex}")
+                raise APIError("An error occurred prompting OpenAI")
+
         elif turn_number == 1:
-            base64_image = encode_image(image_path)
-            prompt2_input = [
-                {"role": "system", "content": [{"type": "text", "text": prompt0}]},
-                {"role": "user",
-                 "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
-                                                                                                        f"data:image/jpeg;base64,{base64_image}",
-                                                                                                    "detail": "high"}, }]},
-                {"role": "assistant", "content": [{"type": "text", "text": f"\n\n{ouput__0}"}]},
-                {"role": "user", "content": [{"type": "text", "text": prompt2}]}, ]
-            response2 = openai.ChatCompletion.create(
-                model=model if model else self.model,
-                messages=prompt2_input,
-                max_tokens=max_new_tokens if max_new_tokens else 4096,
-                temperature=temperature if temperature else self.temperature,
-                **kwargs,
-            )
-            return [choice["message"]["content"] for choice in response2["choices"]][0]
+            try:
+                base64_image = encode_image(image_path)
+                prompt2_input = [
+                    {"role": "system", "content": [{"type": "text", "text": prompt0}]},
+                    {"role": "user",
+                    "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
+                                                                                                            f"data:image/jpeg;base64,{base64_image}",
+                                                                                                        "detail": "high"}, }]},
+                    {"role": "assistant", "content": [{"type": "text", "text": f"\n\n{ouput__0}"}]},
+                    {"role": "user", "content": [{"type": "text", "text": prompt2}]}, ]
+                response2 = openai.ChatCompletion.create(
+                    model=model if model else self.model,
+                    messages=prompt2_input,
+                    max_tokens=max_new_tokens if max_new_tokens else 4096,
+                    temperature=temperature if temperature else self.temperature,
+                    **kwargs,
+                )
+                return [choice["message"]["content"] for choice in response2["choices"]][0]
 
+            except Exception as ex:
+                print(f"Error: {ex}")
+                raise APIError("An error occurred prompting OpenAI")
 
 class OpenaiEngine_MindAct(Engine):
     def __init__(
@@ -185,29 +194,34 @@ class OpenaiEngine_MindAct(Engine):
         (APIError, RateLimitError, APIConnectionError, ServiceUnavailableError),
     )
     def generate(self, prompt, max_new_tokens=50, temperature=0, model=None, **kwargs):
-        self.current_key_idx = (self.current_key_idx + 1) % len(self.api_keys)
-        start_time = time.time()
-        if (
-                self.request_interval > 0
-                and start_time < self.next_avil_time[self.current_key_idx]
-        ):
-            time.sleep(self.next_avil_time[self.current_key_idx] - start_time)
-        openai.api_key = self.api_keys[self.current_key_idx]
-        if isinstance(prompt, str):
-            # Assume one turn dialogue
-            prompt = [
-                {"role": "user", "content": prompt},
-            ]
-        response = openai.ChatCompletion.create(
-            model=model if model else self.model,
-            messages=prompt,
-            max_tokens=max_new_tokens,
-            temperature=temperature,
-            **kwargs,
-        )
-        if self.request_interval > 0:
-            self.next_avil_time[self.current_key_idx] = (
-                    max(start_time, self.next_avil_time[self.current_key_idx])
-                    + self.request_interval
+        try:
+            self.current_key_idx = (self.current_key_idx + 1) % len(self.api_keys)
+            start_time = time.time()
+            if (
+                    self.request_interval > 0
+                    and start_time < self.next_avil_time[self.current_key_idx]
+            ):
+                time.sleep(self.next_avil_time[self.current_key_idx] - start_time)
+            openai.api_key = self.api_keys[self.current_key_idx]
+            if isinstance(prompt, str):
+                # Assume one turn dialogue
+                prompt = [
+                    {"role": "user", "content": prompt},
+                ]
+            response = openai.ChatCompletion.create(
+                model=model if model else self.model,
+                messages=prompt,
+                max_tokens=max_new_tokens,
+                temperature=temperature,
+                **kwargs,
             )
-        return [choice["message"]["content"] for choice in response["choices"]]
+            if self.request_interval > 0:
+                self.next_avil_time[self.current_key_idx] = (
+                        max(start_time, self.next_avil_time[self.current_key_idx])
+                        + self.request_interval
+                )
+            return [choice["message"]["content"] for choice in response["choices"]]
+        
+        except Exception as ex:
+            print(f"Error: {ex}")
+            raise APIError("An error occurred prompting OpenAI")
