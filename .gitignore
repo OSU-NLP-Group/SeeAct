@@ -1,0 +1,5 @@
+.env
+*.pyc
+*.log
+*.jpg
+online_results/*

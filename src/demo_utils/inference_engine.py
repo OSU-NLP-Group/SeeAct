@@ -24,6 +24,7 @@ from openai.error import (
     ServiceUnavailableError,
     InvalidRequestError
 )
+from dotenv import load_dotenv
 
 import base64
 
@@ -59,6 +60,7 @@ class OpenaiEngine(Engine):
             rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
             model (_type_, optional): Model family. Defaults to None.
         """
+        load_dotenv()
         assert (
                 os.getenv("OPENAI_API_KEY", api_key) is not None
         ), "must pass on the api_key or set OPENAI_API_KEY in the environment"
@@ -78,10 +80,6 @@ class OpenaiEngine(Engine):
         self.next_avil_time = [0] * len(self.api_keys)
         self.current_key_idx = 0
         Engine.__init__(self, **kwargs)
-
-    def encode_image(self, image_path):
-        with open(self, image_path, "rb") as image_file:
-            return base64.b64encode(image_file.read()).decode('utf-8')
 
     @backoff.on_exception(
         backoff.expo,

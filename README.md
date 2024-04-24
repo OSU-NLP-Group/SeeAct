@@ -59,7 +59,7 @@ playwright install
 
 
 ## Running Web Agent
-**Please fill in the OpenAI API Key in the configuration file at `src/config/demo_mode.toml` before running SeeAct.
+**Please set your OpenAI API Key in environment or .env file before running SeeAct.
 Your API key is available through your [OpenAI account page](https://platform.openai.com/account/api-keys). 
 Note that the key is only stored locally and will NOT be shared anywhere.** 
 
