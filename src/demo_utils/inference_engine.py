@@ -34,6 +34,21 @@ def encode_image(image_path):
         return base64.b64encode(image_file.read()).decode('utf-8')
 
 
+def load_api_key(api_key):
+    load_dotenv()
+    assert (
+            os.getenv("OPENAI_API_KEY", api_key) is not None
+    ), "must pass on the api_key or set OPENAI_API_KEY in the environment"
+    if api_key is None:
+        api_key = os.getenv("OPENAI_API_KEY", api_key)
+    if isinstance(api_key, str):
+        return [api_key]
+    elif isinstance(api_key, list):
+        return api_key
+    else:
+        raise ValueError("api_key must be a string or list")
+
+
 class Engine:
     def __init__(self) -> None:
         pass
@@ -60,18 +75,7 @@ class OpenaiEngine(Engine):
             rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
             model (_type_, optional): Model family. Defaults to None.
         """
-        load_dotenv()
-        assert (
-                os.getenv("OPENAI_API_KEY", api_key) is not None
-        ), "must pass on the api_key or set OPENAI_API_KEY in the environment"
-        if api_key is None:
-            api_key = os.getenv("OPENAI_API_KEY", api_key)
-        if isinstance(api_key, str):
-            self.api_keys = [api_key]
-        elif isinstance(api_key, list):
-            self.api_keys = api_key
-        else:
-            raise ValueError("api_key must be a string or list")
+        self.api_keys = load_api_key(api_key)
         self.stop = stop
         self.temperature = temperature
         self.model = model
@@ -158,17 +162,7 @@ class OpenaiEngine_MindAct(Engine):
             rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
             model (_type_, optional): Model family. Defaults to None.
         """
-        assert (
-                os.getenv("OPENAI_API_KEY", api_key) is not None
-        ), "must pass on the api_key or set OPENAI_API_KEY in the environment"
-        if api_key is None:
-            api_key = os.getenv("OPENAI_API_KEY", api_key)
-        if isinstance(api_key, str):
-            self.api_keys = [api_key]
-        elif isinstance(api_key, list):
-            self.api_keys = api_key
-        else:
-            raise ValueError("api_key must be a string or list")
+        self.api_keys = load_api_key(api_key)
         self.stop = stop
         self.temperature = temperature
         self.model = model
