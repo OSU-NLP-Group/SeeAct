@@ -7,6 +7,7 @@
 <a href="https://www.licenses.ai/ai-licenses"><img src="https://img.shields.io/badge/OPEN RAIL-License-green.svg" alt="Open RAIL License"></a>
 <a href="https://huggingface.co/datasets/osunlp/Mind2Web"><img src="https://img.shields.io/badge/Mind2Web-Dataset-yellow.svg" alt="Mind2Web Benchmark"></a>
 <a href="https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web"><img src="https://img.shields.io/badge/Multimodal Mind2Web-Dataset-blue.svg" alt="Mind2Web Benchmark"></a>
+<a href="https://pypi.org/project/seeact/"><img src="https://img.shields.io/badge/seeact-PyPI-red.svg" alt="Python 3.10"></a>
 </p>
 
 <p align="center">
