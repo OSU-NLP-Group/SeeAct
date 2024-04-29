@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seeact"
+version = "0.2.3"
+description = "SeeAct is a system for generalist web agents that autonomously carry out tasks on any given website, with a focus on large multimodal models (LMMs) such as GPT-4V(ision). It consists of two main components: (1) A robust codebase that supports running web agents on live websites, and (2) an innovative framework that utilizes LMMs as generalist web agents."
+authors = [
+    {name = "Boyu Gou", email = "gou.43@buckeyemail.osu.edu"},
+    {name = "Boyuan Zheng", email = "zheng.2372@osu.edu"},
+    {name = "Zheng Du", email = "du.913@buckeyemail.osu.edu"}
+]
+license = {file="LICENSE"}
+readme = "https://github.com/OSU-NLP-Group/SeeAct/blob/main/README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "backoff",
+    "playwright",
+    "toml",
+    "openai==0.27.8",
+    "python-dotenv"
+]
+
+[project.urls]
+homepage = "https://osu-nlp-group.github.io/SeeAct/"
+repository = "https://github.com/OSU-NLP-Group/SeeAct"
+documentation = "https://github.com/OSU-NLP-Group/SeeAct"
