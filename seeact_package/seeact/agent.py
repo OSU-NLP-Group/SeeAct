@@ -114,8 +114,6 @@ class SeeActAgent:
             'context': None,
             'browser': None
         }
-        if openai_key is not None:
-            pass
         self.tasks = [self.config["basic"]["default_task"]]
 
         self.main_path = os.path.join(self.config["basic"]["save_file_dir"], datetime.now().strftime("%Y%m%d_%H%M%S"))
