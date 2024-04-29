@@ -68,6 +68,7 @@ class SeeActAgent:
                 with open(config_path,
                           'r') as config:
                     print(f"Configuration File Loaded - {config_path}")
+                    config = toml.load(config)
             else:
                 config = {
                     "basic": {
