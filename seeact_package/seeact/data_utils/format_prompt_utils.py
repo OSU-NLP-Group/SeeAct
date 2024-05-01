@@ -94,7 +94,7 @@ def format_options(choices):
 
         non_abcd = generate_option_name(multichoice_idx + 1)
 
-    multi_choice += f"{non_abcd}. None of the other options match the correct element or the action doesn't invlove an element."
+    multi_choice += f"{non_abcd}. None of the other options match the correct element or the action doesn't involve an element."
     # option_text += abcd
     option_text += f"If none of these elements match your target element or your target action doesn't involve an element, please select {non_abcd}.\n"
     option_text += (multi_choice + '\n\n')

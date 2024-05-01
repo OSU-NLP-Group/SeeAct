@@ -26,7 +26,7 @@ def format_choices(elements):
                     )
                     + f"</{element['tag']}>"
 
-                    if element['tag']!="select" else f'{element["center_point"]} <{element["tag_with_role"]}">'
+                    if element['tag']!="select" else f'{element["center_point"]} <{element["tag_with_role"]}>'
                     + (
                         element["description"]
                     )
