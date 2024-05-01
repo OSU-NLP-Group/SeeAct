@@ -1,9 +1,7 @@
 import asyncio
-import argparse
-import toml
 from seeact.agent import SeeActAgent
 async def run_agent():
-    agent = SeeActAgent(default_task="terminate",openai_key="Your API KEY Here")
+    agent = SeeActAgent(default_task="Terminate",openai_key="Your API KEY Here")
     await agent.start()
     while not agent.complete_flag:
         prediction_dict = await agent.predict()
