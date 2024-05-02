@@ -154,7 +154,6 @@ Each line in the dataset is an action consisting of screenshot image, HTML text 
 - "domain" (str): website domain
 - "subdomain" (str): website subdomain
 - "confirmed_task" (str): task description
-- "action_reprs" (list[str]): human readable string representation of the action sequence
 - **"screenshot" (str): path to the webpage screenshot image corresponding to the HTML.**
 - "action_uid" (str): unique id for each action (step)
 - "raw_html" (str): raw html of the page before the action is performed
@@ -170,7 +169,9 @@ Each line in the dataset is an action consisting of screenshot image, HTML text 
   - "backend_node_id" (str): unique id for the element
   - "attributes" (str): serialized attributes of the element, use `json.loads` to convert back to dict
 - "neg_candidates" (list[dict]): other candidate elements in the page after preprocessing, has similar structure as "pos_candidates"
-
+- "action_reprs" (list[str]): human readable string representation of the action sequence
+- "target_action_index" (str): the index of the target action in the action sequence
+- "target_action_reprs" (str): human readable string representation of the target action
 
 # Experiments
 
