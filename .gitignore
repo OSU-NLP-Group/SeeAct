@@ -1,0 +1,8 @@
+.env
+*.pyc
+*.log
+*.jpg
+*.png
+__pycache__/
+online_results/*
+seeact_package/seeact_agent_files/*

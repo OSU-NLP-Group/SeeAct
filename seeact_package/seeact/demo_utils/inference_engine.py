@@ -17,54 +17,136 @@ import time
 
 import backoff
 import openai
-from openai.error import (
+from openai import (
     APIConnectionError,
     APIError,
     RateLimitError,
-    ServiceUnavailableError,
-    InvalidRequestError
 )
 from dotenv import load_dotenv
+import litellm
 
 import base64
 
-def load_openai_api_key(api_key=None):
+def load_openai_api_key():
     load_dotenv()
     assert (
-            os.getenv("OPENAI_API_KEY", api_key) is not None
+            os.getenv("OPENAI_API_KEY") is not None
     ), "must pass on the api_key or set OPENAI_API_KEY in the environment"
-    if api_key is None:
-        api_key = os.getenv("OPENAI_API_KEY", api_key)
-    if isinstance(api_key, str):
-        return [api_key]
-    elif isinstance(api_key, list):
-        return api_key
-    else:
-        raise ValueError("api_key must be a string or list")
+    return os.getenv("OPENAI_API_KEY")
+
+
+def load_gemini_api_key():
+    load_dotenv()
+    assert (
+            os.getenv("GEMINI_API_KEY") is not None
+    ), "must pass on the api_key or set GEMINI_API_KEY in the environment"
+    return os.getenv("GEMINI_API_KEY")
 
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
 
+def engine_factory(api_key=None, model=None, **kwargs):
+    model = model.lower()
+    if model in ["gpt-4-vision-preview", "gpt-4-turbo"]:
+        if api_key and api_key != "Your API KEY Here":
+            os.environ["OPENAI_API_KEY"] = api_key
+        else:
+            load_openai_api_key()
+        return OpenAIEngine(model=model, **kwargs)
+    elif model == "gemini":
+        if api_key and api_key != "Your API KEY Here":
+            os.environ["GEMINI_API_KEY"] = api_key
+        else:
+            load_gemini_api_key()
+        model="gemini/gemini-1.5-pro-latest"
+        return GeminiEngine(model=model, **kwargs)
+    raise Exception(f"Unsupported model: {model}, currently supported models: gpt-4-vision-preview, gpt-4-turbo, gemini")
+
 class Engine:
-    def __init__(self) -> None:
-        pass
+    def __init__(
+            self,
+            stop=["\n\n"],
+            rate_limit=-1,
+            model=None,
+            temperature=0,
+            **kwargs,
+    ) -> None:
+        self.time_slots = [0]
+        self.stop = stop
+        self.temperature = temperature
+        self.model = model
+        # convert rate limit to minmum request interval
+        self.request_interval = 0 if rate_limit == -1 else 60.0 / rate_limit
+        self.next_avil_time = [0] * len(self.time_slots)
+        self.current_key_idx = 0
+        print(f"Initializing model {self.model}")        
 
     def tokenize(self, input):
         return self.tokenizer(input)
 
 
-class OpenAIEngine(Engine):
-    def __init__(
-            self,
-            api_key=None,
-            stop=["\n\n"],
-            rate_limit=-1,
-            model='gpt-4-vision-preview',
-            temperature=0.9,
+
+class GeminiEngine(Engine):
+    def __init__(self, **kwargs) -> None:
+        """Init a Gemini engine
+
+        Args:
+            api_key (_type_, optional): Auth key from OpenAI. Defaults to None.
+            stop (list, optional): Tokens indicate stop of sequence. Defaults to ["\n"].
+            rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
+            model (_type_, optional): Model family. Defaults to None.
+        """
+        super().__init__(**kwargs)
+
+
+    def generate(self, prompt: list = None, max_new_tokens=4096, temperature=None, model=None, image_path=None,
+                 ouput_0=None, turn_number=0, **kwargs):
+        self.current_key_idx = (self.current_key_idx + 1) % len(self.time_slots)
+        start_time = time.time()
+        if (
+                self.request_interval > 0
+                and start_time < self.next_avil_time[self.current_key_idx]
+        ):
+            wait_time = self.next_avil_time[self.current_key_idx] - start_time
+            print(f"Wait {wait_time} for rate limitting")
+            time.sleep(wait_time)
+        prompt0, prompt1, prompt2 = prompt
+        litellm.set_verbose=True
+
+        base64_image = encode_image(image_path)
+        if turn_number == 0:
+            # Assume one turn dialogue
+            prompt_input = [
+                {"role": "system", "content": prompt0},
+                {"role": "user",
+                 "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url": image_path,
+                                                                                                    "detail": "high"},
+                                                                }]},
+            ]
+        elif turn_number == 1:
+            prompt_input = [
+                {"role": "system", "content": prompt0},
+                {"role": "user",
+                 "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url": image_path,
+                                                                                                    "detail": "high"}, 
+                                                                }]},
+                {"role": "assistant", "content": [{"type": "text", "text": f"\n\n{ouput_0}"}]},
+                {"role": "user", "content": [{"type": "text", "text": prompt2}]}, 
+            ]
+        response = litellm.completion(
+            model=model if model else self.model,
+            messages=prompt_input,
+            max_tokens=max_new_tokens if max_new_tokens else 4096,
+            temperature=temperature if temperature else self.temperature,
             **kwargs,
-    ) -> None:
+        )
+        return [choice["message"]["content"] for choice in response.choices][0]
+
+
+class OpenAIEngine(Engine):
+    def __init__(self, **kwargs) -> None:
         """Init an OpenAI GPT/Codex engine
 
         Args:
@@ -73,42 +155,28 @@ class OpenAIEngine(Engine):
             rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
             model (_type_, optional): Model family. Defaults to None.
         """
-        self.api_keys = load_openai_api_key(api_key)
-        self.stop = stop
-        self.temperature = temperature
-        self.model = model
-        # convert rate limit to minmum request interval
-        self.request_interval = 0 if rate_limit == -1 else 60.0 / rate_limit
-        self.next_avil_time = [0] * len(self.api_keys)
-        self.current_key_idx = 0
-        Engine.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
-    def encode_image(self, image_path):
-        with open(self, image_path, "rb") as image_file:
-            return base64.b64encode(image_file.read()).decode('utf-8')
-
-    # @backoff.on_exception(
-    #     backoff.expo,
-    #     (APIError, RateLimitError, APIConnectionError, ServiceUnavailableError, InvalidRequestError),
-    # )
+    @backoff.on_exception(
+        backoff.expo,
+        (APIError, RateLimitError, APIConnectionError),
+    )
     def generate(self, prompt: list = None, max_new_tokens=4096, temperature=None, model=None, image_path=None,
                  ouput_0=None, turn_number=0, **kwargs):
-        self.current_key_idx = (self.current_key_idx + 1) % len(self.api_keys)
+        self.current_key_idx = (self.current_key_idx + 1) % len(self.time_slots)
         start_time = time.time()
         if (
                 self.request_interval > 0
                 and start_time < self.next_avil_time[self.current_key_idx]
         ):
             time.sleep(self.next_avil_time[self.current_key_idx] - start_time)
-        openai.api_key = self.api_keys[self.current_key_idx]
-        prompt0 = prompt[0]
-        prompt1 = prompt[1]
-        prompt2 = prompt[2]
+        prompt0, prompt1, prompt2 = prompt
+        # litellm.set_verbose=True
 
+        base64_image = encode_image(image_path)
         if turn_number == 0:
-            base64_image = encode_image(image_path)
             # Assume one turn dialogue
-            prompt1_input = [
+            prompt_input = [
                 {"role": "system", "content": [{"type": "text", "text": prompt0}]},
                 {"role": "user",
                  "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
@@ -116,46 +184,28 @@ class OpenAIEngine(Engine):
                                                                                                     "detail": "high"},
                                                                  }]},
             ]
-            response1 = openai.ChatCompletion.create(
-                model=model if model else self.model,
-                messages=prompt1_input,
-                max_tokens=max_new_tokens if max_new_tokens else 4096,
-                temperature=temperature if temperature else self.temperature,
-                **kwargs,
-            )
-            answer1 = [choice["message"]["content"] for choice in response1["choices"]][0]
-
-            return answer1
         elif turn_number == 1:
-            base64_image = encode_image(image_path)
-            prompt2_input = [
+            prompt_input = [
                 {"role": "system", "content": [{"type": "text", "text": prompt0}]},
                 {"role": "user",
                  "content": [{"type": "text", "text": prompt1}, {"type": "image_url", "image_url": {"url":
                                                                                                         f"data:image/jpeg;base64,{base64_image}",
                                                                                                     "detail": "high"}, }]},
                 {"role": "assistant", "content": [{"type": "text", "text": f"\n\n{ouput_0}"}]},
-                {"role": "user", "content": [{"type": "text", "text": prompt2}]}, ]
-            response2 = openai.ChatCompletion.create(
-                model=model if model else self.model,
-                messages=prompt2_input,
-                max_tokens=max_new_tokens if max_new_tokens else 4096,
-                temperature=temperature if temperature else self.temperature,
-                **kwargs,
-            )
-            return [choice["message"]["content"] for choice in response2["choices"]][0]
+                {"role": "user", "content": [{"type": "text", "text": prompt2}]}, 
+            ]
+        response = litellm.completion(
+            model=model if model else self.model,
+            messages=prompt_input,
+            max_tokens=max_new_tokens if max_new_tokens else 4096,
+            temperature=temperature if temperature else self.temperature,
+            **kwargs,
+        )
+        return [choice["message"]["content"] for choice in response.choices][0]
 
 
 class OpenaiEngine_MindAct(Engine):
-    def __init__(
-            self,
-            api_key=None,
-            stop=["\n\n"],
-            rate_limit=-1,
-            model=None,
-            temperature=0,
-            **kwargs,
-    ) -> None:
+    def __init__(self, **kwargs) -> None:
         """Init an OpenAI GPT/Codex engine
 
         Args:
@@ -164,35 +214,26 @@ class OpenaiEngine_MindAct(Engine):
             rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
             model (_type_, optional): Model family. Defaults to None.
         """
-        self.api_keys = load_openai_api_key(api_key)
-        self.stop = stop
-        self.temperature = temperature
-        self.model = model
-        # convert rate limit to minmum request interval
-        self.request_interval = 0 if rate_limit == -1 else 60.0 / rate_limit
-        self.next_avil_time = [0] * len(self.api_keys)
-        self.current_key_idx = 0
-        Engine.__init__(self, **kwargs)
+        super().__init__(**kwargs)
     #
     @backoff.on_exception(
         backoff.expo,
-        (APIError, RateLimitError, APIConnectionError, ServiceUnavailableError),
+        (APIError, RateLimitError, APIConnectionError),
     )
     def generate(self, prompt, max_new_tokens=50, temperature=0, model=None, **kwargs):
-        self.current_key_idx = (self.current_key_idx + 1) % len(self.api_keys)
+        self.current_key_idx = (self.current_key_idx + 1) % len(self.time_slots)
         start_time = time.time()
         if (
                 self.request_interval > 0
                 and start_time < self.next_avil_time[self.current_key_idx]
         ):
             time.sleep(self.next_avil_time[self.current_key_idx] - start_time)
-        openai.api_key = self.api_keys[self.current_key_idx]
         if isinstance(prompt, str):
             # Assume one turn dialogue
             prompt = [
                 {"role": "user", "content": prompt},
             ]
-        response = openai.ChatCompletion.create(
+        response = litellm.completion(
             model=model if model else self.model,
             messages=prompt,
             max_tokens=max_new_tokens,

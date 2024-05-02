@@ -26,7 +26,7 @@ from .data_utils.format_prompt_utils import get_index_from_option_name, generate
 from .demo_utils.browser_helper import normal_launch_async, normal_new_context_async, \
     get_interactive_elements_with_playwright, select_option, saveconfig
 from .demo_utils.format_prompt import format_choices, postprocess_action_lmm
-from .demo_utils.inference_engine import OpenAIEngine, load_openai_api_key
+from .demo_utils.inference_engine import engine_factory, load_openai_api_key
 
 
 class SeeActAgent:
@@ -143,7 +143,7 @@ class SeeActAgent:
         # for handler in self.logger.handlers:
         #     self.dev_logger.addHandler(handler)
 
-        self.openai_engine = OpenAIEngine(**self.config['openai'])
+        self.engine = engine_factory(**self.config['openai'])
         self.taken_actions = []
         self.prompts = self._initialize_prompts()
         self.time_step = 0
@@ -525,7 +525,7 @@ ELEMENT: The uppercase letter of your choice.''',
         for action in self.taken_actions:
             self.logger.info(action)
 
-        output0 = self.openai_engine.generate(prompt=prompt, image_path=screenshot_path, turn_number=0)
+        output0 = self.engine.generate(prompt=prompt, image_path=screenshot_path, turn_number=0)
 
         terminal_width = 10
         self.logger.info("-" * terminal_width)
@@ -544,7 +544,7 @@ ELEMENT: The uppercase letter of your choice.''',
         for line in choice_text.split('\n'):
             self.logger.info(line)
 
-        output = self.openai_engine.generate(prompt=prompt, image_path=screenshot_path, turn_number=1,
+        output = self.engine.generate(prompt=prompt, image_path=screenshot_path, turn_number=1,
                                              ouput_0=output0)
         self.logger.info("🤖 Action Grounding Output 🤖")
         for line in output.split('\n'):
