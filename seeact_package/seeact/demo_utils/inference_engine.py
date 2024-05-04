@@ -22,10 +22,12 @@ from openai import (
     APIError,
     RateLimitError,
 )
+import requests
 from dotenv import load_dotenv
 import litellm
-
 import base64
+
+EMPTY_API_KEY="Your API KEY Here"
 
 def load_openai_api_key():
     load_dotenv()
@@ -50,19 +52,22 @@ def encode_image(image_path):
 def engine_factory(api_key=None, model=None, **kwargs):
     model = model.lower()
     if model in ["gpt-4-vision-preview", "gpt-4-turbo"]:
-        if api_key and api_key != "Your API KEY Here":
+        if api_key and api_key != EMPTY_API_KEY:
             os.environ["OPENAI_API_KEY"] = api_key
         else:
             load_openai_api_key()
         return OpenAIEngine(model=model, **kwargs)
     elif model == "gemini":
-        if api_key and api_key != "Your API KEY Here":
+        if api_key and api_key != EMPTY_API_KEY:
             os.environ["GEMINI_API_KEY"] = api_key
         else:
             load_gemini_api_key()
         model="gemini/gemini-1.5-pro-latest"
         return GeminiEngine(model=model, **kwargs)
-    raise Exception(f"Unsupported model: {model}, currently supported models: gpt-4-vision-preview, gpt-4-turbo, gemini")
+    elif model == "llava":
+        model="llava"
+        return OllamaEngine(model=model, **kwargs)
+    raise Exception(f"Unsupported model: {model}, currently supported models: gpt-4-vision-preview, gpt-4-turbo, gemini, llava")
 
 class Engine:
     def __init__(
@@ -86,6 +91,65 @@ class Engine:
     def tokenize(self, input):
         return self.tokenizer(input)
 
+
+class OllamaEngine(Engine):
+    def __init__(self, **kwargs) -> None:
+        """Init a Ollama engine
+
+        Args:
+            api_key (_type_, optional): Auth key from OpenAI. Defaults to None.
+            stop (list, optional): Tokens indicate stop of sequence. Defaults to ["\n"].
+            rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
+            model (_type_, optional): Model family. Defaults to None.
+        """
+        super().__init__(**kwargs)
+        self.api_url = "http://localhost:11434/api/chat"
+
+
+    def generate(self, prompt: list = None, max_new_tokens=4096, temperature=None, model=None, image_path=None,
+                 ouput_0=None, turn_number=0, **kwargs):
+        self.current_key_idx = (self.current_key_idx + 1) % len(self.time_slots)
+        start_time = time.time()
+        if (
+                self.request_interval > 0
+                and start_time < self.next_avil_time[self.current_key_idx]
+        ):
+            wait_time = self.next_avil_time[self.current_key_idx] - start_time
+            print(f"Wait {wait_time} for rate limitting")
+            time.sleep(wait_time)
+        prompt0, prompt1, prompt2 = prompt
+
+        base64_image = encode_image(image_path)
+        if turn_number == 0:
+            # Assume one turn dialogue
+            prompt_input = [
+                {"role": "assistant", "content": prompt0},
+                {"role": "user", "content": prompt1, "images": [f"{base64_image}"]},
+            ]
+        elif turn_number == 1:
+            prompt_input = [
+                {"role": "assistant", "content": prompt0},
+                {"role": "user", "content": prompt1, "images": [f"{base64_image}"]},
+                {"role": "assistant", "content": f"\n\n{ouput_0}"},
+                {"role": "user", "content": prompt2}, 
+            ]
+
+        options = {"temperature": self.temperature, "num_predict": max_new_tokens}
+        data = {
+            "model": self.model,
+            "messages": prompt_input,
+            "options": options,
+            "stream": False,
+        }
+        _request = {
+            "url": f"{self.api_url}",
+            "json": data,
+        }
+        response = requests.post(**_request)  # type: ignore
+        if response.status_code != 200:
+            raise Exception(f"Ollama API Error: {response.status_code}, {response.text}")
+        response_json = response.json()
+        return response_json["message"]["content"]
 
 
 class GeminiEngine(Engine):
