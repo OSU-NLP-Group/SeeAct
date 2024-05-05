@@ -95,7 +95,6 @@ class SeeActAgent:
                         "trace": trace
                     },
                     "openai": {
-                        "api_key": load_openai_api_key() if not openai_key else openai_key,
                         "rate_limit": rate_limit,
                         "model": model,
                         "temperature": temperature

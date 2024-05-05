@@ -32,7 +32,8 @@ EMPTY_API_KEY="Your API KEY Here"
 def load_openai_api_key():
     load_dotenv()
     assert (
-            os.getenv("OPENAI_API_KEY") is not None
+            os.getenv("OPENAI_API_KEY") is not None and
+            os.getenv("OPENAI_API_KEY") != EMPTY_API_KEY
     ), "must pass on the api_key or set OPENAI_API_KEY in the environment"
     return os.getenv("OPENAI_API_KEY")
 
@@ -40,7 +41,8 @@ def load_openai_api_key():
 def load_gemini_api_key():
     load_dotenv()
     assert (
-            os.getenv("GEMINI_API_KEY") is not None
+            os.getenv("GEMINI_API_KEY") is not None and
+            os.getenv("GEMINI_API_KEY") != EMPTY_API_KEY
     ), "must pass on the api_key or set GEMINI_API_KEY in the environment"
     return os.getenv("GEMINI_API_KEY")
 
@@ -57,17 +59,18 @@ def engine_factory(api_key=None, model=None, **kwargs):
         else:
             load_openai_api_key()
         return OpenAIEngine(model=model, **kwargs)
-    elif model == "gemini":
+    elif model in ["gemini-1.5-pro-latest"]:
         if api_key and api_key != EMPTY_API_KEY:
             os.environ["GEMINI_API_KEY"] = api_key
         else:
             load_gemini_api_key()
-        model="gemini/gemini-1.5-pro-latest"
+        model=f"gemini/{model}"
         return GeminiEngine(model=model, **kwargs)
     elif model == "llava":
         model="llava"
         return OllamaEngine(model=model, **kwargs)
-    raise Exception(f"Unsupported model: {model}, currently supported models: gpt-4-vision-preview, gpt-4-turbo, gemini, llava")
+    raise Exception(f"Unsupported model: {model}, currently supported models: \
+                    gpt-4-vision-preview, gpt-4-turbo, gemini-1.5-pro-latest, llava")
 
 class Engine:
     def __init__(
@@ -78,6 +81,15 @@ class Engine:
             temperature=0,
             **kwargs,
     ) -> None:
+        """
+            Base class to init an engine
+
+        Args:
+            api_key (_type_, optional): Auth key from OpenAI. Defaults to None.
+            stop (list, optional): Tokens indicate stop of sequence. Defaults to ["\n"].
+            rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
+            model (_type_, optional): Model family. Defaults to None.
+        """
         self.time_slots = [0]
         self.stop = stop
         self.temperature = temperature
@@ -94,13 +106,10 @@ class Engine:
 
 class OllamaEngine(Engine):
     def __init__(self, **kwargs) -> None:
-        """Init a Ollama engine
-
-        Args:
-            api_key (_type_, optional): Auth key from OpenAI. Defaults to None.
-            stop (list, optional): Tokens indicate stop of sequence. Defaults to ["\n"].
-            rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
-            model (_type_, optional): Model family. Defaults to None.
+        """
+            Init an Ollama engine
+            To use Ollama, dowload and install Ollama from https://ollama.com/
+            After Ollama start, pull llava with command: ollama pull llava
         """
         super().__init__(**kwargs)
         self.api_url = "http://localhost:11434/api/chat"
@@ -154,13 +163,11 @@ class OllamaEngine(Engine):
 
 class GeminiEngine(Engine):
     def __init__(self, **kwargs) -> None:
-        """Init a Gemini engine
-
-        Args:
-            api_key (_type_, optional): Auth key from OpenAI. Defaults to None.
-            stop (list, optional): Tokens indicate stop of sequence. Defaults to ["\n"].
-            rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
-            model (_type_, optional): Model family. Defaults to None.
+        """
+            Init a Gemini engine
+            To use this engine, please provide the GEMINI_API_KEY in the environment
+            Supported Model             Rate Limit
+            gemini-1.5-pro-latest    	2 queries per minute, 1000 queries per day
         """
         super().__init__(**kwargs)
 
@@ -211,13 +218,9 @@ class GeminiEngine(Engine):
 
 class OpenAIEngine(Engine):
     def __init__(self, **kwargs) -> None:
-        """Init an OpenAI GPT/Codex engine
-
-        Args:
-            api_key (_type_, optional): Auth key from OpenAI. Defaults to None.
-            stop (list, optional): Tokens indicate stop of sequence. Defaults to ["\n"].
-            rate_limit (int, optional): Max number of requests per minute. Defaults to -1.
-            model (_type_, optional): Model family. Defaults to None.
+        """
+            Init an OpenAI GPT/Codex engine
+            To find your OpenAI API key, visit https://platform.openai.com/api-keys
         """
         super().__init__(**kwargs)
 
