@@ -32,7 +32,6 @@ from .demo_utils.inference_engine import engine_factory, load_openai_api_key
 class SeeActAgent:
     def __init__(self,
                  config_path=None,
-                 openai_key=None,
                  save_file_dir="seeact_agent_files",
                  default_task='Find the pdf of the paper "GPT-4V(ision) is a Generalist Web Agent, if Grounded"',
                  default_website="https://www.google.com/",

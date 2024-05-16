@@ -53,13 +53,13 @@ def encode_image(image_path):
 
 def engine_factory(api_key=None, model=None, **kwargs):
     model = model.lower()
-    if model in ["gpt-4-vision-preview", "gpt-4-turbo"]:
+    if model in ["gpt-4-vision-preview", "gpt-4-turbo", "gpt-4o"]:
         if api_key and api_key != EMPTY_API_KEY:
             os.environ["OPENAI_API_KEY"] = api_key
         else:
             load_openai_api_key()
         return OpenAIEngine(model=model, **kwargs)
-    elif model in ["gemini-1.5-pro-latest"]:
+    elif model in ["gemini-1.5-pro-latest", "gemini-1.5-flash"]:
         if api_key and api_key != EMPTY_API_KEY:
             os.environ["GEMINI_API_KEY"] = api_key
         else:
@@ -182,7 +182,6 @@ class GeminiEngine(Engine):
         ):
             wait_time = self.next_avil_time[self.current_key_idx] - start_time
             print(f"Wait {wait_time} for rate limitting")
-            time.sleep(wait_time)
         prompt0, prompt1, prompt2 = prompt
         litellm.set_verbose=True
 
