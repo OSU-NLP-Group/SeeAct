@@ -1,4 +1,5 @@
 # This file contains the packages needed for package seeact
+# If you want to run/modify SeeAct from the source code
 backoff==2.2.1
 InquirerPy==0.3.4
 lxml==4.9.3

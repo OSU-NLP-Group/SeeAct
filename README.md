@@ -89,13 +89,24 @@ if __name__ == "__main__":
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| config_path | Configuration file path | str | None | no |
-| save_file_dir | Folder to save output files  | str | seeact_agent_files | no |
+| model | Prefered LLM model to run the task | str | gpt-4-turbo | no |
 | default_task | Default task to run  | str | Find the pdf of the paper "GPT-4V(ision) is a Generalist Web Agent, if Grounded" | no |
 | default_website | Default starting website  | str | https://www.google.com/ | no |
-| model | Prefered LLM model to run the task | str | gpt-4-turbo | yes |
+| config_path | Configuration file path | str | None | no |
+| save_file_dir | Folder to save output files  | str | seeact_agent_files | no |
 | temperature | Termperature passed to LLM | num | 0.9 | no |
 
+
+## Supported Models
+SeeAct starts with using OpenAI GPT4-V, and now it supports some other models.
+Below is the list of currently supported models, to use any one of the model below, simpliy use `SeeActAgent(model="gpt-4-turbo")`, and specify the API key if needed.
+| Provider | Model | Compatibility | API KEY | Note
+|----------|-------|---------------|---------|:-----------:|
+| OpenAI | gpt-4-vision-preview | High | OPENAI_API_KEY in env | no |
+| OpenAI | gpt-4-turbo | High | OPENAI_API_KEY in env | no |
+| OpenAI | gpt-4o | Medium | OPENAI_API_KEY in env | no |
+| Google | gemini-1.5-pro-latest | High | GEMINI_API_KEY in env | Rate limitting at 2 RPM, need to add wait time in the code to work |
+| Ollama | llava | Low | N/A | Install Ollama, start Ollama, pull llava |
 
 ## Running Web Agent
 **Please fill in the OpenAI API Key in the configuration file at `src/config/demo_mode.toml` before running SeeAct.
