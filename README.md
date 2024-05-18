@@ -12,6 +12,7 @@
 
 <p align="center">
 <a href="https://www.python.org/downloads/release/python-3109/"><img src="https://img.shields.io/badge/python-3.10-blue.svg" alt="Python 3.10"></a>
+<a href="https://playwright.dev/python/docs/intro"><img src="https://img.shields.io/badge/Playwright-1.44-green.svg" alt="Playwright"></a>
 <a href="https://github.com/OSU-NLP-Group/SeeAct"><img src="https://img.shields.io/github/stars/OSU-NLP-Group/SeeAct?style=social" alt="GitHub Stars"></a>
 <a href="https://github.com/OSU-NLP-Group/SeeAct/issues"><img src="https://img.shields.io/github/issues-raw/OSU-NLP-Group/SeeAct" alt="Open Issues"></a>
 <a href="https://twitter.com/osunlp"><img src="https://img.shields.io/twitter/follow/OSU_NLP_Group" alt="Twitter Follow"></a>
@@ -106,7 +107,7 @@ Note that the key is only stored locally and will NOT be shared anywhere.**
 In the demo mode, SeeAct takes `task` and `website` from user terminal input. Run SeeAct in demo mode with the following command:
 
 ```bash
-cd experiments
+cd src
 python seeact.py
 ```
 Demo mode will use the default configuration file at `src/config/demo_mode.toml`.
@@ -134,7 +135,7 @@ You can also automatically run SeeAct on a list of tasks and websites in a JSON 
 Run SeeAct with the following command:
 
 ```bash
-cd experiments
+cd src
 python seeact.py -c config/auto_mode.toml
 ```
 In the configuration file, `task_file_path` defines the path of the JSON file.
