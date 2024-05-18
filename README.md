@@ -46,19 +46,54 @@ It efficiently tunnels inputs from the browser to the agent, and translates pred
 This tool can be used for running web agent demos and evaluating their performance on live websites.
 
 
-## Setup Environment
+## Setup
 
 1. Create a conda environment and install dependency:
 ```bash
-conda create -n seeact python=3.10
+conda create -n seeact python=3.11
 conda activate seeact
-pip install -r requirements.txt
 ```
 
 2. Set up PlayWright and install the browser kernels.
 ```bash
 playwright install
 ```
+
+## Usage
+
+```bash
+pip install seeact
+```
+
+```python
+import asyncio
+import os
+from seeact.agent import SeeActAgent
+
+# Setup your API Key here, or pass through environment
+os.environ["OPENAI_API_KEY"] = "Your API KEY Here"
+
+async def run_agent():
+    agent = SeeActAgent(model="gpt-4-turbo")
+    await agent.start()
+    while not agent.complete_flag:
+        prediction_dict = await agent.predict()
+        await agent.execute(prediction_dict)
+    await agent.stop()
+
+if __name__ == "__main__":
+    asyncio.run(run_agent())
+```
+### SeeActAgent Main Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| config_path | Configuration file path | str | None | no |
+| save_file_dir | Folder to save output files  | str | seeact_agent_files | no |
+| default_task | Default task to run  | str | Find the pdf of the paper "GPT-4V(ision) is a Generalist Web Agent, if Grounded" | no |
+| default_website | Default starting website  | str | https://www.google.com/ | no |
+| model | Prefered LLM model to run the task | str | gpt-4-turbo | yes |
+| temperature | Termperature passed to LLM | num | 0.9 | no |
 
 
 ## Running Web Agent

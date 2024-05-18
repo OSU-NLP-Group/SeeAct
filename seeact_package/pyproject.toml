@@ -7,9 +7,9 @@ name = "seeact"
 version = "0.2.5.1"
 description = "SeeAct is a system for generalist web agents that autonomously carry out tasks on any given website, with a focus on large multimodal models (LMMs) such as GPT-4V(ision). It consists of two main components: (1) A robust codebase that supports running web agents on live websites, and (2) an innovative framework that utilizes LMMs as generalist web agents."
 authors = [
-    {name = "Boyu Gou", email = "gou.43@buckeyemail.osu.edu"},
+    {name = "Boyu Gou", email = "gou.43@osu.edu"},
     {name = "Boyuan Zheng", email = "zheng.2372@osu.edu"},
-    {name = "Zheng Du", email = "du.913@buckeyemail.osu.edu"}
+    {name = "Zheng Du", email = "du.913@osu.edu"}
 ]
 license = {file="LICENSE"}
 readme = "https://github.com/OSU-NLP-Group/SeeAct/blob/main/README.md"
@@ -19,7 +19,9 @@ dependencies = [
     "backoff",
     "playwright",
     "toml",
-    "openai==0.27.8",
+    "openai==1.24.0",
+    "litellm==1.35.32",
+    "google-generativeai==0.5.2",
     "python-dotenv"
 ]
 

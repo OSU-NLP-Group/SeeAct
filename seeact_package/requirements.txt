@@ -1,8 +1,11 @@
-# This file contains the packages needed to run the demo in src folder
+# This file contains the packages needed for package seeact
 backoff==2.2.1
 InquirerPy==0.3.4
 lxml==4.9.3
-openai==0.27.8
+openai==1.24.0
+python-dotenv==1.0.1
+litellm==1.35.32
+google-generativeai==0.5.2
 playwright==1.40.0
 jsonlines
 numpy
