@@ -52,6 +52,7 @@ This tool can be used for running web agent demos and evaluating their performan
 ```bash
 conda create -n seeact python=3.11
 conda activate seeact
+pip install seeact
 ```
 
 2. Set up PlayWright and install the browser kernels.
@@ -61,9 +62,6 @@ playwright install
 
 ## Usage
 
-```bash
-pip install seeact
-```
 
 ```python
 import asyncio
