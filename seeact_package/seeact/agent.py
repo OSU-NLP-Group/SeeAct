@@ -26,7 +26,7 @@ from .data_utils.format_prompt_utils import get_index_from_option_name, generate
 from .demo_utils.browser_helper import normal_launch_async, normal_new_context_async, \
     get_interactive_elements_with_playwright, select_option, saveconfig
 from .demo_utils.format_prompt import format_choices, postprocess_action_lmm
-from .demo_utils.inference_engine import engine_factory, load_openai_api_key
+from .demo_utils.inference_engine import engine_factory
 
 
 class SeeActAgent:
@@ -82,23 +82,25 @@ class SeeActAgent:
                         "max_continuous_no_op": max_continuous_no_op,
                         "highlight": highlight
                     },
-                    "browser": {
-                        "headless": headless,
-                        "args": args,
-                        "browser_app": browser_app,
-                        "persistant": persistant,
-                        "persistant_user_path": persistant_user_path,
-                        "save_video": save_video,
-                        "viewport": viewport,
-                        "tracing": tracing,
-                        "trace": trace
-                    },
                     "openai": {
                         "rate_limit": rate_limit,
                         "model": model,
                         "temperature": temperature
                     }
                 }
+            config.update({     
+                "browser": {
+                    "headless": headless,
+                    "args": args,
+                    "browser_app": browser_app,
+                    "persistant": persistant,
+                    "persistant_user_path": persistant_user_path,
+                    "save_video": save_video,
+                    "viewport": viewport,
+                    "tracing": tracing,
+                    "trace": trace
+                }
+            })
 
         except FileNotFoundError:
             print(f"Error: File '{os.path.abspath(config_path)}' not found.")
