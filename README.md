@@ -119,7 +119,7 @@ To use Gemini, pass in the API Key in python or by environment variable
 ```python
 os.environ["GEMINI_API_KEY"] = "Your API KEY Here"
 ```
-You Google API key is available at [Google AI Studio](https://aistudio.google.com/app/apikey).
+Your Google API key is available at [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ## Configuration File
 An alternative to provide SeeActAgent input parameters is to use a config file, once the config file is provided, it will override all other input paramters.
