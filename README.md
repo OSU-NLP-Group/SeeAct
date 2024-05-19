@@ -35,7 +35,7 @@ It consists of two main components:
 
 <h3>Updates</h3>
 
-- 2024/5/18: Support for Gemini and LLaVA! 
+- 2024/5/18: Support for Gemini and LLaVA!
 
 - 2024/4/28: Released [SeeAct Python Package](https://pypi.org/project/seeact/#history), with many updates and many features on the way. Have a try with `pip install seeact`
 
@@ -102,16 +102,31 @@ SeeAct starts with using OpenAI GPT4-V, and now it supports some other models.
 Below is the list of currently supported models, to use any one of the model below, simpliy use `SeeActAgent(model="gpt-4-turbo")`, and specify the API key if needed.
 | Provider | Model | Compatibility | API KEY | Note
 |----------|-------|---------------|---------|:-----------:|
-| OpenAI | gpt-4-vision-preview | High | OPENAI_API_KEY in env | no |
-| OpenAI | gpt-4-turbo | High | OPENAI_API_KEY in env | no |
-| OpenAI | gpt-4o | Medium | OPENAI_API_KEY in env | no |
-| Google | gemini-1.5-pro-latest | High | GEMINI_API_KEY in env | Rate limitting at 2 RPM, need to add wait time in the code to work |
+| OpenAI | gpt-4-vision-preview | High | OPENAI_API_KEY in env |  |
+| OpenAI | gpt-4-turbo | High | OPENAI_API_KEY in env |  |
+| OpenAI | gpt-4o | High | OPENAI_API_KEY in env |  |
+| Google | gemini-1.5-pro-latest | High | GEMINI_API_KEY in env | Rate limitting at 2 RPM by Google, need to add wait time in the code to work |
 | Ollama | llava | Low | N/A | Install Ollama, start Ollama, pull llava |
 
-## Running Web Agent
-**Please fill in the OpenAI API Key in the configuration file at `src/config/demo_mode.toml` before running SeeAct.
-Your API key is available through your [OpenAI account page](https://platform.openai.com/account/api-keys). 
-Note that the key is only stored locally and will NOT be shared anywhere.** 
+## API Keys
+If you plan to use OpenAI family models, pass in the API Key in python or by environment variable
+```python
+os.environ["OPENAI_API_KEY"] = "Your API KEY Here"
+```
+Your OpenAI API key is available at [OpenAI account page](https://platform.openai.com/account/api-keys). 
+
+To use Gemini, pass in the API Key in python or by environment variable
+```python
+os.environ["GEMINI_API_KEY"] = "Your API KEY Here"
+```
+You Google API key is available at [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+## Configuration File
+An alternative to provide SeeActAgent input parameters is to use a config file, once the config file is provided, it will override all other input paramters.
+```python
+agent = SeeActAgent(config_path="demo_mode.toml")
+```
+Sample configuration files are available at `src/config/`.
 
 ### Demo Mode
 
@@ -130,7 +145,6 @@ via the following parameters:
 - `is_demo`: Set `true` to allow task and website from user terminal input, set `false` to run tasks and websites from a JSON file (useful for batch evaluation).
 - `default_task` and `default_website`: Default task and website used in the demo mode.
 - `max_op`: Maximum number of actions the agent can take for a task.
-- `api_key`: OpenAI API key. 
 - `save_file_dir`: Directory path to save output results, including terminal logs and screenshot images.
 
 #### Terminal User Input
