@@ -13,29 +13,60 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import re
+import shlex
 
+def format_choices(elements, bboxes):
+    print(bboxes)
+    bbblabel = {}
+    bbbtext = {}
+    for i, box in enumerate(bboxes):
+        if "ariaLabel" in box and box["ariaLabel"]:
+            bbblabel.update({
+                box["ariaLabel"]: {
+                    "seq": i,
+                    "box": box
+                }
+            })
+        if "text" in box and box["text"]:
+            bbbtext.update({
+                box["text"]: {
+                    "seq": i,
+                    "box": box
+                }
+            })
+    converted_elements = []
+    elements_w_descriptions = []
+    for element in elements:
+        if "description" in element and "=" in element["description"]:
+            description_dict = [] 
+            for sub in shlex.split(element["description"]): 
+                if '=' in sub:
+                    description_dict.append(map(str.strip, sub.split('=', 1)))
+            element.update(dict(description_dict))
+        elements_w_descriptions.append(element)
 
-def format_choices(elements):
-
-    converted_elements = [
-                    f'{element["center_point"]} <{element["tag_with_role"]}">'
-                    + (
-                        element["description"]
-                        if len(element["description"].split()) < 30
-                        else " ".join(element["description"].split()[:30]) + "..."
-                    )
-                    + f"</{element['tag']}>"
-
-                    if element['tag']!="select" else f'{element["center_point"]} <{element["tag_with_role"]}>'
-                    + (
-                        element["description"]
-                    )
-                    + f"</{element['tag']}>"
-                    for i, element in enumerate(elements)
-                ]
-
-
-    converted_elements
+    converted_elements = []
+    for i, element in enumerate(elements_w_descriptions):
+        converted = ""
+        if element['tag']!="select":
+            converted += f'{element["center_point"]} <{element["tag_with_role"]}">'
+            converted += (
+                element["description"]
+                if len(element["description"].split()) < 30
+                else " ".join(element["description"].split()[:30]) + "..."
+            )
+            converted += f"</{element['tag']}>"
+        else:
+            converted += f'{element["center_point"]} <{element["tag_with_role"]}>'
+            converted += (
+                element["description"]
+            )
+            converted += f"</{element['tag']}>"
+        if "aria-label" in element and element["aria-label"] in bbblabel:
+            converted += f" [from box {bbblabel[element['aria-label']]['seq']} in screenshot]"
+        if "description" in element and element["description"] in bbbtext:
+            converted += f" [from box {bbbtext[element['description']]['seq']} in screenshot]"
+        converted_elements.append(converted)
 
     return converted_elements
 

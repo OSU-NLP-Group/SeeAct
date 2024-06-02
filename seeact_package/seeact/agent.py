@@ -20,6 +20,7 @@ from datetime import datetime
 import json
 import toml
 from playwright.async_api import async_playwright,Locator
+from os.path import dirname, join as joinpath
 
 from .data_utils.format_prompt_utils import get_index_from_option_name, generate_new_query_prompt, \
     generate_new_referring_prompt, format_options
@@ -484,6 +485,11 @@ ELEMENT: The uppercase letter of your choice.''',
         except Exception as e:
             pass
 
+        with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
+            mark_page_script = f.read()
+        await self.session_control['active_page'].evaluate(mark_page_script)
+        bboxes = await self.session_control['active_page'].evaluate("markPage()")
+
         elements = await get_interactive_elements_with_playwright(self.session_control['active_page'],
                                                                   self.config['browser']['viewport'])
 
@@ -502,7 +508,7 @@ ELEMENT: The uppercase letter of your choice.''',
         # Generate choices for the prompt
 
         # , self.config['basic']['default_task'], self.taken_actions
-        choices = format_choices(elements)
+        choices = format_choices(elements, bboxes)
 
         # print("\n\n",choices)
         prompt = self.generate_prompt(task=self.tasks[-1], previous=self.taken_actions, choices=choices)
@@ -512,8 +518,9 @@ ELEMENT: The uppercase letter of your choice.''',
 
         # Capture a screenshot for the current state of the webpage, if required by the model
         screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
-        try:
+        try:                      
             await self.session_control['active_page'].screenshot(path=screenshot_path)
+            await self.session_control['active_page'].evaluate("unmarkPage()")
         except Exception as e:
             self.logger.info(f"Failed to take screenshot: {e}")
 
