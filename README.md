@@ -303,8 +303,9 @@ If you find this work useful, please consider starring our repos and citing our 
 @article{zheng2024seeact,
   title={GPT-4V(ision) is a Generalist Web Agent, if Grounded},
   author={Boyuan Zheng and Boyu Gou and Jihyung Kil and Huan Sun and Yu Su},
-  journal={arXiv preprint arXiv:2401.01614},
+  booktitle={Forty-first International Conference on Machine Learning},
   year={2024},
+  url={https://openreview.net/forum?id=piecKJ2DlB},
 }
 
 @inproceedings{deng2023mindweb,
