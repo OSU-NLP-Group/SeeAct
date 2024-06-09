@@ -247,6 +247,7 @@ async def get_element_data(element, tag_name,viewport_size,seen_elements=[]):
         if rect['x']<0 or rect['y']<0 or rect['width']<=4 or rect['height']<=4 or rect['y']+rect['height']>viewport_size["height"] or rect['x']+ rect['width']>viewport_size["width"]:
             return None
 
+        box_raw = [rect['x'], rect['y'], rect['width'], rect['height']]
         box_model = [rect['x'], rect['y'], rect['x'] + rect['width'], rect['y'] + rect['height']]
         center_point = (round((box_model[0] + box_model[2]) / 2 / viewport_size["width"], 3),
                         round((box_model[1] + box_model[3]) / 2 / viewport_size["height"], 3))
@@ -294,7 +295,15 @@ async def get_element_data(element, tag_name,viewport_size,seen_elements=[]):
                      5. tag
                      '''
         selector = element
-        return {"center_point":center_point,"description":description,"tag_with_role":tag_head,"box":box_model,"selector":selector,"tag":real_tag_name}
+        return {
+            "center_point":center_point,
+            "description":description,
+            "tag_with_role":tag_head,
+            "box_raw":box_raw,
+            "box":box_model,
+            "selector":selector,
+            "tag":real_tag_name
+        }
         # return [center_point, description, tag_head, box_model, selector, real_tag_name]
     except Exception as e:
         # print(e)

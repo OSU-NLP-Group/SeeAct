@@ -20,6 +20,60 @@ document.head.append(styleTag);
 
 let labels = [];
 
+window.som = {}
+
+  // Function to generate random colors
+function getRandomColor() {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+som.drawBoxes = function(elements) {
+  unmarkPage();
+  elements.forEach(function(element, index){
+    newElement = document.createElement("div");
+    var borderColor = getRandomColor();
+    newElement.style.outline = `2px dashed ${borderColor}`;
+    newElement.style.position = "fixed";
+    newElement.style.left = element.box_raw[0] + "px";
+    newElement.style.top = element.box_raw[1] + "px";
+    newElement.style.width = element.box_raw[2] + "px";
+    newElement.style.height = element.box_raw[3] + "px";
+    newElement.style.pointerEvents = "none";
+    newElement.style.boxSizing = "border-box";
+    newElement.style.zIndex = 2147483647;
+    // newElement.style.background = `${borderColor}80`;
+
+    // Add floating label at the corner
+    var label = document.createElement("span");
+    label.textContent = element.option;
+    label.style.position = "absolute";
+    // These we can tweak if we want
+    label.style.top = "-19px";
+    label.style.left = "0px";
+    label.style.background = borderColor;
+    // label.style.background = "black";
+    label.style.color = "white";
+    label.style.padding = "2px 4px";
+    label.style.fontSize = "12px";
+    label.style.borderRadius = "2px";
+    newElement.appendChild(label);
+
+    document.body.appendChild(newElement);
+    labels.push(newElement);
+  })
+}
+
+window.myApp = {}
+
+myApp.use = (data) => {
+  return data;
+}
+
 function unmarkPage() {
   // Unmark page logic
   for (const label of labels) {

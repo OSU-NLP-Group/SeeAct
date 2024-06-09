@@ -21,9 +21,10 @@ import json
 import toml
 from playwright.async_api import async_playwright,Locator
 from os.path import dirname, join as joinpath
+import asyncio
 
 from .data_utils.format_prompt_utils import get_index_from_option_name, generate_new_query_prompt, \
-    generate_new_referring_prompt, format_options
+    generate_new_referring_prompt, format_options, generate_option_name
 from .demo_utils.browser_helper import normal_launch_async, normal_new_context_async, \
     get_interactive_elements_with_playwright, select_option, saveconfig
 from .demo_utils.format_prompt import format_choices, postprocess_action_lmm
@@ -488,7 +489,7 @@ ELEMENT: The uppercase letter of your choice.''',
         with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
             mark_page_script = f.read()
         await self.session_control['active_page'].evaluate(mark_page_script)
-        bboxes = await self.session_control['active_page'].evaluate("markPage()")
+        # bboxes = await self.session_control['active_page'].evaluate("markPage()")
 
         elements = await get_interactive_elements_with_playwright(self.session_control['active_page'],
                                                                   self.config['browser']['viewport'])
@@ -505,10 +506,18 @@ ELEMENT: The uppercase letter of your choice.''',
         elements = sorted(elements, key=lambda el: (
             el["center_point"][1], el["center_point"][0]))  # Sorting by y and then x coordinate
 
+
+        elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
+        page = self.session_control['active_page']
+        await page.evaluate("""elements => {
+            return window.som.drawBoxes(elements);
+            }""", elements)
+
         # Generate choices for the prompt
 
         # , self.config['basic']['default_task'], self.taken_actions
-        choices = format_choices(elements, bboxes)
+        choices = format_choices(elements)
+        options = format_options(choices)
 
         # print("\n\n",choices)
         prompt = self.generate_prompt(task=self.tasks[-1], previous=self.taken_actions, choices=choices)
@@ -520,7 +529,7 @@ ELEMENT: The uppercase letter of your choice.''',
         screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
         try:                      
             await self.session_control['active_page'].screenshot(path=screenshot_path)
-            await self.session_control['active_page'].evaluate("unmarkPage()")
+            # await self.session_control['active_page'].evaluate("unmarkPage()")
         except Exception as e:
             self.logger.info(f"Failed to take screenshot: {e}")
 
@@ -544,8 +553,7 @@ ELEMENT: The uppercase letter of your choice.''',
         terminal_width = 10
         self.logger.info("-" * (terminal_width))
 
-        choice_text = f"Action Grounding ➡️" + "\n" + format_options(
-            choices)
+        choice_text = f"Action Grounding ➡️" + "\n" + options
         choice_text = choice_text.replace("\n\n", "")
 
         for line in choice_text.split('\n'):

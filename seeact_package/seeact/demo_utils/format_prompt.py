@@ -15,25 +15,7 @@
 import re
 import shlex
 
-def format_choices(elements, bboxes):
-    print(bboxes)
-    bbblabel = {}
-    bbbtext = {}
-    for i, box in enumerate(bboxes):
-        if "ariaLabel" in box and box["ariaLabel"]:
-            bbblabel.update({
-                box["ariaLabel"]: {
-                    "seq": i,
-                    "box": box
-                }
-            })
-        if "text" in box and box["text"]:
-            bbbtext.update({
-                box["text"]: {
-                    "seq": i,
-                    "box": box
-                }
-            })
+def format_choices(elements):
     converted_elements = []
     elements_w_descriptions = []
     for element in elements:
@@ -62,10 +44,6 @@ def format_choices(elements, bboxes):
                 element["description"]
             )
             converted += f"</{element['tag']}>"
-        if "aria-label" in element and element["aria-label"] in bbblabel:
-            converted += f" [from box {bbblabel[element['aria-label']]['seq']} in screenshot]"
-        if "description" in element and element["description"] in bbbtext:
-            converted += f" [from box {bbbtext[element['description']]['seq']} in screenshot]"
         converted_elements.append(converted)
 
     return converted_elements
