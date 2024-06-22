@@ -509,8 +509,8 @@ ELEMENT: The uppercase letter of your choice.''',
 
         elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
         page = self.session_control['active_page']
-        
-        await self.session_control['active_page'].evaluate("unmarkPage()")
+
+        await page.evaluate("unmarkPage()")
         await page.evaluate("""elements => {
             return window.som.drawBoxes(elements);
             }""", elements)
