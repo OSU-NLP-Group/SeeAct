@@ -509,6 +509,8 @@ ELEMENT: The uppercase letter of your choice.''',
 
         elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
         page = self.session_control['active_page']
+        
+        await self.session_control['active_page'].evaluate("unmarkPage()")
         await page.evaluate("""elements => {
             return window.som.drawBoxes(elements);
             }""", elements)
@@ -529,7 +531,6 @@ ELEMENT: The uppercase letter of your choice.''',
         screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
         try:                      
             await self.session_control['active_page'].screenshot(path=screenshot_path)
-            # await self.session_control['active_page'].evaluate("unmarkPage()")
         except Exception as e:
             self.logger.info(f"Failed to take screenshot: {e}")
 
