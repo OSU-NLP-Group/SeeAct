@@ -489,7 +489,6 @@ ELEMENT: The uppercase letter of your choice.''',
         with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
             mark_page_script = f.read()
         await self.session_control['active_page'].evaluate(mark_page_script)
-        # bboxes = await self.session_control['active_page'].evaluate("markPage()")
 
         elements = await get_interactive_elements_with_playwright(self.session_control['active_page'],
                                                                   self.config['browser']['viewport'])
@@ -510,7 +509,8 @@ ELEMENT: The uppercase letter of your choice.''',
         elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
         page = self.session_control['active_page']
 
-        await page.evaluate("unmarkPage()")
+
+        await page.evaluate("unmarkPage()")       
         await page.evaluate("""elements => {
             return window.som.drawBoxes(elements);
             }""", elements)
@@ -530,7 +530,7 @@ ELEMENT: The uppercase letter of your choice.''',
         # Capture a screenshot for the current state of the webpage, if required by the model
         screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
         try:                      
-            await self.session_control['active_page'].screenshot(path=screenshot_path)
+            await page.screenshot(path=screenshot_path)
         except Exception as e:
             self.logger.info(f"Failed to take screenshot: {e}")
 
@@ -596,6 +596,9 @@ ELEMENT: The uppercase letter of your choice.''',
         """
         Execute the predicted action on the webpage.
         """
+
+        # Clear the marks before action
+        await self.session_control['active_page'].evaluate("unmarkPage()")
 
         pred_element = prediction_dict["element"]
         pred_action = prediction_dict["action"]
