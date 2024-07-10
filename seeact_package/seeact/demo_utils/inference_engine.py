@@ -70,7 +70,7 @@ def engine_factory(api_key=None, model=None, **kwargs):
         model="llava"
         return OllamaEngine(model=model, **kwargs)
     raise Exception(f"Unsupported model: {model}, currently supported models: \
-                    gpt-4-vision-preview, gpt-4-turbo, gemini-1.5-pro-latest, llava")
+                    gpt-4-vision-preview, gpt-4-turbo, gpt-4o, gemini-1.5-pro-latest, llava")
 
 class Engine:
     def __init__(

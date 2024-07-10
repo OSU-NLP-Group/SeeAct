@@ -91,9 +91,10 @@ if __name__ == "__main__":
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| model | Prefered LLM model to run the task | str | gpt-4-turbo | no |
+| model | Prefered LLM model to run the task | str | gpt-4o | no |
 | default_task | Default task to run  | str | Find the pdf of the paper "GPT-4V(ision) is a Generalist Web Agent, if Grounded" | no |
 | default_website | Default starting website  | str | https://www.google.com/ | no |
+| grounding_strategy | Grounding strategy <ul><li>text_choice: use text choices</li><li>text_choice_som: use text choices with set of marks</li></ul> | str | text_choice_som | no |
 | config_path | Configuration file path | str | None | no |
 | save_file_dir | Folder to save output files  | str | seeact_agent_files | no |
 | temperature | Termperature passed to LLM | num | 0.9 | no |

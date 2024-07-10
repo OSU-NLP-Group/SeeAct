@@ -20,9 +20,11 @@ from datetime import datetime
 import json
 import toml
 from playwright.async_api import async_playwright,Locator
+from os.path import dirname, join as joinpath
+import asyncio
 
 from .data_utils.format_prompt_utils import get_index_from_option_name, generate_new_query_prompt, \
-    generate_new_referring_prompt, format_options
+    generate_new_referring_prompt, format_options, generate_option_name
 from .demo_utils.browser_helper import normal_launch_async, normal_new_context_async, \
     get_interactive_elements_with_playwright, select_option, saveconfig
 from .demo_utils.format_prompt import format_choices, postprocess_action_lmm
@@ -36,7 +38,7 @@ class SeeActAgent:
                  default_task='Find the pdf of the paper "GPT-4V(ision) is a Generalist Web Agent, if Grounded"',
                  default_website="https://www.google.com/",
                  input_info=["screenshot"],
-                 grounding_strategy="text_choice",
+                 grounding_strategy="text_choice_som",
                  max_auto_op=50,
                  max_continuous_no_op=5,
                  highlight=False,
@@ -57,7 +59,7 @@ class SeeActAgent:
                      "sources": True
                  },
                  rate_limit=-1,
-                 model="gpt-4-turbo",
+                 model="gpt-4o",
                  temperature=0.9
 
                  ):
@@ -484,6 +486,11 @@ ELEMENT: The uppercase letter of your choice.''',
         except Exception as e:
             pass
 
+        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+            with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
+                mark_page_script = f.read()
+            await self.session_control['active_page'].evaluate(mark_page_script)
+
         elements = await get_interactive_elements_with_playwright(self.session_control['active_page'],
                                                                   self.config['browser']['viewport'])
 
@@ -499,10 +506,22 @@ ELEMENT: The uppercase letter of your choice.''',
         elements = sorted(elements, key=lambda el: (
             el["center_point"][1], el["center_point"][0]))  # Sorting by y and then x coordinate
 
+
+        elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
+        page = self.session_control['active_page']
+
+
+        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+            await page.evaluate("unmarkPage()")       
+            await page.evaluate("""elements => {
+                return window.som.drawBoxes(elements);
+                }""", elements)
+
         # Generate choices for the prompt
 
         # , self.config['basic']['default_task'], self.taken_actions
         choices = format_choices(elements)
+        options = format_options(choices)
 
         # print("\n\n",choices)
         prompt = self.generate_prompt(task=self.tasks[-1], previous=self.taken_actions, choices=choices)
@@ -512,8 +531,8 @@ ELEMENT: The uppercase letter of your choice.''',
 
         # Capture a screenshot for the current state of the webpage, if required by the model
         screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
-        try:
-            await self.session_control['active_page'].screenshot(path=screenshot_path)
+        try:                      
+            await page.screenshot(path=screenshot_path)
         except Exception as e:
             self.logger.info(f"Failed to take screenshot: {e}")
 
@@ -537,8 +556,7 @@ ELEMENT: The uppercase letter of your choice.''',
         terminal_width = 10
         self.logger.info("-" * (terminal_width))
 
-        choice_text = f"Action Grounding ➡️" + "\n" + format_options(
-            choices)
+        choice_text = f"Action Grounding ➡️" + "\n" + options
         choice_text = choice_text.replace("\n\n", "")
 
         for line in choice_text.split('\n'):
@@ -580,6 +598,10 @@ ELEMENT: The uppercase letter of your choice.''',
         """
         Execute the predicted action on the webpage.
         """
+
+        # Clear the marks before action
+        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+            await self.session_control['active_page'].evaluate("unmarkPage()")
 
         pred_element = prediction_dict["element"]
         pred_action = prediction_dict["action"]
