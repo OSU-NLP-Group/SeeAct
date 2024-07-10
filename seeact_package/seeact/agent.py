@@ -38,7 +38,7 @@ class SeeActAgent:
                  default_task='Find the pdf of the paper "GPT-4V(ision) is a Generalist Web Agent, if Grounded"',
                  default_website="https://www.google.com/",
                  input_info=["screenshot"],
-                 grounding_strategy="text_choice",
+                 grounding_strategy="text_choice_som",
                  max_auto_op=50,
                  max_continuous_no_op=5,
                  highlight=False,
@@ -59,7 +59,7 @@ class SeeActAgent:
                      "sources": True
                  },
                  rate_limit=-1,
-                 model="gpt-4-turbo",
+                 model="gpt-4o",
                  temperature=0.9
 
                  ):
@@ -486,9 +486,10 @@ ELEMENT: The uppercase letter of your choice.''',
         except Exception as e:
             pass
 
-        with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
-            mark_page_script = f.read()
-        await self.session_control['active_page'].evaluate(mark_page_script)
+        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+            with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
+                mark_page_script = f.read()
+            await self.session_control['active_page'].evaluate(mark_page_script)
 
         elements = await get_interactive_elements_with_playwright(self.session_control['active_page'],
                                                                   self.config['browser']['viewport'])
@@ -510,10 +511,11 @@ ELEMENT: The uppercase letter of your choice.''',
         page = self.session_control['active_page']
 
 
-        await page.evaluate("unmarkPage()")       
-        await page.evaluate("""elements => {
-            return window.som.drawBoxes(elements);
-            }""", elements)
+        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+            await page.evaluate("unmarkPage()")       
+            await page.evaluate("""elements => {
+                return window.som.drawBoxes(elements);
+                }""", elements)
 
         # Generate choices for the prompt
 
@@ -598,7 +600,8 @@ ELEMENT: The uppercase letter of your choice.''',
         """
 
         # Clear the marks before action
-        await self.session_control['active_page'].evaluate("unmarkPage()")
+        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+            await self.session_control['active_page'].evaluate("unmarkPage()")
 
         pred_element = prediction_dict["element"]
         pred_action = prediction_dict["action"]

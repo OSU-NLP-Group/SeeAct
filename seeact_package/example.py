@@ -7,7 +7,7 @@ from seeact.agent import SeeActAgent
 # os.environ["GEMINI_API_KEY"] = "Your API KEY Here"
 
 async def run_agent():
-    agent = SeeActAgent(model="gpt-4-turbo")
+    agent = SeeActAgent(model="gpt-4o")
     await agent.start()
     while not agent.complete_flag:
         prediction_dict = await agent.predict()
