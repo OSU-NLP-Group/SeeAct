@@ -19,6 +19,7 @@ import traceback
 from datetime import datetime
 import json
 import toml
+import random
 from playwright.async_api import async_playwright,Locator
 from os.path import dirname, join as joinpath
 import asyncio
@@ -29,6 +30,7 @@ from .demo_utils.browser_helper import normal_launch_async, normal_new_context_a
     get_interactive_elements_with_playwright, select_option, saveconfig
 from .demo_utils.format_prompt import format_choices, postprocess_action_lmm
 from .demo_utils.inference_engine import engine_factory
+from .demo_utils.crawler_helper import get_random_link
 
 
 class SeeActAgent:
@@ -39,6 +41,8 @@ class SeeActAgent:
                  default_website="https://www.google.com/",
                  input_info=["screenshot"],
                  grounding_strategy="text_choice_som",
+                 crawler_mode=False,
+                 crawler_max_steps=5,
                  max_auto_op=50,
                  max_continuous_no_op=5,
                  highlight=False,
@@ -61,7 +65,6 @@ class SeeActAgent:
                  rate_limit=-1,
                  model="gpt-4o",
                  temperature=0.9
-
                  ):
 
         try:
@@ -75,7 +78,9 @@ class SeeActAgent:
                     "basic": {
                         "save_file_dir": save_file_dir,
                         "default_task": default_task,
-                        "default_website": default_website
+                        "default_website": default_website,
+                        "crawler_mode": crawler_mode,
+                        "crawler_max_steps": crawler_max_steps,
                     },
                     "agent": {
                         "input_info": input_info,
@@ -150,9 +155,10 @@ class SeeActAgent:
         self.prompts = self._initialize_prompts()
         self.time_step = 0
         self.valid_op = 0
-        # self.error=0
         self.continuous_no_op = 0
-        self.predictions=[]
+        self.predictions = []
+        self.visited_links = []
+        self._page = None
 
     def _initialize_prompts(self):
         """Initialize prompt information including dynamic action space."""
@@ -255,45 +261,25 @@ ELEMENT: The uppercase letter of your choice.''',
 
         return logger
 
-    # def _setup_dev_logger(self):
-    #     """Set up a developer logger to log only to a file within the main_path."""
-    #     dev_logger_name = 'SeeActAgentDev'
-    #     dev_logger = logging.getLogger(dev_logger_name)
-    #     dev_logger.setLevel(logging.INFO)
-    #     if not dev_logger.handlers:  # Avoid adding handlers multiple times
-    #         # Create a file handler for writing logs to a dev log file
-    #         dev_log_filename = 'dev_agent.log'
-    #         f_handler = logging.FileHandler(os.path.join(self.main_path, dev_log_filename))
-    #         f_handler.setLevel(logging.INFO)
-    #
-    #         # Create a formatter and add it to the handler
-    #         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    #         f_handler.setFormatter(formatter)
-    #
-    #         # Add the file handler to the dev logger
-    #         dev_logger.addHandler(f_handler)
-    #
-    #     return dev_logger
-
     async def page_on_close_handler(self):
         # Corrected to use 'self' for accessing class attributes
         if self.session_control['context']:
             try:
-                await self.session_control['active_page'].title()
+                await self.page.title()
             except:
                 self.logger.info(
                     "The active tab was closed. Will switch to the last page (or open a new default google page)")
                 if self.session_control['context'].pages:
-                    self.session_control['active_page'] = self.session_control['context'].pages[-1]
-                    await self.session_control['active_page'].bring_to_front()
-                    self.logger.info(f"Switched the active tab to: {self.session_control['active_page'].url}")
+                    self.page = self.session_control['context'].pages[-1]
+                    await self.page.bring_to_front()
+                    self.logger.info(f"Switched the active tab to: {self.page.url}")
                 else:
-                    self.session_control['active_page'] = await self.session_control['context'].new_page()
+                    self.page = await self.session_control['context'].new_page()
                     try:
-                        await self.session_control['active_page'].goto("https://www.google.com/", wait_until="load")
+                        await self.page.goto("https://www.google.com/", wait_until="load")
                     except Exception as e:
                         self.logger.info(f"Failed to navigate to Google: {e}")
-                    self.logger.info(f"Switched the active tab to: {self.session_control['active_page'].url}")
+                    self.logger.info(f"Switched the active tab to: {self.page.url}")
 
     def save_action_history(self, filename="action_history.txt"):
         """Save the history of taken actions to a file in the main path."""
@@ -305,7 +291,7 @@ ELEMENT: The uppercase letter of your choice.''',
 
     async def page_on_navigation_handler(self, frame):
         # Corrected to use 'self' for accessing class attributes
-        self.session_control['active_page'] = frame.page
+        self.page = frame.page
 
     async def page_on_crash_handler(self, page):
         # Corrected logging method
@@ -318,7 +304,7 @@ ELEMENT: The uppercase letter of your choice.''',
         page.on("framenavigated", self.page_on_navigation_handler)
         page.on("close", self.page_on_close_handler)
         page.on("crash", self.page_on_crash_handler)
-        self.session_control['active_page'] = page
+        self.page = page
         # Additional event listeners can be added here
 
     async def start(self, headless=None, args=None, website=None):
@@ -334,9 +320,12 @@ ELEMENT: The uppercase letter of your choice.''',
 
         self.session_control['context'].on("page", self.page_on_open_handler)
         await self.session_control['context'].new_page()
+        
+        if self.config["basic"]["crawler_mode"] is True:
+            await self.session_control['context'].tracing.start(screenshots=True, snapshots=True)
 
         try:
-            await self.session_control['active_page'].goto(
+            await self.page.goto(
                 self.config['basic']['default_website'] if website is None else website,
                 wait_until="load")
             self.logger.info(f"Loaded website: {self.config['basic']['default_website']}")
@@ -394,7 +383,7 @@ ELEMENT: The uppercase letter of your choice.''',
         else:
             selector = None
 
-        page = self.session_control['active_page']
+        page = self.page
 
 
 
@@ -489,9 +478,9 @@ ELEMENT: The uppercase letter of your choice.''',
         if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
             with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
                 mark_page_script = f.read()
-            await self.session_control['active_page'].evaluate(mark_page_script)
+            await self.page.evaluate(mark_page_script)
 
-        elements = await get_interactive_elements_with_playwright(self.session_control['active_page'],
+        elements = await get_interactive_elements_with_playwright(self.page,
                                                                   self.config['browser']['viewport'])
 
         '''
@@ -508,7 +497,30 @@ ELEMENT: The uppercase letter of your choice.''',
 
 
         elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
-        page = self.session_control['active_page']
+        page = self.page
+
+        # In crawler mode, get random link and click on it
+        if self.config["basic"]["crawler_mode"] is True:
+            if self.time_step > self.config["basic"]["crawler_max_steps"]:
+                print("Crawler reached max steps, going to stop")
+                self.complete_flag = True
+                return None
+            
+            links = [x for x in elements if x['tag_with_role'] == 'a'] 
+            random_link = get_random_link(links)
+            while random_link in self.visited_links and len(links) > 0:
+                random_link = get_random_link(links)
+            if random_link is None:
+                return None
+
+            prediction = {"action_generation": "Random chosen link", "action_grounding": "Random chosen link", "element": random_link,
+                    "action": "CLICK", "value": 'None'}
+            self.predictions.append(prediction)
+            self.visited_links.append(random_link)
+            self.logger.info(prediction)
+            await self.take_screenshot()
+            await self.start_playwright_tracing()         
+            return prediction
 
 
         if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
@@ -530,11 +542,7 @@ ELEMENT: The uppercase letter of your choice.''',
         # Logging prompt for debugging
 
         # Capture a screenshot for the current state of the webpage, if required by the model
-        screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
-        try:                      
-            await page.screenshot(path=screenshot_path)
-        except Exception as e:
-            self.logger.info(f"Failed to take screenshot: {e}")
+        await self.take_screenshot()
 
         terminal_width = 10
         self.logger.info(f"Step - {self.time_step}\n{'-'*terminal_width}\nAction Generation ➡️")
@@ -544,7 +552,7 @@ ELEMENT: The uppercase letter of your choice.''',
         for action in self.taken_actions:
             self.logger.info(action)
 
-        output0 = self.engine.generate(prompt=prompt, image_path=screenshot_path, turn_number=0)
+        output0 = self.engine.generate(prompt=prompt, image_path=self.screenshot_path, turn_number=0)
 
         terminal_width = 10
         self.logger.info("-" * terminal_width)
@@ -562,7 +570,7 @@ ELEMENT: The uppercase letter of your choice.''',
         for line in choice_text.split('\n'):
             self.logger.info(line)
 
-        output = self.engine.generate(prompt=prompt, image_path=screenshot_path, turn_number=1,
+        output = self.engine.generate(prompt=prompt, image_path=self.screenshot_path, turn_number=1,
                                              ouput_0=output0)
         self.logger.info("🤖 Action Grounding Output 🤖")
         for line in output.split('\n'):
@@ -584,7 +592,7 @@ ELEMENT: The uppercase letter of your choice.''',
         self.logger.debug(f"Action: {pred_action}")
         self.logger.debug(f"Value: {pred_value}")
 
-        prediction={"action_generation": output0, "action_grounding": output, "element": pred_element,
+        prediction = {"action_generation": output0, "action_grounding": output, "element": pred_element,
                 "action": pred_action, "value": pred_value}
 
         self.predictions.append(prediction)
@@ -599,9 +607,13 @@ ELEMENT: The uppercase letter of your choice.''',
         Execute the predicted action on the webpage.
         """
 
+        if prediction_dict is None:
+            self.complete_flag = True
+            return
+
         # Clear the marks before action
-        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
-            await self.session_control['active_page'].evaluate("unmarkPage()")
+        if self.config["agent"]["grounding_strategy"] == "text_choice_som" and self.config["basic"]["crawler_mode"] is False: 
+            await self.page.evaluate("unmarkPage()")
 
         pred_element = prediction_dict["element"]
         pred_action = prediction_dict["action"]
@@ -619,6 +631,8 @@ ELEMENT: The uppercase letter of your choice.''',
                 self.continuous_no_op = 0
             else:
                 self.continuous_no_op += 1
+            if self.config["basic"]["crawler_mode"] is True:
+                await self.stop_playwright_tracing()
             return 0
         except Exception as e:
 
@@ -702,3 +716,37 @@ ELEMENT: The uppercase letter of your choice.''',
     # ADD no op count and op count, add limit to op
 
     # decompose run to predict and execute.
+
+    async def take_screenshot(self):
+        try:                      
+            await self.page.screenshot(path=self.screenshot_path)
+        except Exception as e:
+            self.logger.info(f"Failed to take screenshot: {e}")
+
+    async def start_playwright_tracing(self):
+        await self.session_control['context'].tracing.start_chunk(
+            title=f'Step-{self.time_step}', 
+            name=f"{self.time_step}"
+            )
+
+    async def stop_playwright_tracing(self):
+        await self.session_control['context'].tracing.stop_chunk(path=self.trace_path)
+
+    @property
+    def page(self):
+        if self._page is None:
+            self._page = self.session_control['active_page']
+        return self._page
+    
+    @page.setter
+    def page(self, value):
+        self._page = value    
+
+    @property
+    def screenshot_path(self):
+        return os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
+
+    @property
+    def trace_path(self):
+        return os.path.join(self.main_path, 'playwright_traces', f'{self.time_step}.zip')    
+    
