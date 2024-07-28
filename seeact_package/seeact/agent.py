@@ -42,7 +42,7 @@ class SeeActAgent:
                  input_info=["screenshot"],
                  grounding_strategy="text_choice_som",
                  crawler_mode=False,
-                 crawler_max_steps=5,
+                 crawler_max_steps=10,
                  max_auto_op=50,
                  max_continuous_no_op=5,
                  highlight=False,
@@ -203,7 +203,9 @@ To be successful, it is important to follow the following rules:
 3. For handling the select dropdown elements on the webpage, it's not necessary for you to provide completely accurate options right now. The full list of options for these elements will be supplied later.
 4. Unlike humans, for typing (e.g., in text areas, text boxes) and selecting (e.g., from dropdown menus or <select> elements), you should try directly typing the input or selecting the choice, bypassing the need for an initial click. 
 5. You should not attempt to create accounts, log in or do the final submission. 
-6. Terminate when you deem the task complete or if it requires potentially harmful actions.''',
+6. Terminate when you deem the task complete or if it requires potentially harmful actions.
+7. When there are multiple clickable buttons having the same value, choose the one with less obstacles in the screenshot.
+''',
 
             "referring_description": f"""(Reiteration)
 First, reiterate your next target element, its detailed location, and the corresponding operation.
