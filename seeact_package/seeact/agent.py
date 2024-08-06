@@ -197,7 +197,13 @@ To be successful, it is important to follow the following rules:
 3. For handling the select dropdown elements on the webpage, it's not necessary for you to provide completely accurate options right now. The full list of options for these elements will be supplied later.
 4. Unlike humans, for typing (e.g., in text areas, text boxes) and selecting (e.g., from dropdown menus or <select> elements), you should try directly typing the input or selecting the choice, bypassing the need for an initial click. 
 5. You should not attempt to create accounts, log in or do the final submission. 
-6. Terminate when you deem the task complete or if it requires potentially harmful actions.''',
+6. Terminate when you deem the task complete or if it requires potentially harmful actions.
+7. Do not generate same action as the previous one, try different ways if keep failing
+8. When there is a floating banner like ads, login, or survey floating taking more than 30% of the page, close the floating banner to proceed, the close button could look like a x on the right top corner, or choose NO THANKS to close it.
+9. When there is a floating banner on top or bottom of the page like cookie policy taking less than 30% of the page, ignore the banner to proceed.  
+10. After typing text into search or text input area, the next action is normally PRESS ENTER
+11. When there are bouding boxes in the screenshot, interact with the elements in the bounding boxes
+''',
 
             "referring_description": f"""(Reiteration)
 First, reiterate your next target element, its detailed location, and the corresponding operation.
@@ -320,6 +326,13 @@ ELEMENT: The uppercase letter of your choice.''',
         page.on("crash", self.page_on_crash_handler)
         self.session_control['active_page'] = page
         # Additional event listeners can be added here
+        try:
+            if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+                with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
+                    mark_page_script = f.read()
+                await self.session_control['active_page'].evaluate(mark_page_script)
+        except Exception as e:
+            pass
 
     async def start(self, headless=None, args=None, website=None):
         self.playwright = await async_playwright().start()
@@ -486,10 +499,6 @@ ELEMENT: The uppercase letter of your choice.''',
         except Exception as e:
             pass
 
-        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
-            with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
-                mark_page_script = f.read()
-            await self.session_control['active_page'].evaluate(mark_page_script)
 
         elements = await get_interactive_elements_with_playwright(self.session_control['active_page'],
                                                                   self.config['browser']['viewport'])
@@ -510,9 +519,16 @@ ELEMENT: The uppercase letter of your choice.''',
         elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
         page = self.session_control['active_page']
 
+        try:
+            if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
+                with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
+                    mark_page_script = f.read()
+                await self.session_control['active_page'].evaluate(mark_page_script)
+        except Exception as e:
+            self.logger.info(f"Mark page script loading error {e}")
 
         if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
-            await page.evaluate("unmarkPage()")       
+            await page.evaluate("unmarkPage()")
             await page.evaluate("""elements => {
                 return window.som.drawBoxes(elements);
                 }""", elements)
@@ -531,6 +547,7 @@ ELEMENT: The uppercase letter of your choice.''',
 
         # Capture a screenshot for the current state of the webpage, if required by the model
         screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
+        self.logger.info(screenshot_path)
         try:                      
             await page.screenshot(path=screenshot_path)
         except Exception as e:
@@ -598,10 +615,12 @@ ELEMENT: The uppercase letter of your choice.''',
         """
         Execute the predicted action on the webpage.
         """
-
-        # Clear the marks before action
-        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
-            await self.session_control['active_page'].evaluate("unmarkPage()")
+        try:
+            # Clear the marks before action
+            if self.config["agent"]["grounding_strategy"] == "text_choice_som":
+                await self.session_control['active_page'].evaluate("unmarkPage()")
+        except Exception as e:
+            self.logger.info(f"Unmark page error {e}")
 
         pred_element = prediction_dict["element"]
         pred_action = prediction_dict["action"]
