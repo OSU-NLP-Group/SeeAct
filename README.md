@@ -305,7 +305,7 @@ If you find this work useful, please consider starring our repos and citing our 
 <a href="https://github.com/OSU-NLP-Group/Mind2Web"><img src="https://img.shields.io/github/stars/OSU-NLP-Group/Mind2Web?style=social&label=Mind2Web" alt="GitHub Stars"></a>
 
 ```
-@article{zheng2024seeact,
+@inproceedings{zheng2024seeact,
   title={GPT-4V(ision) is a Generalist Web Agent, if Grounded},
   author={Boyuan Zheng and Boyu Gou and Jihyung Kil and Huan Sun and Yu Su},
   booktitle={Forty-first International Conference on Machine Learning},
