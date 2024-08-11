@@ -512,7 +512,7 @@ ELEMENT: The uppercase letter of your choice.''',
         # In crawler mode, get random link and click on it
         if self.config["basic"]["crawler_mode"] is True:
             if self.time_step > self.config["basic"]["crawler_max_steps"]:
-                print("Crawler reached max steps, going to stop")
+                self.logger.info("Crawler reached max steps, going to stop")
                 self.complete_flag = True
                 return None
             
@@ -537,14 +537,12 @@ ELEMENT: The uppercase letter of your choice.''',
                 with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
                     mark_page_script = f.read()
                 await self.session_control['active_page'].evaluate(mark_page_script)
+                await page.evaluate("unmarkPage()")
+                await page.evaluate("""elements => {
+                    return window.som.drawBoxes(elements);
+                    }""", elements)
         except Exception as e:
-            self.logger.info(f"Mark page script loading error {e}")
-
-        if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
-            await page.evaluate("unmarkPage()")
-            await page.evaluate("""elements => {
-                return window.som.drawBoxes(elements);
-                }""", elements)
+            self.logger.info(f"Mark page script error {e}")
 
         # Generate choices for the prompt
 
@@ -638,7 +636,7 @@ ELEMENT: The uppercase letter of your choice.''',
             if self.config["agent"]["grounding_strategy"] == "text_choice_som":
                 await self.session_control['active_page'].evaluate("unmarkPage()")
         except Exception as e:
-            self.logger.info(f"Unmark page error {e}")
+            pass
 
         pred_element = prediction_dict["element"]
         pred_action = prediction_dict["action"]
@@ -658,6 +656,8 @@ ELEMENT: The uppercase letter of your choice.''',
                 self.continuous_no_op += 1
             if self.config["basic"]["crawler_mode"] is True:
                 await self.stop_playwright_tracing()
+                await self.save_traces()
+
             return 0
         except Exception as e:
 
@@ -757,6 +757,19 @@ ELEMENT: The uppercase letter of your choice.''',
     async def stop_playwright_tracing(self):
         await self.session_control['context'].tracing.stop_chunk(path=self.trace_path)
 
+    async def save_traces(self):
+        # Capture the DOM tree
+        dom_tree = await self.page.evaluate("document.documentElement.outerHTML")
+        os.makedirs(os.path.join(self.main_path, 'dom'), exist_ok=True)
+        with open(self.dom_tree_path, 'w', encoding='utf-8') as f:
+            f.write(dom_tree)
+        
+        # Capture the Accessibility Tree
+        accessibility_tree = await self.page.accessibility.snapshot()
+        os.makedirs(os.path.join(self.main_path, 'accessibility'), exist_ok=True)
+        with open(self.accessibility_tree_path, 'w', encoding='utf-8') as f:
+            f.write(json.dumps(accessibility_tree, indent=4))
+
     @property
     def page(self):
         if self._page is None:
@@ -774,4 +787,11 @@ ELEMENT: The uppercase letter of your choice.''',
     @property
     def trace_path(self):
         return os.path.join(self.main_path, 'playwright_traces', f'{self.time_step}.zip')    
+
+    @property
+    def dom_tree_path(self):
+        return os.path.join(self.main_path, 'dom', f'{self.time_step}.html')    
     
+    @property
+    def accessibility_tree_path(self):
+        return os.path.join(self.main_path, 'accessibility', f'{self.time_step}.json')    
