@@ -100,6 +100,8 @@ if __name__ == "__main__":
 | config_path | Configuration file path | str | None | no |
 | save_file_dir | Folder to save output files  | str | seeact_agent_files | no |
 | temperature | Termperature passed to LLM | num | 0.9 | no |
+| crawler_mode | Flag to enable crawler mode | bool | False | no |
+| crawler_max_steps | Max step to allow crawler to travel | int | 10 | no |
 
 
 ## Supported Models
@@ -132,6 +134,9 @@ An alternative to provide SeeActAgent input parameters is to use a config file, 
 agent = SeeActAgent(config_path="demo_mode.toml")
 ```
 Sample configuration files are available at `src/config/`.
+
+### Crawler Mode
+In the new introduced crawler mode, SeeAct could randomly click any links on the given starting web page, and travel steps defined by `crawler_max_steps`.
 
 ### Demo Mode
 
