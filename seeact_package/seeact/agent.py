@@ -507,7 +507,6 @@ ELEMENT: The uppercase letter of your choice.''',
 
 
         elements = [{**x, "idx": i, "option": generate_option_name(i)} for i,x in enumerate(elements)]
-        page = self.page
 
         # In crawler mode, get random link and click on it
         if self.config["basic"]["crawler_mode"] is True:
@@ -536,9 +535,9 @@ ELEMENT: The uppercase letter of your choice.''',
             if self.config["agent"]["grounding_strategy"] == "text_choice_som": 
                 with open(os.path.join(dirname(__file__), "mark_page.js")) as f:
                     mark_page_script = f.read()
-                await self.session_control['active_page'].evaluate(mark_page_script)
-                await page.evaluate("unmarkPage()")
-                await page.evaluate("""elements => {
+                await self.page.evaluate(mark_page_script)
+                await self.page.evaluate("unmarkPage()")
+                await self.page.evaluate("""elements => {
                     return window.som.drawBoxes(elements);
                     }""", elements)
         except Exception as e:
@@ -560,7 +559,7 @@ ELEMENT: The uppercase letter of your choice.''',
         screenshot_path = os.path.join(self.main_path, 'screenshots', f'screen_{self.time_step}.png')
         self.logger.info(screenshot_path)
         try:                      
-            await page.screenshot(path=screenshot_path)
+            await self.page.screenshot(path=screenshot_path)
         except Exception as e:
             self.logger.info(f"Failed to take screenshot: {e}")
 
@@ -634,7 +633,7 @@ ELEMENT: The uppercase letter of your choice.''',
         try:
             # Clear the marks before action
             if self.config["agent"]["grounding_strategy"] == "text_choice_som":
-                await self.session_control['active_page'].evaluate("unmarkPage()")
+                await self.page.evaluate("unmarkPage()")
         except Exception as e:
             pass
 
