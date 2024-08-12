@@ -35,7 +35,7 @@ It consists of two main components:
 
 <h3>Updates</h3>
 
-- 2024/7/9: Support SOM (Set of Marks) grounding strategy!
+- 2024/7/9: Support SoM (Set-of-Mark) grounding strategy!
 
 - 2024/5/18: Support for Gemini and LLaVA!
 
