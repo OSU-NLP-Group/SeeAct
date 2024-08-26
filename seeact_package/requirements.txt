@@ -16,3 +16,4 @@ protobuf
 BeautifulSoup4
 toml
 aioconsole
+playwright-dompath

@@ -23,6 +23,7 @@ import random
 from playwright.async_api import async_playwright,Locator
 from os.path import dirname, join as joinpath
 import asyncio
+from playwright_dompath.dompath_async import css_path, xpath_path
 
 from .data_utils.format_prompt_utils import get_index_from_option_name, generate_new_query_prompt, \
     generate_new_referring_prompt, format_options, generate_option_name
@@ -527,6 +528,7 @@ ELEMENT: The uppercase letter of your choice.''',
             self.predictions.append(prediction)
             self.visited_links.append(random_link)
             self.logger.info(prediction)
+            await self.save_dompath(elements)
             await self.take_screenshot()
             await self.start_playwright_tracing()         
             return prediction
@@ -769,6 +771,16 @@ ELEMENT: The uppercase letter of your choice.''',
         with open(self.accessibility_tree_path, 'w', encoding='utf-8') as f:
             f.write(json.dumps(accessibility_tree, indent=4))
 
+    async def save_dompath(self, elements):
+        css_paths, xpaths = [], []
+        for e in elements:
+            if 'selector' in e and e['selector']:
+                #css_paths.append(css_path(e['selector']))
+                xpaths.append(await xpath_path(e['selector']))
+        os.makedirs(os.path.join(self.main_path, 'dompath'), exist_ok=True)
+        with open(self.xpath_path, 'w', encoding='utf-8') as f:
+            f.write(json.dumps(xpaths, indent=4))
+
     @property
     def page(self):
         if self._page is None:
@@ -794,3 +806,11 @@ ELEMENT: The uppercase letter of your choice.''',
     @property
     def accessibility_tree_path(self):
         return os.path.join(self.main_path, 'accessibility', f'{self.time_step}.json')    
+
+    @property
+    def csspath_path(self):
+        return os.path.join(self.main_path, 'dompath', f'csspath_{self.time_step}.json')    
+
+    @property
+    def xpath_path(self):
+        return os.path.join(self.main_path, 'dompath', f'xpath_{self.time_step}.json')    
