@@ -53,7 +53,7 @@ def encode_image(image_path):
 
 def engine_factory(api_key=None, model=None, **kwargs):
     model = model.lower()
-    if model in ["gpt-4-vision-preview", "gpt-4-turbo", "gpt-4o"]:
+    if model in ["gpt-4-vision-preview", "gpt-4-turbo", "gpt-4o", "gpt-4o-mini"]:
         if api_key and api_key != EMPTY_API_KEY:
             os.environ["OPENAI_API_KEY"] = api_key
         else:
@@ -70,7 +70,7 @@ def engine_factory(api_key=None, model=None, **kwargs):
         model="llava"
         return OllamaEngine(model=model, **kwargs)
     raise Exception(f"Unsupported model: {model}, currently supported models: \
-                    gpt-4-vision-preview, gpt-4-turbo, gpt-4o, gemini-1.5-pro-latest, llava")
+                    gpt-4-vision-preview, gpt-4-turbo, gpt-4o, , gpt-4o-mini, gemini-1.5-pro-latest, llava")
 
 class Engine:
     def __init__(
