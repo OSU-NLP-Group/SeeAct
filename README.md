@@ -35,6 +35,10 @@ It consists of two main components:
 
 <h3>Updates</h3>
 
+- 2024/11/10: We have open-sourced SeeAct Chrome Extension source code! Try and have fun at [SeeActChromeExtension](https://github.com/BareBeaverBat/SeeActChromeExtension)!
+
+- 2024/9/30: [WebOlympus: An Open Platform for Web Agents on Live Websites](https://aclanthology.org/2024.emnlp-demo.20/) has been accepted to EMNLP'24 Demo Track! 
+
 - 2024/8/17: Crawler mode added!
 
 - 2024/7/9: Support SoM (Set-of-Mark) grounding strategy!
@@ -312,6 +316,19 @@ If you find this work useful, please consider starring our repos and citing our 
 <a href="https://github.com/OSU-NLP-Group/Mind2Web"><img src="https://img.shields.io/github/stars/OSU-NLP-Group/Mind2Web?style=social&label=Mind2Web" alt="GitHub Stars"></a>
 
 ```
+@inproceedings{zheng-etal-2024-webolympus,
+    title = "{W}eb{O}lympus: An Open Platform for Web Agents on Live Websites",
+    author = "Zheng, Boyuan  and Gou, Boyu  and Salisbury, Scott  and Du, Zheng  and Sun, Huan  and Su, Yu",
+    editor = "Hernandez Farias, Delia Irazu  and Hope, Tom  and Li, Manling",
+    booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    month = nov,
+    year = "2024",
+    address = "Miami, Florida, USA",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.emnlp-demo.20",
+    pages = "187--197",
+}
+
 @inproceedings{zheng2024seeact,
   title={GPT-4V(ision) is a Generalist Web Agent, if Grounded},
   author={Boyuan Zheng and Boyu Gou and Jihyung Kil and Huan Sun and Yu Su},
