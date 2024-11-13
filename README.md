@@ -35,7 +35,7 @@ It consists of two main components:
 
 <h3>Updates</h3>
 
-- 2024/11/10: We have open-sourced SeeAct Chrome Extension source code! Try and have fun at [SeeActChromeExtension](https://github.com/BareBeaverBat/SeeActChromeExtension)!
+- 2024/11/10: We have open-sourced SeeAct Chrome Extension source code! Try and have fun at [SeeActChromeExtension](https://github.com/OSU-NLP-Group/SeeActChromeExtension)!
 
 - 2024/9/30: [WebOlympus: An Open Platform for Web Agents on Live Websites](https://aclanthology.org/2024.emnlp-demo.20/) has been accepted to EMNLP'24 Demo Track! 
 
