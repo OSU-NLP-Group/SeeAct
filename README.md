@@ -3,7 +3,7 @@
 <h1 align="center">SeeAct <br> GPT-4V(ision) is a Generalist Web Agent, if Grounded</h1>
 
 <p align="center">
-<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Mind2Web-Homeage-red.svg" alt="Mind2Web Benchmark"></a>
+<a href="https://osu-nlp-group.github.io/Mind2Web/"><img src="https://img.shields.io/badge/Mind2Web-Homepage-red.svg" alt="Mind2Web Benchmark"></a>
 <a href="https://www.licenses.ai/ai-licenses"><img src="https://img.shields.io/badge/OPEN RAIL-License-green.svg" alt="Open RAIL License"></a>
 <a href="https://huggingface.co/datasets/osunlp/Mind2Web"><img src="https://img.shields.io/badge/Mind2Web-Dataset-yellow.svg" alt="Mind2Web Benchmark"></a>
 <a href="https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web"><img src="https://img.shields.io/badge/Multimodal Mind2Web-Dataset-blue.svg" alt="Mind2Web Benchmark"></a>
