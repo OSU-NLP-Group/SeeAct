@@ -120,6 +120,7 @@ Below is the list of currently supported models, to use any one of the model bel
 | OpenAI | gpt-4o | High | OPENAI_API_KEY in env |  |
 | Google | gemini-1.5-pro-latest | High | GEMINI_API_KEY in env | Rate limitting at 2 RPM by Google, need to add wait time in the code to work |
 | Ollama | llava | Low | N/A | Install Ollama, start Ollama, pull llava |
+| MiniMax | MiniMax-M3 | High | MINIMAX_API_KEY in env | Image input is supported through the OpenAI-compatible or Anthropic-compatible protocol |
 
 ## API Keys
 If you plan to use OpenAI family models, pass in the API Key in python or by environment variable
@@ -133,6 +134,26 @@ To use Gemini, pass in the API Key in python or by environment variable
 os.environ["GEMINI_API_KEY"] = "Your API KEY Here"
 ```
 Your Google API key is available at [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+To use MiniMax image input, set `MINIMAX_API_KEY` and choose a compatible endpoint in the configuration file. The OpenAI-compatible protocol uses `api_base`:
+
+```toml
+[openai]
+model = "MiniMax-M3"
+protocol = "openai"
+api_base = "https://api.minimax.io/v1"
+```
+
+For the China endpoint, use `https://api.minimaxi.com/v1` as `api_base`. The Anthropic-compatible protocol uses the `/anthropic` base directly and appends `/v1/messages` for requests:
+
+```toml
+[openai]
+model = "MiniMax-M3"
+protocol = "anthropic"
+anthropic_base_url = "https://api.minimax.io/anthropic"
+```
+
+For the China Anthropic-compatible endpoint, use `https://api.minimaxi.com/anthropic` as `anthropic_base_url`.
 
 ## Configuration File
 An alternative to provide SeeActAgent input parameters is to use a config file, once the config file is provided, it will override all other input paramters.

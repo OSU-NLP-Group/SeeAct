@@ -26,8 +26,14 @@ import requests
 from dotenv import load_dotenv
 import litellm
 import base64
+import httpx
+import mimetypes
 
 EMPTY_API_KEY="Your API KEY Here"
+MINIMAX_MODELS = {
+    "minimax-m3": "MiniMax-M3",
+    "minimax-m2.7": "MiniMax-M2.7",
+}
 
 def load_openai_api_key():
     load_dotenv()
@@ -46,19 +52,70 @@ def load_gemini_api_key():
     ), "must pass on the api_key or set GEMINI_API_KEY in the environment"
     return os.getenv("GEMINI_API_KEY")
 
+
+def load_minimax_api_key():
+    load_dotenv()
+    assert (
+            os.getenv("MINIMAX_API_KEY") is not None and
+            os.getenv("MINIMAX_API_KEY") != EMPTY_API_KEY
+    ), "must pass on the api_key or set MINIMAX_API_KEY in the environment"
+    return os.getenv("MINIMAX_API_KEY")
+
+
+def resolve_minimax_base_url(protocol, configured_url):
+    if configured_url is None:
+        configured_url = os.getenv(
+            "MINIMAX_ANTHROPIC_BASE_URL" if protocol == "anthropic" else "MINIMAX_API_BASE_URL"
+        )
+    if not configured_url:
+        raise ValueError(
+            "configure a MiniMax base URL with api_base or anthropic_base_url"
+        )
+
+    base_url = configured_url.rstrip("/")
+    required_suffix = "/anthropic" if protocol == "anthropic" else "/v1"
+    if not base_url.endswith(required_suffix):
+        raise ValueError(f"MiniMax {protocol} base URL must end with {required_suffix}")
+    return base_url
+
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
 
-def engine_factory(api_key=None, model=None, **kwargs):
+def engine_factory(
+        api_key=None,
+        model=None,
+        protocol="openai",
+        api_base=None,
+        anthropic_base_url=None,
+        **kwargs,
+):
+    requested_model = model
     model = model.lower()
+    if model in MINIMAX_MODELS:
+        minimax_api_key = api_key if api_key and api_key != EMPTY_API_KEY else load_minimax_api_key()
+        if protocol == "openai":
+            return OpenAIEngine(
+                model=f"openai/{MINIMAX_MODELS[model]}",
+                api_key=minimax_api_key,
+                api_base=resolve_minimax_base_url(protocol, api_base),
+                **kwargs,
+            )
+        if protocol == "anthropic":
+            return AnthropicEngine(
+                model=MINIMAX_MODELS[model],
+                api_key=minimax_api_key,
+                api_base=resolve_minimax_base_url(protocol, anthropic_base_url),
+                **kwargs,
+            )
+        raise ValueError("MiniMax protocol must be openai or anthropic")
     if model in ["gpt-4-vision-preview", "gpt-4-turbo", "gpt-4o", "gpt-4o-mini"]:
         if api_key and api_key != EMPTY_API_KEY:
             os.environ["OPENAI_API_KEY"] = api_key
         else:
             load_openai_api_key()
-        return OpenAIEngine(model=model, **kwargs)
+        return OpenAIEngine(model=requested_model.lower(), **kwargs)
     elif model in ["gemini-1.5-pro-latest", "gemini-1.5-flash"]:
         if api_key and api_key != EMPTY_API_KEY:
             os.environ["GEMINI_API_KEY"] = api_key
@@ -79,6 +136,8 @@ class Engine:
             rate_limit=-1,
             model=None,
             temperature=0,
+            api_key=None,
+            api_base=None,
             **kwargs,
     ) -> None:
         """
@@ -94,6 +153,8 @@ class Engine:
         self.stop = stop
         self.temperature = temperature
         self.model = model
+        self.api_key = api_key
+        self.api_base = api_base
         # convert rate limit to minmum request interval
         self.request_interval = 0 if rate_limit == -1 else 60.0 / rate_limit
         self.next_avil_time = [0] * len(self.time_slots)
@@ -223,6 +284,14 @@ class OpenAIEngine(Engine):
         """
         super().__init__(**kwargs)
 
+    def _completion_kwargs(self, kwargs):
+        completion_kwargs = dict(kwargs)
+        if self.api_key is not None:
+            completion_kwargs.setdefault("api_key", self.api_key)
+        if self.api_base is not None:
+            completion_kwargs.setdefault("api_base", self.api_base)
+        return completion_kwargs
+
     @backoff.on_exception(
         backoff.expo,
         (APIError, RateLimitError, APIConnectionError),
@@ -265,9 +334,67 @@ class OpenAIEngine(Engine):
             messages=prompt_input,
             max_tokens=max_new_tokens if max_new_tokens else 4096,
             temperature=temperature if temperature else self.temperature,
-            **kwargs,
+            **self._completion_kwargs(kwargs),
         )
         return [choice["message"]["content"] for choice in response.choices][0]
+
+
+class AnthropicEngine(Engine):
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        if not self.api_key:
+            raise ValueError("an API key is required for the Anthropic-compatible protocol")
+        if not self.api_base or not self.api_base.endswith("/anthropic"):
+            raise ValueError("the Anthropic-compatible base URL must end with /anthropic")
+
+    def _message_content(self, prompt, image_path):
+        content = [{"type": "text", "text": prompt}]
+        if image_path:
+            media_type = mimetypes.guess_type(image_path)[0] or "image/jpeg"
+            content.append({
+                "type": "image",
+                "source": {
+                    "type": "base64",
+                    "media_type": media_type,
+                    "data": encode_image(image_path),
+                },
+            })
+        return content
+
+    def generate(self, prompt: list = None, max_new_tokens=4096, temperature=None, model=None, image_path=None,
+                 ouput_0=None, turn_number=0, **kwargs):
+        prompt0, prompt1, prompt2 = prompt
+        if turn_number == 0:
+            messages = [{"role": "user", "content": self._message_content(prompt1, image_path)}]
+        elif turn_number == 1:
+            messages = [
+                {"role": "user", "content": self._message_content(prompt1, image_path)},
+                {"role": "assistant", "content": f"\n\n{ouput_0}"},
+                {"role": "user", "content": prompt2},
+            ]
+        else:
+            raise ValueError("turn_number must be 0 or 1")
+
+        payload = {
+            "model": model if model else self.model,
+            "system": prompt0,
+            "messages": messages,
+            "max_tokens": max_new_tokens if max_new_tokens else 4096,
+            "temperature": temperature if temperature is not None else self.temperature,
+        }
+        response = httpx.post(
+            f"{self.api_base}/v1/messages",
+            headers={
+                "x-api-key": self.api_key,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json=payload,
+            timeout=60,
+        )
+        response.raise_for_status()
+        content = response.json().get("content", [])
+        return "".join(block.get("text", "") for block in content if block.get("type") == "text")
 
 
 class OpenaiEngine_MindAct(Engine):
